@@ -1,25 +1,13 @@
+import { range } from "./array-utils/range";
+import { randomInteger } from "./random-utils/random-integer";
+import { randomText } from "./random-utils/random-text";
+import { randomUser } from "./random-utils/random-user";
+
 export function getTweets() {
-  return [
-    {
-      id: "tweet0",
-      name: "Ethel",
-      twitterHandle: "@oldtimerethel",
-      time: 56,
-      message: "What's going on?",
-    },
-    {
-      id: "tweet1",
-      name: "JimBob",
-      twitterHandle: "@jimbobWW2",
-      time: 2,
-      message: "What to do?",
-    },
-    {
-      id: "tweet2",
-      name: "Gertrude",
-      twitterHandle: "Gertrude1920",
-      time: 48,
-      message: "Is the war over?",
-    },
-  ];
+  return range(10).map((index) => ({
+    id: `tweet${index}`,
+    ...randomUser(),
+    time: randomInteger(Date.now()),
+    message: randomText(),
+  }));
 }

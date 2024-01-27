@@ -1,5 +1,5 @@
 import { Box, Paper } from "@mui/material";
-import "./app-temp.css";
+import "./app.css";
 
 export function App() {
  const arr = [{name: "Ethel", twitterHandle: "@oldtimerethel", time: 56, message: "What's going on?"}, {name: "JimBob", twitterHandle:"@jimbobWW2", time: 2, message: "What to do?"}, {name: "Gertrude", twitterHandle: "Gertrude1920", time: 48, message: "Is the war over?"}];

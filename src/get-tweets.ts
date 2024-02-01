@@ -4,7 +4,7 @@ import { randomText } from "./random-utils/random-text";
 import { randomUser } from "./random-utils/random-user";
 
 export function getTweets() {
-  return range(10).map((index) => ({
+  return range(15).map((index) => ({
     id: `tweet${index}`,
     ...randomUser(),
     time: randomInteger(Date.now()),

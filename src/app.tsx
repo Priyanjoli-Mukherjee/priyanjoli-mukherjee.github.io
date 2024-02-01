@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { useMemo } from "react";
 import "./app.css";
 import { getTweets } from "./get-tweets";
+import { formatDate } from "./date-utils/format-date";
 
 export function App() {
   const tweets = useMemo(() => getTweets(), []);
@@ -17,9 +18,9 @@ export function App() {
             {ele.name}
           </Box>
           <Box color="black" paddingLeft={2} >{ele.twitterHandle}</Box>
-          <Box color="black" paddingLeft={2}>{ele.time}</Box>
+          <Box color="black" paddingLeft={2}>{formatDate(ele.time)}</Box>
           </Box>
-          <Box display="flex" color="black" paddingLeft={1} paddingRight={1} justifyContent="flex-start" alignItems="center">{ele.message}</Box>
+          <Box display="flex" textAlign="start" color="black" paddingLeft={1} paddingRight={1} justifyContent="flex-start" alignItems="center">{ele.message}</Box>
         </Box>
       ))}
     </Box>

@@ -1,12 +1,12 @@
 import { Box, Typography } from "@mui/material";
-import { useMemo } from "react";
 import "./app.css";
 import { formatDate } from "./date-utils/format-date";
 import { getTweets } from "./service/get-tweets";
+import { useQuery } from "react-query";
 
 export function App() {
-  const tweets = useMemo(() => getTweets(), []);
-
+  const { data } = useQuery("tweets", getTweets);
+  
   return (
     <Box width={665}>
       <Box
@@ -40,7 +40,7 @@ export function App() {
           What's Happening?
         </Typography>
       </Box>
-      {tweets.map((ele) => (
+      {data!.map((ele) => (
         <Box
           key={ele.id}
           marginLeft={1}

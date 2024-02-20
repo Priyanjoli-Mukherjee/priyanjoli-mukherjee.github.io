@@ -1,6 +1,7 @@
+import { User } from "../types/user";
 import { randomInteger } from "./random-integer";
 
-const USERS = [
+const USERS: Array<User> = [
   {
     name: "Ethel",
     twitterHandle: "@oldtimerethel",

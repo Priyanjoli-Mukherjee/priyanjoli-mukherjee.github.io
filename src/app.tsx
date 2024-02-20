@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import { useMemo } from "react";
 import "./app.css";
-import { getTweets } from "./get-tweets";
 import { formatDate } from "./date-utils/format-date";
+import { getTweets } from "./service/get-tweets";
 
 export function App() {
   const tweets = useMemo(() => getTweets(), []);

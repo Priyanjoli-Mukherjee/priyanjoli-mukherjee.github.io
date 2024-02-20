@@ -1,4 +1,4 @@
 export interface User {
-    name: string;
-    twitterHandle: string;
+  name: string;
+  twitterHandle: string;
 }

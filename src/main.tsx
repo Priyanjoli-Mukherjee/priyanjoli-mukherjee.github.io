@@ -12,11 +12,10 @@ const queryClient = new QueryClient({
   },
 });
 
-
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
     <Suspense fallback={<Fragment />}>
-    <App />
+      <App />
     </Suspense>
   </QueryClientProvider>,
 );

@@ -6,7 +6,7 @@ import { useQuery } from "react-query";
 
 export function App() {
   const { data } = useQuery("tweets", getTweets);
-  
+
   return (
     <Box width={665}>
       <Box

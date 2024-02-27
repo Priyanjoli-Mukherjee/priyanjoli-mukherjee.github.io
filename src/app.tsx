@@ -1,11 +1,17 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import "./app.css";
 import { formatDate } from "./date-utils/format-date";
 import { getTweets } from "./service/get-tweets";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
+import { useState } from "react";
+import { addTweet } from "./service/add-tweets";
 
 export function App() {
   const { data } = useQuery("tweets", getTweets);
+
+  const [ tweetMessage, setTweetMessage ] = useState("");
+
+  const queryClient = useQueryClient();
 
   return (
     <Box width={665}>
@@ -27,8 +33,8 @@ export function App() {
       </Box>
       <Box
         display="flex"
+        flexDirection="column"
         padding={1}
-        height={70}
         marginLeft={1}
         marginRight={1}
         style={{
@@ -36,9 +42,18 @@ export function App() {
           borderBottom: "10px solid lightgrey",
         }}
       >
-        <Typography variant="h6" sx={{ fontWeight: 500, color: "lightgrey" }}>
-          What's Happening?
-        </Typography>
+        <input type="text" placeholder="What's Happening?" onChange={(evt) => setTweetMessage(evt.target.value)} />
+        <Box marginTop={5} display="flex" justifyContent="space-between" marginRight={1}>
+          <Box />
+          <Button variant="contained" sx={{ height: 35, borderRadius: 4, marginBottom: 0.5 }} onClick={() => {
+            addTweet(tweetMessage);
+            queryClient.invalidateQueries({ queryKey: "tweets"});
+          }}>
+            <Typography variant="body2" sx={{ fontWeight: 800 }}>
+              Tweet
+            </Typography>
+          </Button>
+        </Box>
       </Box>
       {data!.map((ele) => (
         <Box

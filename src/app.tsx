@@ -5,14 +5,14 @@ import { getTweets } from "./service/get-tweets";
 import { useQuery, useQueryClient } from "react-query";
 import { useState } from "react";
 import { addTweet } from "./service/add-tweets";
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import EditIcon from '@mui/icons-material/Edit';
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import EditIcon from "@mui/icons-material/Edit";
 import { deleteTweet } from "./service/delete-tweets";
 
 export function App() {
   const { data } = useQuery("tweets", getTweets);
 
-  const [ tweetMessage, setTweetMessage ] = useState("");
+  const [tweetMessage, setTweetMessage] = useState("");
 
   const queryClient = useQueryClient();
 
@@ -45,14 +45,34 @@ export function App() {
           borderBottom: "10px solid lightgrey",
         }}
       >
-        <input type="text" placeholder="What's Happening?" value={tweetMessage} style={{ backgroundColor: "white", fontSize: 20, fontWeight: 400, color: "black" }} onChange={(evt) => setTweetMessage(evt.target.value)} />
-        <Box marginTop={5} display="flex" justifyContent="space-between" marginRight={1}>
+        <input
+          type="text"
+          placeholder="What's Happening?"
+          value={tweetMessage}
+          style={{
+            backgroundColor: "white",
+            fontSize: 20,
+            fontWeight: 400,
+            color: "black",
+          }}
+          onChange={(evt) => setTweetMessage(evt.target.value)}
+        />
+        <Box
+          marginTop={5}
+          display="flex"
+          justifyContent="space-between"
+          marginRight={1}
+        >
           <Box />
-          <Button variant="contained" sx={{ height: 35, borderRadius: 4, marginBottom: 0.5 }} onClick={() => {
-            addTweet(tweetMessage);
-            queryClient.invalidateQueries({ queryKey: "tweets"});
-            setTweetMessage("");
-          }}>
+          <Button
+            variant="contained"
+            sx={{ height: 35, borderRadius: 4, marginBottom: 0.5 }}
+            onClick={() => {
+              addTweet(tweetMessage);
+              queryClient.invalidateQueries({ queryKey: "tweets" });
+              setTweetMessage("");
+            }}
+          >
             <Typography variant="body2" sx={{ fontWeight: 800 }}>
               Tweet
             </Typography>
@@ -67,31 +87,38 @@ export function App() {
           borderBottom="1px solid lightgrey"
           style={{ backgroundColor: "white" }}
         >
-          <Box display="flex" alignItems="center" justifyContent="space-between">
-          <Box display="flex" alignItems="center" paddingLeft={1}>
-            <Box color="black">
-              <Typography variant="body1" sx={{ fontWeight: 900 }}>
-                {ele.name}
-              </Typography>
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Box display="flex" alignItems="center" paddingLeft={1}>
+              <Box color="black">
+                <Typography variant="body1" sx={{ fontWeight: 900 }}>
+                  {ele.name}
+                </Typography>
+              </Box>
+              <Box color="black" paddingLeft={2}>
+                <Typography variant="body1">{ele.twitterHandle}</Typography>
+              </Box>
+              <Box color="black" paddingLeft={2}>
+                <Typography variant="body1">{formatDate(ele.time)}</Typography>
+              </Box>
             </Box>
-            <Box color="black" paddingLeft={2}>
-              <Typography variant="body1">{ele.twitterHandle}</Typography>
+            <Box paddingRight={0.5}>
+              <IconButton color="primary">
+                <EditIcon fontSize="small" />
+              </IconButton>
+              <IconButton
+                color="primary"
+                onClick={() => {
+                  deleteTweet(ele.id);
+                  queryClient.invalidateQueries({ queryKey: "tweets" });
+                }}
+              >
+                <DeleteOutlineIcon fontSize="medium" />
+              </IconButton>
             </Box>
-            <Box color="black" paddingLeft={2}>
-              <Typography variant="body1">{formatDate(ele.time)}</Typography>
-            </Box>
-          </Box>
-          <Box paddingRight={0.5}>
-            <IconButton color="primary">
-            <EditIcon fontSize="small" />
-            </IconButton>
-            <IconButton color="primary" onClick={() => {
-              deleteTweet(ele.id);
-              queryClient.invalidateQueries({ queryKey: "tweets"});
-            }}>
-            <DeleteOutlineIcon fontSize="medium" />
-            </IconButton>
-          </Box>
           </Box>
           <Box
             display="flex"

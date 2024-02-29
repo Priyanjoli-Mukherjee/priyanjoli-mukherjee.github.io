@@ -1,13 +1,10 @@
-import { Box, Button, IconButton, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import "./app.css";
-import { formatDate } from "./date-utils/format-date";
 import { getTweets } from "./service/get-tweets";
 import { useQuery, useQueryClient } from "react-query";
 import { useState } from "react";
 import { addTweet } from "./service/add-tweets";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import EditIcon from "@mui/icons-material/Edit";
-import { deleteTweet } from "./service/delete-tweets";
+import { TweetCard } from "./tweet-card";
 
 export function App() {
   const { data } = useQuery("tweets", getTweets);
@@ -79,60 +76,8 @@ export function App() {
           </Button>
         </Box>
       </Box>
-      {data!.map((ele) => (
-        <Box
-          key={ele.id}
-          marginLeft={1}
-          marginRight={1}
-          borderBottom="1px solid lightgrey"
-          style={{ backgroundColor: "white" }}
-        >
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Box display="flex" alignItems="center" paddingLeft={1}>
-              <Box color="black">
-                <Typography variant="body1" sx={{ fontWeight: 900 }}>
-                  {ele.name}
-                </Typography>
-              </Box>
-              <Box color="black" paddingLeft={2}>
-                <Typography variant="body1">{ele.twitterHandle}</Typography>
-              </Box>
-              <Box color="black" paddingLeft={2}>
-                <Typography variant="body1">{formatDate(ele.time)}</Typography>
-              </Box>
-            </Box>
-            <Box paddingRight={0.5}>
-              <IconButton color="primary">
-                <EditIcon fontSize="small" />
-              </IconButton>
-              <IconButton
-                color="primary"
-                onClick={() => {
-                  deleteTweet(ele.id);
-                  queryClient.invalidateQueries({ queryKey: "tweets" });
-                }}
-              >
-                <DeleteOutlineIcon fontSize="medium" />
-              </IconButton>
-            </Box>
-          </Box>
-          <Box
-            display="flex"
-            textAlign="start"
-            color="black"
-            paddingLeft={1}
-            paddingRight={1}
-            paddingBottom={1}
-            justifyContent="flex-start"
-            alignItems="center"
-          >
-            <Typography variant="body2">{ele.message}</Typography>
-          </Box>
-        </Box>
+      {data!.map((tweet) => (
+        <TweetCard key={tweet.id} id={tweet.id} message={tweet.message} time={tweet.time} name={tweet.name} twitterHandle={tweet.twitterHandle}/>
       ))}
     </Box>
   );

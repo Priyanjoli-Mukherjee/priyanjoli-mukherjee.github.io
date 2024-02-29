@@ -77,7 +77,14 @@ export function App() {
         </Box>
       </Box>
       {data!.map((tweet) => (
-        <TweetCard key={tweet.id} id={tweet.id} message={tweet.message} time={tweet.time} name={tweet.name} twitterHandle={tweet.twitterHandle}/>
+        <TweetCard
+          key={tweet.id}
+          id={tweet.id}
+          message={tweet.message}
+          time={tweet.time}
+          name={tweet.name}
+          twitterHandle={tweet.twitterHandle}
+        />
       ))}
     </Box>
   );

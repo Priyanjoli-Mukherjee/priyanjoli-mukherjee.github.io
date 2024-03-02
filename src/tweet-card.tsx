@@ -1,13 +1,23 @@
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, Button, IconButton, Typography } from "@mui/material";
 import { Tweet } from "./types/tweet";
 import { formatDate } from "./date-utils/format-date";
 import { deleteTweet } from "./service/delete-tweets";
 import { useQueryClient } from "react-query";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
+import { useState } from "react";
+import { editTweet } from "./service/edit-tweets";
 
 export function TweetCard({ id, message, time, name, twitterHandle }: Tweet) {
   const queryClient = useQueryClient();
+
+  const [editedMessage, setEditedMessage] = useState(message);
+
+  const [isEditButtonClickable, setEditButtonClickable] = useState(false);
+
+  function toggle() {
+    setEditButtonClickable(!isEditButtonClickable);
+  }
 
   return (
     <Box
@@ -31,7 +41,7 @@ export function TweetCard({ id, message, time, name, twitterHandle }: Tweet) {
           </Box>
         </Box>
         <Box paddingRight={0.5}>
-          <IconButton color="primary">
+          <IconButton color="primary" onClick={toggle}>
             <EditIcon fontSize="small" />
           </IconButton>
           <IconButton
@@ -55,7 +65,45 @@ export function TweetCard({ id, message, time, name, twitterHandle }: Tweet) {
         justifyContent="flex-start"
         alignItems="center"
       >
-        <Typography variant="body2">{message}</Typography>
+        {isEditButtonClickable ? (
+          <Box width={665} paddingBottom={1}>
+            <textarea
+              rows={3}
+              value={editedMessage}
+              style={{
+                backgroundColor: "white",
+                fontSize: 20,
+                fontWeight: 400,
+                color: "black",
+                width: "98%",
+              }}
+              onChange={(evt) => setEditedMessage(evt.target.value)}
+            />
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
+              paddingRight={0.5}
+            >
+              <Box />
+              <Button
+                variant="contained"
+                sx={{ height: 30, borderRadius: 4, marginBottom: 0.5 }}
+                onClick={() => {
+                  editTweet(id, message);
+                  queryClient.invalidateQueries({ queryKey: "tweets" });
+                  setEditButtonClickable(false);
+                }}
+              >
+                <Typography variant="body2" sx={{ fontWeight: 800 }}>
+                  Submit
+                </Typography>
+              </Button>
+            </Box>
+          </Box>
+        ) : (
+          <Typography variant="body2">{editedMessage}</Typography>
+        )}
       </Box>
     </Box>
   );

@@ -42,12 +42,13 @@ export function App() {
           borderBottom: "10px solid lightgrey",
         }}
       >
-        <input
-          type="text"
+        <textarea
+          rows={3}
           placeholder="What's Happening?"
           value={tweetMessage}
           style={{
             backgroundColor: "white",
+            border: "none",
             fontSize: 20,
             fontWeight: 400,
             color: "black",

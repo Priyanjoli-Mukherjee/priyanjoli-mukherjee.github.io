@@ -2,12 +2,12 @@ import { Box, Button, IconButton, Typography } from "@mui/material";
 import { Tweet } from "./types/tweet";
 import { formatDate } from "./date-utils/format-date";
 import { deleteTweet } from "./service/delete-tweets";
-import { useQuery, useQueryClient } from "react-query";
+import { useQueryClient } from "react-query";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
 import { editTweet } from "./service/edit-tweets";
-import { getCurrentUser } from "./service/get-current-user";
+import { useCurrentUser } from "./hooks/use-current-user";
 
 export function TweetCard({ id, message, time, name, twitterHandle }: Tweet) {
   const queryClient = useQueryClient();
@@ -20,7 +20,7 @@ export function TweetCard({ id, message, time, name, twitterHandle }: Tweet) {
     setEditButtonClickable(!isEditButtonClickable);
   }
 
-  const { data: currentUser } = useQuery("currentUser", getCurrentUser);
+  const currentUser = useCurrentUser();
 
   return (
     <Box
@@ -43,7 +43,7 @@ export function TweetCard({ id, message, time, name, twitterHandle }: Tweet) {
             <Typography variant="body1">{formatDate(time)}</Typography>
           </Box>
         </Box>
-        {currentUser!.twitterHandle === twitterHandle && (
+        {currentUser.twitterHandle === twitterHandle && (
           <Box paddingRight={0.5}>
             <IconButton color="primary" onClick={toggle}>
               <EditIcon fontSize="small" />

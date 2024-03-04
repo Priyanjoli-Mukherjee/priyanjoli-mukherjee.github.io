@@ -1,13 +1,13 @@
 import { Box, Button, Typography } from "@mui/material";
 import "./app.css";
-import { getTweets } from "./service/get-tweets";
-import { useQuery, useQueryClient } from "react-query";
+import { useQueryClient } from "react-query";
 import { useState } from "react";
 import { addTweet } from "./service/add-tweets";
 import { TweetCard } from "./tweet-card";
+import { useTweets } from "./hooks/use-tweets";
 
 export function App() {
-  const { data: tweets } = useQuery("tweets", getTweets);
+  const tweets = useTweets();
 
   const [tweetMessage, setTweetMessage] = useState("");
 
@@ -77,7 +77,7 @@ export function App() {
           </Button>
         </Box>
       </Box>
-      {tweets!.map((tweet) => (
+      {tweets.map((tweet) => (
         <TweetCard
           key={tweet.id}
           id={tweet.id}

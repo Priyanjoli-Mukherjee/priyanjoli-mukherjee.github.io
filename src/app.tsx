@@ -7,7 +7,7 @@ import { addTweet } from "./service/add-tweets";
 import { TweetCard } from "./tweet-card";
 
 export function App() {
-  const { data } = useQuery("tweets", getTweets);
+  const { data: tweets } = useQuery("tweets", getTweets);
 
   const [tweetMessage, setTweetMessage] = useState("");
 
@@ -77,7 +77,7 @@ export function App() {
           </Button>
         </Box>
       </Box>
-      {data!.map((tweet) => (
+      {tweets!.map((tweet) => (
         <TweetCard
           key={tweet.id}
           id={tweet.id}

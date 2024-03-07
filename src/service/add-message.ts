@@ -1,3 +1,4 @@
+import uniqueId from "lodash/uniqueId";
 import { conversations } from "./conversations";
 import { getCurrentUser } from "./get-current-user";
 
@@ -7,7 +8,7 @@ export function addMessage(message: string, twitterHandle: string) {
   );
   if (conversation) {
     conversation.messages.push({
-      id: `message${conversation.messages.length}`,
+      id: uniqueId("message"),
       message,
       twitterHandle: getCurrentUser().twitterHandle,
       time: Date.now(),

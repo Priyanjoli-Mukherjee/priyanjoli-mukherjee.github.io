@@ -1,3 +1,4 @@
+import uniqueId from "lodash/uniqueId";
 import { range } from "../array-utils/range";
 import { randomText } from "../random-utils/random-text";
 import { Message } from "../types/message";
@@ -10,7 +11,7 @@ export function randomMessages(
 ): Array<Message> {
   const now = Date.now();
   return range(10).map((index) => ({
-    id: `message${index}`,
+    id: uniqueId("message"),
     message: randomText(),
     twitterHandle:
       Math.random() < 0.5 ? user1.twitterHandle : user2.twitterHandle,

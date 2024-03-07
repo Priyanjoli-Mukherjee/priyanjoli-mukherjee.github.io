@@ -1,7 +1,8 @@
 import { tweets } from "./tweets";
 
 export function editTweet(id: string, message: string) {
-  const index = tweets.findIndex((tweet) => tweet.id === id);
-  tweets[index].message = message;
-  return tweets;
+  const tweet = tweets.find((tweet) => tweet.id === id);
+  if (tweet) {
+    tweet.message = message;
+  }
 }

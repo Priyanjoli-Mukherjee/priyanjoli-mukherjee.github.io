@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import "./app.css";
 import { useQueryClient } from "react-query";
 import { useState } from "react";
-import { addTweet } from "./service/add-tweets";
+import { addTweet } from "./service/add-tweet";
 import { TweetCard } from "./tweet-card";
 import { useTweets } from "./hooks/use-tweets";
 

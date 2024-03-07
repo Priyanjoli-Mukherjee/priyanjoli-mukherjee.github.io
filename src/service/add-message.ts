@@ -7,7 +7,7 @@ export function addMessage(message: string, twitterHandle: string) {
   );
   if (conversation) {
     conversation.messages.push({
-      id: `${conversation.messages.length}`,
+      id: `message${conversation.messages.length}`,
       message,
       twitterHandle: getCurrentUser().twitterHandle,
       time: Date.now(),

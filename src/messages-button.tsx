@@ -4,16 +4,16 @@ import { useRef, useState } from "react";
 import { ConversationDrawer } from "./conversation-drawer";
 
 export function MessagesButton() {
-  const anchor = useRef<HTMLButtonElement | null>(null);
+  const anchor = useRef<SVGSVGElement | null>(null);
   const [isClicked, setIsClicked] = useState(false);
 
   function toggle() {
     setIsClicked(!isClicked);
   }
   return (
-    <Box marginBottom={2} marginLeft={10}>
-      <IconButton color="primary" ref={anchor} onClick={toggle}>
-        <MailIcon fontSize="large" />
+    <Box position="fixed" bottom={16} right={16}>
+      <IconButton onClick={toggle} sx={{ color: "lightblue" }}>
+        <MailIcon ref={anchor} fontSize="large" />
       </IconButton>
       <Popover
         open={isClicked}

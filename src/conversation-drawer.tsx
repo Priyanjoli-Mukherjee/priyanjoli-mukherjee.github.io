@@ -6,7 +6,7 @@ import { Box, Typography } from "@mui/material";
 export function ConversationDrawer() {
   const conversations = useConversations();
 
-  const [selectedConvo, setSelectedConvo] = useState<number>();
+  const [selectedConvo, setSelectedConvo] = useState<Conversation>();
 
   return (
     <Box display="flex" flexDirection="column" justifyContent="center">
@@ -24,14 +24,19 @@ export function ConversationDrawer() {
         flexDirection="column"
         paddingBottom={1}
         paddingTop={1}
-        paddingRight={2}
-        paddingLeft={2}
       >
         {conversations.map((conversation, index) => (
           <Box
             key={index}
-            sx={{ backgroundColor: selectedConvo === index ? "blue" : "none" }}
-            onClick={() => setSelectedConvo(index)}
+            sx={{
+              backgroundColor:
+                conversation.user.twitterHandle ===
+                selectedConvo?.user.twitterHandle
+                  ? "blue"
+                  : "none",
+              paddingLeft: 2,
+            }}
+            onClick={() => setSelectedConvo(conversation)}
           >
             {conversation.user.name}
           </Box>

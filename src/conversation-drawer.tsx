@@ -32,9 +32,10 @@ export function ConversationDrawer() {
               backgroundColor:
                 conversation.user.twitterHandle ===
                 selectedConvo?.user.twitterHandle
-                  ? "blue"
+                  ? "lightBlue"
                   : "none",
               paddingLeft: 2,
+              cursor: "pointer",
             }}
             onClick={() => setSelectedConvo(conversation)}
           >

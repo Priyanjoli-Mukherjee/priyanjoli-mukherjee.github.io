@@ -6,7 +6,7 @@ import { Box, Typography } from "@mui/material";
 export function ConversationDrawer() {
   const conversations = useConversations();
 
-  const [selectedConvo, setSelectedConvo] = useState<Conversation>();
+  const [selectedConvo, setSelectedConvo] = useState<number>();
 
   return (
     <Box display="flex" flexDirection="column" justifyContent="center">
@@ -27,8 +27,14 @@ export function ConversationDrawer() {
         paddingRight={2}
         paddingLeft={2}
       >
-        {conversations.map((conversation) => (
-          <Box>{conversation.user.name}</Box>
+        {conversations.map((conversation, index) => (
+          <Box
+            key={index}
+            sx={{ backgroundColor: selectedConvo === index ? "blue" : "none" }}
+            onClick={() => setSelectedConvo(index)}
+          >
+            {conversation.user.name}
+          </Box>
         ))}
       </Box>
     </Box>

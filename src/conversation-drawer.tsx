@@ -25,7 +25,9 @@ export function ConversationDrawer() {
           paddingRight={2}
           paddingLeft={2}
         >
-          <Typography>Conversations</Typography>
+          <Typography variant="body1" sx={{ fontWeight: 900 }}>
+            Conversations
+          </Typography>
         </Box>
         <Box
           display="flex"
@@ -48,7 +50,9 @@ export function ConversationDrawer() {
               onClick={() => setSelectedConvo(conversation)}
             >
               <Box display="flex" flexDirection="column">
-                <Typography>{conversation.user.name}</Typography>
+                <Typography variant="body2">
+                  {conversation.user.name}
+                </Typography>
               </Box>
             </Box>
           ))}

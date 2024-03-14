@@ -9,49 +9,59 @@ export function MessageDrawer({ messages, user }: Conversation) {
     <Box
       display="flex"
       flexDirection="column"
-      height={200}
+      height={300}
       width={300}
-      overflow="scroll"
       right={175}
       bottom={30}
       position="fixed"
-      padding={2}
       sx={{ backgroundColor: "white" }}
     >
-      <Box display="flex" justifyContent="center">
+      <Box
+        display="flex"
+        justifyContent="center"
+        padding={1}
+        sx={{ backgroundColor: "rgb(179, 179, 179)" }}
+      >
         <Typography variant="body1" sx={{ fontWeight: 900 }}>
           {user.name}
         </Typography>
       </Box>
-      {messages.map((message) => (
-        <Box
-          key={message.id}
-          display="flex"
-          justifyContent={
-            message.twitterHandle === currentUser.twitterHandle
-              ? "flex-end"
-              : "flex-start"
-          }
-          width="100%"
-        >
+      <Box
+        overflow="scroll"
+        paddingRight={2}
+        paddingLeft={2}
+        sx={{ backgroundColor: "rgb(77, 77, 77)" }}
+      >
+        {messages.map((message) => (
           <Box
-            border="1px solid lightgrey"
-            margin={0.5}
-            padding={1}
-            borderRadius={2}
-            width={125}
-            sx={{
-              backgroundColor:
-                message.twitterHandle === currentUser.twitterHandle
-                  ? "rgb(65, 105, 225)"
-                  : "green",
-              color: "white",
-            }}
+            key={message.id}
+            display="flex"
+            justifyContent={
+              message.twitterHandle === currentUser.twitterHandle
+                ? "flex-end"
+                : "flex-start"
+            }
+            width="100%"
           >
-            <Typography variant="body2">{message.message}</Typography>
+            <Box
+              border="1px solid lightgrey"
+              margin={0.5}
+              padding={1}
+              borderRadius={2}
+              width={125}
+              sx={{
+                backgroundColor:
+                  message.twitterHandle === currentUser.twitterHandle
+                    ? "rgb(65, 105, 225)"
+                    : "green",
+                color: "white",
+              }}
+            >
+              <Typography variant="body2">{message.message}</Typography>
+            </Box>
           </Box>
-        </Box>
-      ))}
+        ))}
+      </Box>
     </Box>
   );
 }

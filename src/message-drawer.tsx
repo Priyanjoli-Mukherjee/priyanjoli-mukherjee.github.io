@@ -1,15 +1,23 @@
-import { Box, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import { Conversation } from "./types/conversation";
 import { useCurrentUser } from "./hooks/use-current-user";
+import { useState } from "react";
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import { addMessage } from "./service/add-message";
+import { useQueryClient } from "react-query";
 
 export function MessageDrawer({ messages, user }: Conversation) {
   const currentUser = useCurrentUser();
+
+  const [directMessage, setDirectMessage] = useState("");
+
+  const queryClient = useQueryClient();
 
   return (
     <Box
       display="flex"
       flexDirection="column"
-      height={300}
+      height={400}
       width={300}
       right={175}
       bottom={30}
@@ -61,6 +69,42 @@ export function MessageDrawer({ messages, user }: Conversation) {
             </Box>
           </Box>
         ))}
+      </Box>
+      <Box
+        display="flex"
+        flexDirection="column"
+        sx={{ backgroundColor: "white" }}
+      >
+        <textarea
+          rows={2}
+          placeholder="message"
+          value={directMessage}
+          style={{
+            border: "none",
+            backgroundColor: "white",
+            fontSize: 15,
+            fontWeight: 200,
+            color: "black",
+          }}
+          onChange={(evt) => setDirectMessage(evt.target.value)}
+        />
+        <Box display="flex" justifyContent="flex-end">
+          <IconButton
+            onClick={() => {
+              addMessage(directMessage, user.twitterHandle);
+              queryClient.invalidateQueries({ queryKey: "conversations" });
+              setDirectMessage("");
+            }}
+          >
+            <ArrowCircleUpIcon
+              sx={{
+                color: "white",
+                borderRadius: 10,
+                backgroundColor: "rgb(0, 82, 204)",
+              }}
+            />
+          </IconButton>
+        </Box>
       </Box>
     </Box>
   );

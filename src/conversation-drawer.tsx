@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useConversations } from "./hooks/use-conversations";
-import { Conversation } from "./types/conversation";
 import { Box, Typography } from "@mui/material";
 import { MessageDrawer } from "./message-drawer";
 
 export function ConversationDrawer() {
   const conversations = useConversations();
 
-  const [selectedConvo, setSelectedConvo] = useState<Conversation>();
+  const [selectedTwitterHandle, setSelectedTwitterHandle] = useState<string>();
+
+  const selectedConvo = useMemo(
+    () =>
+      conversations.find(
+        (conversation) =>
+          conversation.user.twitterHandle === selectedTwitterHandle,
+      ),
+    [conversations, selectedTwitterHandle],
+  );
 
   return (
     <Box display="flex">
@@ -47,7 +55,9 @@ export function ConversationDrawer() {
                 paddingLeft: 2,
                 cursor: "pointer",
               }}
-              onClick={() => setSelectedConvo(conversation)}
+              onClick={() =>
+                setSelectedTwitterHandle(conversation.user.twitterHandle)
+              }
             >
               <Box display="flex" flexDirection="column">
                 <Typography variant="body2">

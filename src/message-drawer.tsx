@@ -3,8 +3,12 @@ import { Conversation } from "./types/conversation";
 import { useCurrentUser } from "./hooks/use-current-user";
 import { useState } from "react";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import EditIcon from "@mui/icons-material/Edit";
 import { addMessage } from "./service/add-message";
 import { useQueryClient } from "react-query";
+import { Message } from "./styles/message";
+import { deleteMessage } from "./service/delete-message";
 
 export function MessageDrawer({ messages, user }: Conversation) {
   const currentUser = useCurrentUser();
@@ -51,7 +55,7 @@ export function MessageDrawer({ messages, user }: Conversation) {
             }
             width="100%"
           >
-            <Box
+            <Message
               border="1px solid lightgrey"
               margin={0.5}
               padding={1}
@@ -65,8 +69,34 @@ export function MessageDrawer({ messages, user }: Conversation) {
                 color: "white",
               }}
             >
+              <Box
+                id={
+                  message.twitterHandle === currentUser.twitterHandle
+                    ? "actions"
+                    : ""
+                }
+                display="flex"
+                justifyContent="flex-end"
+                height={15}
+                visibility="hidden"
+                sx={{ cursor: "pointer" }}
+              >
+                <IconButton>
+                  <EditIcon fontSize="small" sx={{ color: "white" }} />
+                </IconButton>
+                <IconButton
+                  onClick={() => {
+                    deleteMessage(message.id, user.twitterHandle);
+                    queryClient.invalidateQueries({
+                      queryKey: "conversations",
+                    });
+                  }}
+                >
+                  <DeleteOutlineIcon fontSize="small" sx={{ color: "white" }} />
+                </IconButton>
+              </Box>
               <Typography variant="body2">{message.message}</Typography>
-            </Box>
+            </Message>
           </Box>
         ))}
       </Box>

@@ -1,7 +1,6 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import { Message } from "./message";
 import { User } from "./user";
-import { Message as MessageStyle } from "../styles/message";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import { deleteMessage } from "../service/delete-message";
@@ -24,6 +23,8 @@ export function MessageCard({ message, user }: Props) {
 
   const [isEditButtonClickable, setEditButtonClickable] = useState(false);
 
+  const [isHovered, setHovered] = useState(false);
+
   function toggle() {
     setEditButtonClickable(!isEditButtonClickable);
   }
@@ -38,12 +39,14 @@ export function MessageCard({ message, user }: Props) {
       }
       width="100%"
     >
-      <MessageStyle
+      <Box
         border="1px solid lightgrey"
         margin={0.5}
         padding={1}
         borderRadius={2}
         width={125}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
         sx={{
           backgroundColor:
             message.twitterHandle === currentUser.twitterHandle
@@ -52,31 +55,31 @@ export function MessageCard({ message, user }: Props) {
           color: "white",
         }}
       >
-        <Box
-          id={
-            message.twitterHandle === currentUser.twitterHandle ? "actions" : ""
-          }
-          display="flex"
-          justifyContent="flex-end"
-          height={15}
-          visibility="hidden"
-          marginBottom={0.5}
-          sx={{ cursor: "pointer" }}
-        >
-          <IconButton onClick={toggle}>
-            <EditIcon fontSize="small" sx={{ color: "white" }} />
-          </IconButton>
-          <IconButton
-            onClick={() => {
-              deleteMessage(message.id, user.twitterHandle);
-              queryClient.invalidateQueries({
-                queryKey: "conversations",
-              });
-            }}
+        {isHovered && message.twitterHandle === currentUser.twitterHandle ? (
+          <Box
+            display="flex"
+            justifyContent="flex-end"
+            height={15}
+            marginBottom={0.5}
+            sx={{ cursor: "pointer" }}
           >
-            <DeleteOutlineIcon fontSize="small" sx={{ color: "white" }} />
-          </IconButton>
-        </Box>
+            <IconButton onClick={toggle}>
+              <EditIcon fontSize="small" sx={{ color: "white" }} />
+            </IconButton>
+            <IconButton
+              onClick={() => {
+                deleteMessage(message.id, user.twitterHandle);
+                queryClient.invalidateQueries({
+                  queryKey: "conversations",
+                });
+              }}
+            >
+              <DeleteOutlineIcon fontSize="small" sx={{ color: "white" }} />
+            </IconButton>
+          </Box>
+        ) : (
+          <Box height={15} marginBottom={0.5} />
+        )}
         {isEditButtonClickable ? (
           <Box width="100%" paddingBottom={1}>
             <textarea
@@ -100,7 +103,7 @@ export function MessageCard({ message, user }: Props) {
         ) : (
           <Typography variant="body2">{editedMessage}</Typography>
         )}
-      </MessageStyle>
+      </Box>
     </Box>
   );
 }

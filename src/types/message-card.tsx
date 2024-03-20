@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, Button, IconButton, Typography } from "@mui/material";
 import { Message } from "./message";
 import { User } from "./user";
 import { Message as MessageStyle } from "../styles/message";
@@ -7,6 +7,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import { deleteMessage } from "../service/delete-message";
 import { useCurrentUser } from "../hooks/use-current-user";
 import { useQueryClient } from "react-query";
+import { useState } from "react";
+import { editMessage } from "../service/edit-message";
 
 interface Props {
   message: Message;
@@ -17,6 +19,14 @@ export function MessageCard({ message, user }: Props) {
   const currentUser = useCurrentUser();
 
   const queryClient = useQueryClient();
+
+  const [editedMessage, setEditedMessage] = useState(message.text);
+
+  const [isEditButtonClickable, setEditButtonClickable] = useState(false);
+
+  function toggle() {
+    setEditButtonClickable(!isEditButtonClickable);
+  }
 
   return (
     <Box
@@ -52,7 +62,7 @@ export function MessageCard({ message, user }: Props) {
           visibility="hidden"
           sx={{ cursor: "pointer" }}
         >
-          <IconButton>
+          <IconButton onClick={toggle}>
             <EditIcon fontSize="small" sx={{ color: "white" }} />
           </IconButton>
           <IconButton
@@ -66,7 +76,29 @@ export function MessageCard({ message, user }: Props) {
             <DeleteOutlineIcon fontSize="small" sx={{ color: "white" }} />
           </IconButton>
         </Box>
-        <Typography variant="body2">{message.text}</Typography>
+        {isEditButtonClickable ? (
+          <Box width="100%" paddingBottom={1}>
+            <textarea
+              rows={3}
+              value={editedMessage}
+              style={{
+                backgroundColor: "white",
+                fontSize: 20,
+                fontWeight: 400,
+                color: "black",
+                width: "98%",
+              }}
+              onBlur={() => {
+                editMessage(message.id, user.twitterHandle, message.text);
+                queryClient.invalidateQueries({ queryKey: "tweets" });
+                setEditButtonClickable(false);
+              }}
+              onChange={(evt) => setEditedMessage(evt.target.value)}
+            />
+          </Box>
+        ) : (
+          <Typography variant="body2">{editedMessage}</Typography>
+        )}
       </MessageStyle>
     </Box>
   );

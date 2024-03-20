@@ -1,5 +1,6 @@
+import cloneDeep from "lodash/cloneDeep";
 import { tweets } from "./tweets";
 
 export function getTweets() {
-  return [...tweets];
+  return cloneDeep(tweets);
 }

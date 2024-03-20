@@ -1,6 +1,6 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import { Conversation } from "./types/conversation";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import { addMessage } from "./service/add-message";
 import { useQueryClient } from "react-query";
@@ -10,6 +10,16 @@ export function MessageDrawer({ messages, user }: Conversation) {
   const [directMessage, setDirectMessage] = useState("");
 
   const queryClient = useQueryClient();
+
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = useCallback(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   return (
     <Box
@@ -41,6 +51,7 @@ export function MessageDrawer({ messages, user }: Conversation) {
         {messages.map((message) => (
           <MessageCard key={message.id} message={message} user={user} />
         ))}
+        <Box ref={messagesEndRef} />
       </Box>
       <Box
         display="flex"

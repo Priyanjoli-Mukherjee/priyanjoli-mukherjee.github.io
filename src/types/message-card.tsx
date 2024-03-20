@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import { Message } from "./message";
 import { User } from "./user";
 import { Message as MessageStyle } from "../styles/message";
@@ -60,6 +60,7 @@ export function MessageCard({ message, user }: Props) {
           justifyContent="flex-end"
           height={15}
           visibility="hidden"
+          marginBottom={0.5}
           sx={{ cursor: "pointer" }}
         >
           <IconButton onClick={toggle}>

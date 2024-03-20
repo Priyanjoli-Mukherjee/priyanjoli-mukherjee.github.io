@@ -13,7 +13,7 @@ export function randomMessages(
   return range(10)
     .map(() => ({
       id: uniqueId("message"),
-      message: randomText(),
+      text: randomText(),
       twitterHandle:
         Math.random() < 0.5 ? user1.twitterHandle : user2.twitterHandle,
       time: randomInteger(Date.now()),

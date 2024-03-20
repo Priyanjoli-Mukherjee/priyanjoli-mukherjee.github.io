@@ -1,10 +1,6 @@
 import { conversations } from "./conversations";
 
-export function editMessage(
-  id: string,
-  twitterHandle: string,
-  message: string,
-) {
+export function editMessage(id: string, twitterHandle: string, text: string) {
   const conversation = conversations.find(
     (conversation) => conversation.user.twitterHandle === twitterHandle,
   );
@@ -13,7 +9,7 @@ export function editMessage(
       (message) => message.id === id,
     );
     if (individualMessage) {
-      individualMessage.message = message;
+      individualMessage.text = text;
     }
   }
 }

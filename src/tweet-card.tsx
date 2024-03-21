@@ -16,6 +16,8 @@ export function TweetCard({ id, message, time, name, twitterHandle }: Tweet) {
 
   const [isEditButtonClickable, setEditButtonClickable] = useState(false);
 
+  const [isHovered, setHovered] = useState(false);
+
   function toggle() {
     setEditButtonClickable(!isEditButtonClickable);
   }
@@ -24,13 +26,20 @@ export function TweetCard({ id, message, time, name, twitterHandle }: Tweet) {
 
   return (
     <Box
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       marginLeft={1}
       marginRight={1}
       borderBottom="1px solid lightgrey"
       style={{ backgroundColor: "white" }}
     >
-      <Box display="flex" alignItems="center" justifyContent="space-between">
-        <Box display="flex" alignItems="center" paddingLeft={1}>
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        width="100%"
+      >
+        <Box display="flex" alignItems="center" paddingLeft={1} width="100%">
           <Box color="black">
             <Typography variant="body1" sx={{ fontWeight: 900 }}>
               {name}
@@ -42,23 +51,32 @@ export function TweetCard({ id, message, time, name, twitterHandle }: Tweet) {
           <Box color="black" paddingLeft={2}>
             <Typography variant="body1">{formatDate(time)}</Typography>
           </Box>
-        </Box>
-        {currentUser.twitterHandle === twitterHandle && (
-          <Box paddingRight={0.5}>
-            <IconButton color="primary" onClick={toggle}>
-              <EditIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              color="primary"
-              onClick={() => {
-                deleteTweet(id);
-                queryClient.invalidateQueries({ queryKey: "tweets" });
-              }}
-            >
-              <DeleteOutlineIcon fontSize="medium" />
-            </IconButton>
+          <Box
+            display="flex"
+            flexGrow={1}
+            justifyContent="flex-end"
+            alignItems="flex-start"
+          >
+            {isHovered && currentUser.twitterHandle === twitterHandle ? (
+              <Box height={36} paddingRight={0.5}>
+                <IconButton color="primary" onClick={toggle}>
+                  <EditIcon fontSize="small" />
+                </IconButton>
+                <IconButton
+                  color="primary"
+                  onClick={() => {
+                    deleteTweet(id);
+                    queryClient.invalidateQueries({ queryKey: "tweets" });
+                  }}
+                >
+                  <DeleteOutlineIcon fontSize="medium" />
+                </IconButton>
+              </Box>
+            ) : (
+              <Box height={36} paddingRight={0.5} />
+            )}
           </Box>
-        )}
+        </Box>
       </Box>
       <Box
         display="flex"

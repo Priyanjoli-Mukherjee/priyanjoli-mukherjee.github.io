@@ -1,13 +1,13 @@
 import { Box, IconButton, Typography } from "@mui/material";
-import { Message } from "./message";
-import { User } from "./user";
+import { Message } from "./types/message";
+import { User } from "./types/user";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
-import { deleteMessage } from "../service/delete-message";
-import { useCurrentUser } from "../hooks/use-current-user";
+import { deleteMessage } from "./service/delete-message";
+import { useCurrentUser } from "./hooks/use-current-user";
 import { useQueryClient } from "react-query";
 import { useState } from "react";
-import { editMessage } from "../service/edit-message";
+import { editMessage } from "./service/edit-message";
 
 interface Props {
   message: Message;

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import { addMessage } from "./service/add-message";
 import { useQueryClient } from "react-query";
-import { MessageCard } from "./types/message-card";
+import { MessageCard } from "./message-card";
 
 export function MessageDrawer({ messages, user }: Conversation) {
   const [directMessage, setDirectMessage] = useState("");

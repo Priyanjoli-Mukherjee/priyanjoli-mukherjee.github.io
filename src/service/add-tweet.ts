@@ -8,7 +8,6 @@ export function addTweet(message: string) {
     id: uniqueId("tweet"),
     time: Date.now(),
     message,
-    hashtags: [],
     ...user,
   });
 }

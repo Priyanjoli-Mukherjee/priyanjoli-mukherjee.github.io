@@ -8,14 +8,14 @@ import { Tweet } from "../types/tweet";
 import { randomHashtag } from "../random-utils/random-hashtag";
 
 export function initializeTweets(): Array<Tweet> {
+  const hashtags = uniq(range(randomInteger(4)).map(randomHashtag));
   return range(25)
     .map(
       (): Tweet => ({
         id: uniqueId("tweet"),
         ...randomUser(),
         time: randomInteger(Date.now()),
-        message: randomText(),
-        hashtags: uniq(range(randomInteger(4)).map(randomHashtag)),
+        message: `${randomText()} ${hashtags.join(" ")}`,
       }),
     )
     .sort((tweet1, tweet2) => tweet2.time - tweet1.time);

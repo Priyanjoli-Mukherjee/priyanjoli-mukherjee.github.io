@@ -5,18 +5,12 @@ import { deleteTweet } from "./service/delete-tweets";
 import { useQueryClient } from "react-query";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { editTweet } from "./service/edit-tweets";
 import { useCurrentUser } from "./hooks/use-current-user";
+import { parseHashtags } from "./hashtag-utils/parse-hashtags";
 
-export function TweetCard({
-  id,
-  message,
-  time,
-  name,
-  twitterHandle,
-  hashtags,
-}: Tweet) {
+export function TweetCard({ id, message, time, name, twitterHandle }: Tweet) {
   const queryClient = useQueryClient();
 
   const [editedMessage, setEditedMessage] = useState(message);
@@ -28,6 +22,8 @@ export function TweetCard({
   function toggle() {
     setEditButtonClickable(!isEditButtonClickable);
   }
+
+  const parsed = useMemo(() => parseHashtags(message), [message]);
 
   const currentUser = useCurrentUser();
 
@@ -136,16 +132,17 @@ export function TweetCard({
           </Box>
         ) : (
           <Box width="100%">
-            <Typography variant="body2">{editedMessage}</Typography>
+            <Typography variant="body2">
+              {parsed.map((text) =>
+                text[0] === "#" ? (
+                  <span style={{ color: "blue" }}>{text}</span>
+                ) : (
+                  <span>{text}</span>
+                ),
+              )}
+            </Typography>
           </Box>
         )}
-        <Box display="flex" marginTop={1} width="100%">
-          {hashtags.map((hashtag, index) => (
-            <Box key={index} paddingRight={1} sx={{ color: "blue" }}>
-              {`#${hashtag}`}
-            </Box>
-          ))}
-        </Box>
       </Box>
     </Box>
   );

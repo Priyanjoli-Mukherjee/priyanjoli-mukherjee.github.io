@@ -147,14 +147,7 @@ export function App() {
             </Box>
           </Box>
           {filteredTweets.map((tweet) => (
-            <TweetCard
-              key={tweet.id}
-              id={tweet.id}
-              message={tweet.message}
-              time={tweet.time}
-              name={tweet.name}
-              twitterHandle={tweet.twitterHandle}
-            />
+            <TweetCard key={tweet.id} {...tweet} />
           ))}
         </Box>
         <Box height="100vh" width={SIDEBAR_WIDTH} />

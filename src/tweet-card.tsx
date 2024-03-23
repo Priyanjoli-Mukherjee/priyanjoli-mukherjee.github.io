@@ -9,7 +9,14 @@ import { useState } from "react";
 import { editTweet } from "./service/edit-tweets";
 import { useCurrentUser } from "./hooks/use-current-user";
 
-export function TweetCard({ id, message, time, name, twitterHandle }: Tweet) {
+export function TweetCard({
+  id,
+  message,
+  time,
+  name,
+  twitterHandle,
+  hashtags,
+}: Tweet) {
   const queryClient = useQueryClient();
 
   const [editedMessage, setEditedMessage] = useState(message);
@@ -80,16 +87,19 @@ export function TweetCard({ id, message, time, name, twitterHandle }: Tweet) {
       </Box>
       <Box
         display="flex"
+        flexDirection="column"
         textAlign="start"
         color="black"
-        paddingLeft={1}
+        paddingLeft={3}
         paddingRight={1}
         paddingBottom={1}
         justifyContent="flex-start"
         alignItems="center"
+        width={639}
+        boxSizing="border-box"
       >
         {isEditButtonClickable ? (
-          <Box width={665} paddingBottom={1}>
+          <Box paddingLeft={1} paddingBottom={1}>
             <textarea
               rows={3}
               value={editedMessage}
@@ -113,7 +123,7 @@ export function TweetCard({ id, message, time, name, twitterHandle }: Tweet) {
                 variant="contained"
                 sx={{ height: 30, borderRadius: 4, marginBottom: 0.5 }}
                 onClick={() => {
-                  editTweet(id, message);
+                  editTweet(id, editedMessage);
                   queryClient.invalidateQueries({ queryKey: "tweets" });
                   setEditButtonClickable(false);
                 }}
@@ -125,8 +135,17 @@ export function TweetCard({ id, message, time, name, twitterHandle }: Tweet) {
             </Box>
           </Box>
         ) : (
-          <Typography variant="body2">{editedMessage}</Typography>
+          <Box width="100%">
+            <Typography variant="body2">{editedMessage}</Typography>
+          </Box>
         )}
+        <Box display="flex" marginTop={1} width="100%">
+          {hashtags.map((hashtag, index) => (
+            <Box key={index} paddingRight={1} sx={{ color: "blue" }}>
+              {`#${hashtag}`}
+            </Box>
+          ))}
+        </Box>
       </Box>
     </Box>
   );

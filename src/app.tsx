@@ -13,6 +13,8 @@ import { TweetCard } from "./tweet-card";
 import { useTweets } from "./hooks/use-tweets";
 import { MessagesButton } from "./messages-button";
 import SearchIcon from "@mui/icons-material/Search";
+import { getTrendDictionary } from "./hashtag-utils/get-trend-dictionary";
+import { Dictionary } from "./types/dictionary";
 
 const SIDEBAR_WIDTH = 350;
 
@@ -31,6 +33,19 @@ export function App() {
         tweet.message.toLowerCase().includes(searchText.toLowerCase()),
       ),
     [tweets, searchText],
+  );
+
+  const trends: Dictionary<number> = useMemo(
+    () => getTrendDictionary(filteredTweets),
+    [filteredTweets],
+  );
+
+  const sortedTrends = useMemo(
+    () =>
+      Object.keys(trends).sort(
+        (trend1, trend2) => trends[trend2] - trends[trend1],
+      ),
+    [trends],
   );
 
   return (
@@ -81,6 +96,34 @@ export function App() {
                 Trends For You
               </Typography>
             </Box>
+            {sortedTrends.map((trend) => (
+              <Box
+                key={trend}
+                display="flex"
+                borderBottom="1px solid rgb(179, 179, 204)"
+              >
+                <Box
+                  display="flex"
+                  flexDirection="column"
+                  paddingLeft={2}
+                  paddingBottom={2}
+                  paddingTop={2}
+                >
+                  <Typography
+                    variant="body1"
+                    sx={{ fontWeight: 800, color: "black" }}
+                  >
+                    {trend}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{ fontWeight: 400, color: "black" }}
+                  >
+                    {`${trends[trend]}${"K Tweets"}`}
+                  </Typography>
+                </Box>
+              </Box>
+            ))}
           </Box>
         </Box>
         <Box width={665} height="100vh" overflow="scroll">

@@ -133,11 +133,13 @@ export function TweetCard({ id, message, time, name, twitterHandle }: Tweet) {
         ) : (
           <Box width="100%">
             <Typography variant="body2">
-              {parsed.map((text) =>
+              {parsed.map((text, index) =>
                 text[0] === "#" ? (
-                  <span style={{ color: "blue" }}>{text}</span>
+                  <span key={index} style={{ color: "blue" }}>
+                    {text}
+                  </span>
                 ) : (
-                  <span>{text}</span>
+                  <span key={index}>{text}</span>
                 ),
               )}
             </Typography>

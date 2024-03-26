@@ -8,7 +8,7 @@ import { Tweet } from "../types/tweet";
 import { randomHashtag } from "../random-utils/random-hashtag";
 
 export function initializeTweets(): Array<Tweet> {
-  const hashtags = uniq(range(randomInteger(4)).map(randomHashtag));
+  const hashtags = uniq(range(randomInteger(10)).map(randomHashtag));
   return range(25)
     .map(
       (): Tweet => ({

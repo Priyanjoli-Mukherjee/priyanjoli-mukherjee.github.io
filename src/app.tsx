@@ -36,8 +36,8 @@ export function App() {
   );
 
   const trends: Dictionary<number> = useMemo(
-    () => getTrendDictionary(filteredTweets),
-    [filteredTweets],
+    () => getTrendDictionary(tweets),
+    [tweets],
   );
 
   const sortedTrends = useMemo(

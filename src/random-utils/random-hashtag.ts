@@ -9,7 +9,7 @@ export const HASHTAGS = [
   ...new Array(9).fill("#Election2024"),
   ...new Array(4).fill("#OscarsSoWhite"),
   ...new Array(6).fill("#BabyJesus"),
-  ...new Array(20).fill("#MigetsForTrump"),
+  ...new Array(20).fill("#MidgetsForTrump"),
   ...new Array(4).fill("WheresKate"),
 ];
 

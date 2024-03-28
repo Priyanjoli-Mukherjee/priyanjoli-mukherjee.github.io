@@ -10,7 +10,7 @@ export const HASHTAGS = [
   ...new Array(4).fill("#OscarsSoWhite"),
   ...new Array(6).fill("#BabyJesus"),
   ...new Array(20).fill("#MidgetsForTrump"),
-  ...new Array(4).fill("WheresKate"),
+  ...new Array(4).fill("#WheresKate"),
 ];
 
 export function randomHashtag() {

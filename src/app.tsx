@@ -84,7 +84,8 @@ export function App() {
           </TextField>
           <Box
             marginTop={2}
-            height="90%"
+            height="100%"
+            overflow="scroll"
             sx={{ backgroundColor: "lightgray", borderRadius: 4 }}
           >
             <Box borderBottom="1px solid rgb(179, 179, 204)">
@@ -102,26 +103,39 @@ export function App() {
                 display="flex"
                 borderBottom="1px solid rgb(179, 179, 204)"
               >
-                <Box
-                  display="flex"
-                  flexDirection="column"
-                  paddingLeft={2}
-                  paddingBottom={2}
-                  paddingTop={2}
+                <Button
+                  sx={{
+                    width: "100%",
+                    justifyContent: "flex-start",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => setSearchText(trend)}
                 >
-                  <Typography
-                    variant="body1"
-                    sx={{ fontWeight: 800, color: "black" }}
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    paddingLeft={2}
+                    paddingBottom={2}
+                    paddingTop={2}
                   >
-                    {trend}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ fontWeight: 400, color: "black" }}
-                  >
-                    {`${trends[trend]}${"K Tweets"}`}
-                  </Typography>
-                </Box>
+                    <Box display="flex" justifyContent="flex-start">
+                      <Typography
+                        variant="body1"
+                        sx={{ fontWeight: 800, color: "black" }}
+                      >
+                        {trend}
+                      </Typography>
+                    </Box>
+                    <Box display="flex" justifyContent="flex-start">
+                      <Typography
+                        variant="body2"
+                        sx={{ fontWeight: 400, color: "black" }}
+                      >
+                        {`${trends[trend]}${"K Tweets"}`}
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Button>
               </Box>
             ))}
           </Box>

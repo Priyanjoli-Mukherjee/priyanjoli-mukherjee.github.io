@@ -9,7 +9,7 @@ export function parseHashtags(message: string) {
     parsed.push(match[0]);
     index = match.index! + match[0].length;
   }
-  if (index !== message.length - 1) {
+  if (index !== message.length - 1 || [...matches].length === 0) {
     parsed.push(message.slice(index));
   }
   return parsed;

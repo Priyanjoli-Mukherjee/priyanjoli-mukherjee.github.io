@@ -3,6 +3,8 @@ import { App } from "./app.tsx";
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Fragment, Suspense } from "react";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "./theme.ts";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,8 +16,10 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
-    <Suspense fallback={<Fragment />}>
-      <App />
-    </Suspense>
+    <ThemeProvider theme={theme}>
+      <Suspense fallback={<Fragment />}>
+        <App />
+      </Suspense>
+    </ThemeProvider>
   </QueryClientProvider>,
 );

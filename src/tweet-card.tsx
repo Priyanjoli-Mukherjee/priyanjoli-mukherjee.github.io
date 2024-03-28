@@ -10,7 +10,14 @@ import { editTweet } from "./service/edit-tweets";
 import { useCurrentUser } from "./hooks/use-current-user";
 import { parseHashtags } from "./hashtag-utils/parse-hashtags";
 
-export function TweetCard({ id, message, time, name, twitterHandle }: Tweet) {
+interface Props {
+  tweet: Tweet;
+  onFilter(hashtag: string): void;
+}
+
+export function TweetCard({ onFilter, tweet }: Props) {
+  const { id, message, time, name, twitterHandle } = tweet;
+
   const queryClient = useQueryClient();
 
   const [editedMessage, setEditedMessage] = useState(message);
@@ -135,7 +142,11 @@ export function TweetCard({ id, message, time, name, twitterHandle }: Tweet) {
             <Typography variant="body2">
               {parsed.map((text, index) =>
                 text[0] === "#" ? (
-                  <span key={index} style={{ color: "blue" }}>
+                  <span
+                    key={index}
+                    style={{ color: "blue", cursor: "pointer" }}
+                    onClick={() => onFilter(text)}
+                  >
                     {text}
                   </span>
                 ) : (

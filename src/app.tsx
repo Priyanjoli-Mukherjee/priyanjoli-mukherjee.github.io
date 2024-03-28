@@ -204,7 +204,7 @@ export function App() {
             </Box>
           </Box>
           {filteredTweets.map((tweet) => (
-            <TweetCard key={tweet.id} {...tweet} />
+            <TweetCard key={tweet.id} tweet={tweet} onFilter={setSearchText} />
           ))}
         </Box>
         <Box height="100vh" width={SIDEBAR_WIDTH} />

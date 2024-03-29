@@ -50,7 +50,11 @@ export function TweetCard({ tweet, onFilter }: Props) {
         width="100%"
       >
         <Box display="flex" alignItems="center" paddingLeft={1} width="100%">
-          <Box color="black">
+          <Box
+            color="black"
+            sx={{ cursor: "pointer", "&:hover": { color: "blue" } }}
+            onClick={() => onFilter(twitterHandle)}
+          >
             <Typography variant="body1" sx={{ fontWeight: 900 }}>
               {name}
             </Typography>

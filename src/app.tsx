@@ -15,6 +15,7 @@ import { MessagesButton } from "./messages-button";
 import SearchIcon from "@mui/icons-material/Search";
 import { getTrendDictionary } from "./hashtag-utils/get-trend-dictionary";
 import { Dictionary } from "./types/dictionary";
+import { Tweet } from "./types/tweet";
 
 const SIDEBAR_WIDTH = 350;
 
@@ -27,13 +28,17 @@ export function App() {
 
   const queryClient = useQueryClient();
 
-  const filteredTweets = useMemo(
-    () =>
-      tweets.filter((tweet) =>
+  const filteredTweets = useMemo(() => {
+    if (searchText[0] !== "@") {
+      return tweets.filter((tweet) =>
         tweet.message.toLowerCase().includes(searchText.toLowerCase()),
-      ),
-    [tweets, searchText],
-  );
+      );
+    } else {
+      return tweets.filter((tweet) =>
+        tweet.twitterHandle.toLowerCase().includes(searchText.toLowerCase()),
+      );
+    }
+  }, [tweets, searchText]);
 
   const trends: Dictionary<number> = useMemo(
     () => getTrendDictionary(tweets),
@@ -203,7 +208,7 @@ export function App() {
               </Button>
             </Box>
           </Box>
-          {filteredTweets.map((tweet) => (
+          {filteredTweets?.map((tweet: Tweet) => (
             <TweetCard key={tweet.id} tweet={tweet} onFilter={setSearchText} />
           ))}
         </Box>

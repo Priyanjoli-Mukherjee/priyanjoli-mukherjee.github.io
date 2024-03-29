@@ -12,10 +12,10 @@ import { parseHashtags } from "./hashtag-utils/parse-hashtags";
 
 interface Props {
   tweet: Tweet;
-  onFilter(hashtag: string): void;
+  onFilter(searchText: string): void;
 }
 
-export function TweetCard({ onFilter, tweet }: Props) {
+export function TweetCard({ tweet, onFilter }: Props) {
   const { id, message, time, name, twitterHandle } = tweet;
 
   const queryClient = useQueryClient();
@@ -55,7 +55,12 @@ export function TweetCard({ onFilter, tweet }: Props) {
               {name}
             </Typography>
           </Box>
-          <Box color="black" paddingLeft={2}>
+          <Box
+            color="black"
+            paddingLeft={2}
+            sx={{ cursor: "pointer", "&:hover": { color: "blue" } }}
+            onClick={() => onFilter(twitterHandle)}
+          >
             <Typography variant="body1">{twitterHandle}</Typography>
           </Box>
           <Box color="black" paddingLeft={2}>

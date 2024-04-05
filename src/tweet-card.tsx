@@ -5,10 +5,12 @@ import { deleteTweet } from "./service/delete-tweets";
 import { useQueryClient } from "react-query";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { useMemo, useState } from "react";
 import { editTweet } from "./service/edit-tweets";
 import { useCurrentUser } from "./hooks/use-current-user";
 import { parseHashtags } from "./hashtag-utils/parse-hashtags";
+import { Link } from "react-router-dom";
 
 interface Props {
   tweet: Tweet;
@@ -74,26 +76,39 @@ export function TweetCard({ tweet, onFilter }: Props) {
             display="flex"
             flexGrow={1}
             justifyContent="flex-end"
+            height={40}
             alignItems="flex-start"
           >
-            {isHovered && currentUser.twitterHandle === twitterHandle ? (
-              <Box height={36} paddingRight={0.5}>
-                <IconButton color="primary" onClick={toggle}>
-                  <EditIcon fontSize="small" />
-                </IconButton>
-                <IconButton
-                  color="primary"
-                  onClick={() => {
-                    deleteTweet(id);
-                    queryClient.invalidateQueries({ queryKey: "tweets" });
-                  }}
-                >
-                  <DeleteOutlineIcon fontSize="medium" />
-                </IconButton>
-              </Box>
-            ) : (
-              <Box height={36} paddingRight={0.5} />
-            )}
+            {isHovered &&
+              (currentUser.twitterHandle === twitterHandle ? (
+                <Box paddingRight={0.5}>
+                  <IconButton color="primary" onClick={toggle}>
+                    <EditIcon fontSize="small" />
+                  </IconButton>
+                  <IconButton
+                    color="primary"
+                    onClick={() => {
+                      deleteTweet(id);
+                      queryClient.invalidateQueries({ queryKey: "tweets" });
+                    }}
+                  >
+                    <DeleteOutlineIcon fontSize="medium" />
+                  </IconButton>
+                  <Link to={`/tweet/${id}`}>
+                    <IconButton color="primary">
+                      <OpenInNewIcon />
+                    </IconButton>
+                  </Link>
+                </Box>
+              ) : (
+                <Box paddingRight={0.5}>
+                  <Link to={`/tweet/${id}`}>
+                    <IconButton color="primary">
+                      <OpenInNewIcon />
+                    </IconButton>
+                  </Link>
+                </Box>
+              ))}
           </Box>
         </Box>
       </Box>

@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useQueryClient } from "react-query";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { addTweet } from "./service/add-tweet";
 import { TweetCard } from "./tweet-card";
 import { useTweets } from "./hooks/use-tweets";
@@ -16,10 +16,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import { getTrendDictionary } from "./hashtag-utils/get-trend-dictionary";
 import { Dictionary } from "./types/dictionary";
 import { Tweet } from "./types/tweet";
+import { Link, useParams } from "react-router-dom";
 
 const SIDEBAR_WIDTH = 350;
 
 export function App() {
+  const { search } = useParams();
+
   const tweets = useTweets();
 
   const [tweetMessage, setTweetMessage] = useState("");
@@ -52,6 +55,10 @@ export function App() {
       ),
     [trends],
   );
+
+  useEffect(() => {
+    setSearchText(decodeURIComponent(search ?? ""));
+  }, [search]);
 
   return (
     <Box display="flex" justifyContent="center" width="100vw" height="100vh">
@@ -108,39 +115,43 @@ export function App() {
                 display="flex"
                 borderBottom="1px solid rgb(179, 179, 204)"
               >
-                <Button
-                  sx={{
-                    width: "100%",
-                    justifyContent: "flex-start",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => setSearchText(trend)}
+                <Link
+                  to={`/${encodeURIComponent(trend)}`}
+                  style={{ width: "100%" }}
                 >
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    paddingLeft={2}
-                    paddingBottom={2}
-                    paddingTop={2}
+                  <Button
+                    sx={{
+                      width: "100%",
+                      justifyContent: "flex-start",
+                      cursor: "pointer",
+                    }}
                   >
-                    <Box display="flex" justifyContent="flex-start">
-                      <Typography
-                        variant="body1"
-                        sx={{ fontWeight: 800, color: "black" }}
-                      >
-                        {trend}
-                      </Typography>
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      paddingLeft={2}
+                      paddingBottom={2}
+                      paddingTop={2}
+                    >
+                      <Box display="flex" justifyContent="flex-start">
+                        <Typography
+                          variant="body1"
+                          sx={{ fontWeight: 800, color: "black" }}
+                        >
+                          {trend}
+                        </Typography>
+                      </Box>
+                      <Box display="flex" justifyContent="flex-start">
+                        <Typography
+                          variant="body2"
+                          sx={{ fontWeight: 400, color: "black" }}
+                        >
+                          {`${trends[trend]}${"K Tweets"}`}
+                        </Typography>
+                      </Box>
                     </Box>
-                    <Box display="flex" justifyContent="flex-start">
-                      <Typography
-                        variant="body2"
-                        sx={{ fontWeight: 400, color: "black" }}
-                      >
-                        {`${trends[trend]}${"K Tweets"}`}
-                      </Typography>
-                    </Box>
-                  </Box>
-                </Button>
+                  </Button>
+                </Link>
               </Box>
             ))}
           </Box>
@@ -209,7 +220,7 @@ export function App() {
             </Box>
           </Box>
           {filteredTweets?.map((tweet: Tweet) => (
-            <TweetCard key={tweet.id} tweet={tweet} onFilter={setSearchText} />
+            <TweetCard key={tweet.id} tweet={tweet} />
           ))}
         </Box>
         <Box height="100vh" width={SIDEBAR_WIDTH} />

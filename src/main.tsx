@@ -22,7 +22,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <Suspense fallback={<Fragment />}>
         <BrowserRouter>
           <Routes>
-            <Route index Component={App} />
+            <Route path="/" index Component={App} />
+            <Route path="/:search" Component={App} />
             <Route path="/tweet/:tweetId" Component={TweetPage} />
           </Routes>
         </BrowserRouter>

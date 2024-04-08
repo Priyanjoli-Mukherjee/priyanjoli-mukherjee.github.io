@@ -14,10 +14,9 @@ import { Link } from "react-router-dom";
 
 interface Props {
   tweet: Tweet;
-  onFilter(searchText: string): void;
 }
 
-export function TweetCard({ tweet, onFilter }: Props) {
+export function TweetCard({ tweet }: Props) {
   const { id, message, time, name, twitterHandle } = tweet;
 
   const queryClient = useQueryClient();
@@ -52,23 +51,25 @@ export function TweetCard({ tweet, onFilter }: Props) {
         width="100%"
       >
         <Box display="flex" alignItems="center" paddingLeft={1} width="100%">
-          <Box
-            color="black"
-            sx={{ cursor: "pointer", "&:hover": { color: "blue" } }}
-            onClick={() => onFilter(twitterHandle)}
-          >
-            <Typography variant="body1" sx={{ fontWeight: 900 }}>
-              {name}
-            </Typography>
-          </Box>
-          <Box
-            color="black"
-            paddingLeft={2}
-            sx={{ cursor: "pointer", "&:hover": { color: "blue" } }}
-            onClick={() => onFilter(twitterHandle)}
-          >
-            <Typography variant="body1">{twitterHandle}</Typography>
-          </Box>
+          <Link to={`/${encodeURIComponent(twitterHandle)}`}>
+            <Box
+              color="black"
+              sx={{ cursor: "pointer", "&:hover": { color: "blue" } }}
+            >
+              <Typography variant="body1" sx={{ fontWeight: 900 }}>
+                {name}
+              </Typography>
+            </Box>
+          </Link>
+          <Link to={`/${encodeURIComponent(twitterHandle)}`}>
+            <Box
+              color="black"
+              paddingLeft={2}
+              sx={{ cursor: "pointer", "&:hover": { color: "blue" } }}
+            >
+              <Typography variant="body1">{twitterHandle}</Typography>
+            </Box>
+          </Link>
           <Box color="black" paddingLeft={2}>
             <Typography variant="body1">{formatDate(time)}</Typography>
           </Box>
@@ -166,13 +167,11 @@ export function TweetCard({ tweet, onFilter }: Props) {
             <Typography variant="body2">
               {parsed.map((text, index) =>
                 text[0] === "#" ? (
-                  <span
-                    key={index}
-                    style={{ color: "blue", cursor: "pointer" }}
-                    onClick={() => onFilter(text)}
-                  >
-                    {text}
-                  </span>
+                  <Link key={index} to={`/${encodeURIComponent(text)}`}>
+                    <span style={{ color: "blue", cursor: "pointer" }}>
+                      {text}
+                    </span>
+                  </Link>
                 ) : (
                   <span key={index}>{text}</span>
                 ),

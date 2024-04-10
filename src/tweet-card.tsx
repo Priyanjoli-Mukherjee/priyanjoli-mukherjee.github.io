@@ -17,7 +17,7 @@ interface Props {
 }
 
 export function TweetCard({ tweet }: Props) {
-  const { id, message, time, name, twitterHandle } = tweet;
+  const { id, message, time, name, twitterHandle, replyingTo } = tweet;
 
   const queryClient = useQueryClient();
 
@@ -73,6 +73,13 @@ export function TweetCard({ tweet }: Props) {
           <Box color="black" paddingLeft={2}>
             <Typography variant="body1">{formatDate(time)}</Typography>
           </Box>
+          {replyingTo && (
+            <Box>
+              <Typography sx={{ color: "black" }}>
+                Replying To {replyingTo}
+              </Typography>
+            </Box>
+          )}
           <Box
             display="flex"
             flexGrow={1}

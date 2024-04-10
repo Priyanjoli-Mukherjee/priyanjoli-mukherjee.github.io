@@ -8,7 +8,7 @@ import { Tweet } from "../types/tweet";
 import { randomHashtag } from "../random-utils/random-hashtag";
 
 export function initializeTweets(): Array<Tweet> {
-  return range(25)
+  const tweets = range(25)
     .map(
       (): Tweet => ({
         id: uniqueId("tweet"),
@@ -18,4 +18,11 @@ export function initializeTweets(): Array<Tweet> {
       }),
     )
     .sort((tweet1, tweet2) => tweet2.time - tweet1.time);
+  return tweets
+    .reverse()
+    .map((tweet, index) => ({
+      ...tweet,
+      replyingTo: Math.random() < 0.5 ? tweets[randomInteger(index)].id : null,
+    }))
+    .reverse();
 }

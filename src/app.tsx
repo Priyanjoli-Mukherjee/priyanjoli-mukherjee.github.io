@@ -27,7 +27,9 @@ export function App() {
 
   const [tweetMessage, setTweetMessage] = useState("");
 
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState(
+    decodeURIComponent(search ?? ""),
+  );
 
   const queryClient = useQueryClient();
 

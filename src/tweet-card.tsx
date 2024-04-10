@@ -11,6 +11,7 @@ import { editTweet } from "./service/edit-tweets";
 import { useCurrentUser } from "./hooks/use-current-user";
 import { parseHashtags } from "./hashtag-utils/parse-hashtags";
 import { Link } from "react-router-dom";
+import { tweets } from "./service/tweets";
 
 interface Props {
   tweet: Tweet;
@@ -18,6 +19,10 @@ interface Props {
 
 export function TweetCard({ tweet }: Props) {
   const { id, message, time, name, twitterHandle, replyingTo } = tweet;
+
+  const replyingToTwitterHnadle = tweets.find(
+    (tweet) => tweet.id === replyingTo,
+  )?.twitterHandle;
 
   const queryClient = useQueryClient();
 
@@ -73,13 +78,6 @@ export function TweetCard({ tweet }: Props) {
           <Box color="black" paddingLeft={2}>
             <Typography variant="body1">{formatDate(time)}</Typography>
           </Box>
-          {replyingTo && (
-            <Box>
-              <Typography sx={{ color: "black" }}>
-                Replying To {replyingTo}
-              </Typography>
-            </Box>
-          )}
           <Box
             display="flex"
             flexGrow={1}
@@ -133,6 +131,16 @@ export function TweetCard({ tweet }: Props) {
         width={639}
         boxSizing="border-box"
       >
+        {replyingTo && (
+          <Box width="100%" paddingBottom={0.5}>
+            <Typography variant="subtitle2" fontWeight={500}>
+              <span style={{ color: "rgb(133, 133, 173)" }}>Replying To</span>
+              <span style={{ color: "red", paddingLeft: 5 }}>
+                {replyingToTwitterHnadle}
+              </span>
+            </Typography>
+          </Box>
+        )}
         {isEditButtonClickable ? (
           <Box paddingLeft={1} paddingBottom={1}>
             <textarea

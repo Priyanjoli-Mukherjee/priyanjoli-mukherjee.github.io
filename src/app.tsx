@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useQueryClient } from "react-query";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { addTweet } from "./service/add-tweet";
 import { TweetCard } from "./tweet-card";
 import { useTweets } from "./hooks/use-tweets";
@@ -16,20 +16,20 @@ import SearchIcon from "@mui/icons-material/Search";
 import { getTrendDictionary } from "./hashtag-utils/get-trend-dictionary";
 import { Dictionary } from "./types/dictionary";
 import { Tweet } from "./types/tweet";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const SIDEBAR_WIDTH = 350;
 
 export function App() {
   const { search } = useParams();
 
+  const navigate = useNavigate();
+
   const tweets = useTweets();
 
   const [tweetMessage, setTweetMessage] = useState("");
 
-  const [searchText, setSearchText] = useState(
-    decodeURIComponent(search ?? ""),
-  );
+  const searchText = decodeURIComponent(search ?? "");
 
   const queryClient = useQueryClient();
 
@@ -57,10 +57,6 @@ export function App() {
       ),
     [trends],
   );
-
-  useEffect(() => {
-    setSearchText(decodeURIComponent(search ?? ""));
-  }, [search]);
 
   return (
     <Box display="flex" justifyContent="center" width="100vw" height="100vh">
@@ -92,7 +88,9 @@ export function App() {
                 </InputAdornment>
               ),
             }}
-            onChange={(evt) => setSearchText(evt.target.value)}
+            onChange={(evt) =>
+              navigate(`/${encodeURIComponent(evt.target.value)}`)
+            }
           >
             search
           </TextField>

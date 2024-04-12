@@ -9,14 +9,10 @@ export function TweetPage() {
   const tweet = tweets.find((tweet) => tweet.id === tweetId)!;
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      width="100vw"
-      top={50}
-      position="absolute"
-    >
-      <TweetCard tweet={tweet} />
+    <Box display="flex" justifyContent="center" width="100vw" paddingTop={6.25}>
+      <Box width={649}>
+        <TweetCard tweet={tweet} />
+      </Box>
     </Box>
   );
 }

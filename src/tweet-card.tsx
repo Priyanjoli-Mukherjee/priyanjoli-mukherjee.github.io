@@ -6,6 +6,7 @@ import { useQueryClient } from "react-query";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import MessageIcon from "@mui/icons-material/Message";
 import { useMemo, useState } from "react";
 import { editTweet } from "./service/edit-tweets";
 import { useCurrentUser } from "./hooks/use-current-user";
@@ -87,7 +88,7 @@ export function TweetCard({ tweet }: Props) {
           >
             {isHovered &&
               (currentUser.twitterHandle === twitterHandle ? (
-                <Box paddingRight={0.5}>
+                <Box paddingRight={2}>
                   <IconButton color="primary" onClick={toggle}>
                     <EditIcon fontSize="small" />
                   </IconButton>
@@ -107,7 +108,7 @@ export function TweetCard({ tweet }: Props) {
                   </Link>
                 </Box>
               ) : (
-                <Box paddingRight={0.5}>
+                <Box paddingRight={2}>
                   <Link to={`/tweet/${id}`}>
                     <IconButton color="primary">
                       <OpenInNewIcon />
@@ -128,12 +129,12 @@ export function TweetCard({ tweet }: Props) {
         paddingBottom={1}
         justifyContent="flex-start"
         alignItems="center"
-        width={639}
         boxSizing="border-box"
+        marginRight={1.5}
       >
         {replyingTo && (
           <Box width="100%" paddingBottom={0.5}>
-            <Link to={`/${encodeURIComponent(replyingToTwitterHnadle!)}`}>
+            <Link to={`/tweet/${id}`}>
               <Typography variant="subtitle2" fontWeight={500}>
                 <span style={{ color: "rgb(133, 133, 173)" }}>Replying To</span>
                 <span style={{ color: "red", paddingLeft: 5 }}>
@@ -144,7 +145,7 @@ export function TweetCard({ tweet }: Props) {
           </Box>
         )}
         {isEditButtonClickable ? (
-          <Box paddingLeft={1} paddingBottom={1}>
+          <Box paddingLeft={1} paddingBottom={1} paddingTop={1} width={600}>
             <textarea
               rows={3}
               value={editedMessage}
@@ -196,6 +197,13 @@ export function TweetCard({ tweet }: Props) {
             </Typography>
           </Box>
         )}
+        <Box display="flex" justifyContent="flex-end" width="100%">
+          <Link to={`/tweet/${id}`}>
+            <IconButton color="primary">
+              <MessageIcon fontSize="small" />
+            </IconButton>
+          </Link>
+        </Box>
       </Box>
     </Box>
   );

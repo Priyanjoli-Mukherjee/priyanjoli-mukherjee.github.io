@@ -134,7 +134,7 @@ export function TweetCard({ tweet }: Props) {
       >
         {replyingTo && (
           <Box width="100%" paddingBottom={0.5}>
-            <Link to={`/tweet/${id}`}>
+            <Link to={`/tweet/${replyingTo}`}>
               <Typography variant="subtitle2" fontWeight={500}>
                 <span style={{ color: "rgb(133, 133, 173)" }}>Replying To</span>
                 <span style={{ color: "red", paddingLeft: 5 }}>

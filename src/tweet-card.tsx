@@ -6,7 +6,7 @@ import { useQueryClient } from "react-query";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
-import MessageIcon from "@mui/icons-material/Message";
+import CommentIcon from "@mui/icons-material/Comment";
 import { useMemo, useState } from "react";
 import { editTweet } from "./service/edit-tweets";
 import { useCurrentUser } from "./hooks/use-current-user";
@@ -200,7 +200,7 @@ export function TweetCard({ tweet }: Props) {
         <Box display="flex" justifyContent="flex-end" width="100%">
           <Link to={`/tweet/${id}`}>
             <IconButton color="primary">
-              <MessageIcon fontSize="small" />
+              <CommentIcon fontSize="small" />
             </IconButton>
           </Link>
         </Box>

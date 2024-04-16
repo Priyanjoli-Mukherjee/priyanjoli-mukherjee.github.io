@@ -12,7 +12,9 @@ export function TweetPage() {
   const queryClient = useQueryClient();
 
   const [replyMessage, setReplyMessage] = useState("");
+
   const tweet = tweets.find((tweet) => tweet.id === tweetId)!;
+  const tweetReplies = tweets.filter((tweet) => tweet.replyingTo === tweetId);
 
   return (
     <Box display="flex" justifyContent="center" width="100vw" paddingTop={6.25}>
@@ -26,22 +28,27 @@ export function TweetPage() {
           justifyContent="center"
           marginLeft={1}
           marginRight={1}
-          sx={{ backgroundColor: "rgb(204, 245, 255)" }}
+          paddingTop={1}
+          sx={{
+            backgroundColor: "rgb(217, 217, 217)",
+            borderBottom: "1px solid lightgrey",
+          }}
         >
           <textarea
-            rows={3}
+            rows={2}
             placeholder="Tweet your reply"
             value={replyMessage}
             style={{
               backgroundColor: "white",
-              border: "1px solid rgb(51, 214, 255)",
-              fontSize: 20,
+              border: "1px solid rgb(217, 217, 217)",
+              fontSize: 16,
               fontWeight: 400,
               color: "black",
               borderRadius: 50,
-              paddingTop: 30,
-              paddingLeft: 30,
-              margin: 5,
+              paddingTop: 15,
+              paddingLeft: 20,
+              marginLeft: 8,
+              marginRight: 8,
             }}
             onChange={(evt) => setReplyMessage(evt.target.value)}
           />
@@ -67,6 +74,9 @@ export function TweetPage() {
             </Button>
           </Box>
         </Box>
+        {tweetReplies.map((tweetReply) => (
+          <TweetCard key={tweetReply.id} tweet={tweetReply} />
+        ))}
       </Box>
     </Box>
   );

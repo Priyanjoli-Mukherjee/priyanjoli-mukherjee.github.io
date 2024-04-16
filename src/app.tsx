@@ -191,9 +191,10 @@ export function App() {
               style={{
                 backgroundColor: "white",
                 border: "none",
-                fontSize: 20,
+                fontSize: 16,
                 fontWeight: 400,
                 color: "black",
+                paddingTop: 5,
               }}
               onChange={(evt) => setTweetMessage(evt.target.value)}
             />

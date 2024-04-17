@@ -17,6 +17,7 @@ import { getTrendDictionary } from "./hashtag-utils/get-trend-dictionary";
 import { Dictionary } from "./types/dictionary";
 import { Tweet } from "./types/tweet";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { HomeButton } from "./home-button";
 
 const SIDEBAR_WIDTH = 350;
 
@@ -225,6 +226,7 @@ export function App() {
           ))}
         </Box>
         <Box height="100vh" width={SIDEBAR_WIDTH} />
+        <HomeButton />
         <MessagesButton />
       </Box>
     </Box>

@@ -5,6 +5,8 @@ import { TweetCard } from "./tweet-card";
 import { useState } from "react";
 import { addTweet } from "./service/add-tweet";
 import { useQueryClient } from "react-query";
+import { HomeButton } from "./home-button";
+import { MessagesButton } from "./messages-button";
 
 export function TweetPage() {
   const { tweetId } = useParams();
@@ -78,6 +80,8 @@ export function TweetPage() {
           <TweetCard key={tweetReply.id} tweet={tweetReply} />
         ))}
       </Box>
+      <HomeButton />
+      <MessagesButton />
     </Box>
   );
 }

@@ -67,6 +67,7 @@ export function MessageDrawer({ messages, user }: Conversation) {
             backgroundColor: "white",
             fontSize: 15,
             fontWeight: 200,
+            paddingTop: 4,
             color: "black",
           }}
           onChange={(evt) => setDirectMessage(evt.target.value)}

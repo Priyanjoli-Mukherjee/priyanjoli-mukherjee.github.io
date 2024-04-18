@@ -29,7 +29,7 @@ export function MessageCard({ message }: Props) {
           backgroundColor:
             message.twitterHandle === currentUser.twitterHandle
               ? "rgb(65, 105, 225)"
-              : "lightblue",
+              : "rgb(179, 224, 255)",
           color:
             message.twitterHandle === currentUser.twitterHandle
               ? "white"

@@ -50,7 +50,7 @@ export function ConversationDrawer() {
                 backgroundColor:
                   conversation.user.twitterHandle ===
                   selectedConvo?.user.twitterHandle
-                    ? "lightBlue"
+                    ? "rgb(179, 224, 255)"
                     : "none",
                 paddingLeft: 2,
                 cursor: "pointer",

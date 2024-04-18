@@ -1,4 +1,10 @@
-import { Box, IconButton, Typography } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  PopoverPaper,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Conversation } from "./types/conversation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
@@ -22,56 +28,41 @@ export function MessageDrawer({ messages, user }: Conversation) {
   }, [messages]);
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      height={400}
-      width={300}
-      right={175}
-      bottom={30}
-      position="fixed"
-      sx={{ backgroundColor: "white" }}
+    <PopoverPaper
+      elevation={8}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        width: 300,
+        right: 175,
+        bottom: 30,
+        top: 103,
+        position: "fixed",
+      }}
     >
       <Box
         display="flex"
         justifyContent="center"
-        padding={1}
-        sx={{ backgroundColor: "rgb(179, 179, 179)" }}
+        padding={2}
+        paddingBottom={1}
+        borderBottom="1px solid black"
       >
         <Typography variant="body1" sx={{ fontWeight: 900 }}>
           {user.name}
         </Typography>
       </Box>
-      <Box
-        overflow="scroll"
-        paddingRight={2}
-        paddingLeft={2}
-        sx={{ backgroundColor: "rgb(77, 77, 77)" }}
-      >
+      <Box overflow="scroll" paddingRight={2} paddingLeft={2}>
         {messages.map((message) => (
-          <MessageCard key={message.id} message={message} user={user} />
+          <MessageCard key={message.id} message={message} />
         ))}
         <Box ref={messagesEndRef} />
       </Box>
-      <Box
-        display="flex"
-        flexDirection="column"
-        padding={0.25}
-        sx={{ backgroundColor: "rgb(179, 179, 179)" }}
-      >
-        <textarea
-          rows={2}
-          placeholder="message"
+      <Box display="flex" flexDirection="column" padding={0.25}>
+        <TextField
+          placeholder="Type message here"
           value={directMessage}
-          style={{
-            border: "none",
-            backgroundColor: "rgb(179, 179, 179)",
-            fontSize: 15,
-            fontWeight: 300,
-            paddingTop: 4,
-            color: "black",
-          }}
           onChange={(evt) => setDirectMessage(evt.target.value)}
+          sx={{ padding: 2 }}
         />
         <Box display="flex" justifyContent="flex-end">
           <IconButton
@@ -91,6 +82,6 @@ export function MessageDrawer({ messages, user }: Conversation) {
           </IconButton>
         </Box>
       </Box>
-    </Box>
+    </PopoverPaper>
   );
 }

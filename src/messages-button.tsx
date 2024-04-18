@@ -11,7 +11,7 @@ export function MessagesButton() {
     setIsClicked(!isClicked);
   }
   return (
-    <Box position="fixed" bottom={16} right={16}>
+    <Box position="fixed" top={60} right={16}>
       <IconButton onClick={toggle} sx={{ color: "#1565c0" }}>
         <MailIcon ref={anchor} fontSize="large" />
       </IconButton>
@@ -19,8 +19,8 @@ export function MessagesButton() {
         open={isClicked}
         anchorEl={anchor.current}
         onClose={toggle}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        transformOrigin={{ vertical: "bottom", horizontal: "right" }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+        transformOrigin={{ vertical: "top", horizontal: "left" }}
       >
         <ConversationDrawer />
       </Popover>

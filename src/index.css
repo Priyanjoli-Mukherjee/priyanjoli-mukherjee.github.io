@@ -19,3 +19,7 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+::-webkit-input-placeholder {
+  color: rgb(102, 102, 102);
+}

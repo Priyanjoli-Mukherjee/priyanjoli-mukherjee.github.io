@@ -56,7 +56,8 @@ export function MessageDrawer({ messages, user }: Conversation) {
       <Box
         display="flex"
         flexDirection="column"
-        sx={{ backgroundColor: "white" }}
+        padding={0.25}
+        sx={{ backgroundColor: "rgb(179, 179, 179)" }}
       >
         <textarea
           rows={2}
@@ -64,9 +65,9 @@ export function MessageDrawer({ messages, user }: Conversation) {
           value={directMessage}
           style={{
             border: "none",
-            backgroundColor: "white",
+            backgroundColor: "rgb(179, 179, 179)",
             fontSize: 15,
-            fontWeight: 200,
+            fontWeight: 300,
             paddingTop: 4,
             color: "black",
           }}

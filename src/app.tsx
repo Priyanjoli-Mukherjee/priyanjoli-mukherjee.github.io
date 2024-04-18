@@ -19,7 +19,7 @@ import { Tweet } from "./types/tweet";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { HomeButton } from "./home-button";
 
-const SIDEBAR_WIDTH = 350;
+const SIDEBAR_WIDTH = 400;
 
 export function App() {
   const { search } = useParams();
@@ -79,7 +79,7 @@ export function App() {
             label="Search Twitter"
             variant="filled"
             value={searchText}
-            sx={{ backgroundColor: "lightgray", borderRadius: 8, marginTop: 2 }}
+            sx={{ backgroundColor: "lightgray", borderRadius: 8, marginTop: 1 }}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -157,7 +157,7 @@ export function App() {
             ))}
           </Box>
         </Box>
-        <Box width={665} height="100vh" overflow="scroll">
+        <Box width={750} height="100vh" overflow="scroll">
           <Box
             display="flex"
             padding={1}
@@ -165,7 +165,7 @@ export function App() {
             marginRight={1}
             paddingTop={2}
             paddingBottom={2}
-            style={{
+            sx={{
               backgroundColor: "white",
               borderBottom: "1px solid lightgrey",
             }}
@@ -180,7 +180,7 @@ export function App() {
             padding={1}
             marginLeft={1}
             marginRight={1}
-            style={{
+            sx={{
               backgroundColor: "white",
               borderBottom: "10px solid lightgrey",
             }}
@@ -225,9 +225,14 @@ export function App() {
             <TweetCard key={tweet.id} tweet={tweet} />
           ))}
         </Box>
-        <Box height="100vh" width={SIDEBAR_WIDTH} />
-        <HomeButton />
-        <MessagesButton />
+        <Box
+          height="100vh"
+          width={SIDEBAR_WIDTH}
+          sx={{ backgroundColor: "white" }}
+        >
+          <HomeButton />
+          <MessagesButton />
+        </Box>
       </Box>
     </Box>
   );

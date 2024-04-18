@@ -6,7 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Conversation } from "./types/conversation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import { addMessage } from "./service/add-message";
 import { useQueryClient } from "react-query";
@@ -17,15 +17,7 @@ export function MessageDrawer({ messages, user }: Conversation) {
 
   const queryClient = useQueryClient();
 
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  const scrollToBottom = useCallback(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, []);
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+  const reversed = useMemo(() => messages.reverse(), [messages]);
 
   return (
     <PopoverPaper
@@ -51,11 +43,16 @@ export function MessageDrawer({ messages, user }: Conversation) {
           {user.name}
         </Typography>
       </Box>
-      <Box overflow="scroll" paddingRight={2} paddingLeft={2}>
-        {messages.map((message) => (
+      <Box
+        display="flex"
+        flexDirection="column-reverse"
+        overflow="scroll"
+        paddingRight={2}
+        paddingLeft={2}
+      >
+        {reversed.map((message) => (
           <MessageCard key={message.id} message={message} />
         ))}
-        <Box ref={messagesEndRef} />
       </Box>
       <Box display="flex" flexDirection="column" padding={0.25}>
         <TextField

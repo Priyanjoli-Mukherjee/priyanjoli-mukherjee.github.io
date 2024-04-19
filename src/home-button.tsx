@@ -6,7 +6,7 @@ export function HomeButton() {
   return (
     <Box position="fixed" top={16} right={16}>
       <Link to="/">
-        <IconButton sx={{ color: "#1565c0" }}>
+        <IconButton sx={{ color: "rgb(179, 224, 255)" }}>
           <HomeIcon fontSize="large" />
         </IconButton>
       </Link>

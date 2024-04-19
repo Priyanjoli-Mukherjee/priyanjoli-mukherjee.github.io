@@ -12,7 +12,7 @@ export function MessagesButton() {
   }
   return (
     <Box position="fixed" top={60} right={16}>
-      <IconButton onClick={toggle} sx={{ color: "#1565c0" }}>
+      <IconButton onClick={toggle} sx={{ color: "rgb(179, 224, 255)" }}>
         <MailIcon ref={anchor} fontSize="large" />
       </IconButton>
       <Popover

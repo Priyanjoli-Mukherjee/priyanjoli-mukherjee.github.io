@@ -19,7 +19,7 @@ import { Tweet } from "./types/tweet";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { HomeButton } from "./home-button";
 
-const SIDEBAR_WIDTH = 400;
+const SIDEBAR_WIDTH = 500;
 
 export function App() {
   const { search } = useParams();
@@ -157,7 +157,7 @@ export function App() {
             ))}
           </Box>
         </Box>
-        <Box width={750} height="100vh" overflow="scroll">
+        <Box width={1200} height="100vh" overflow="scroll">
           <Box
             display="flex"
             padding={1}
@@ -225,11 +225,7 @@ export function App() {
             <TweetCard key={tweet.id} tweet={tweet} />
           ))}
         </Box>
-        <Box
-          height="100vh"
-          width={SIDEBAR_WIDTH}
-          sx={{ backgroundColor: "white" }}
-        >
+        <Box height="100vh" width={300}>
           <HomeButton />
           <MessagesButton />
         </Box>

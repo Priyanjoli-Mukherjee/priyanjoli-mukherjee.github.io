@@ -24,7 +24,7 @@ export function UserSearch({ onChange, twitterHandle }: Props) {
       value={selectedUser}
       getOptionLabel={(user: User) => user.name}
       renderInput={(params) => <TextField {...params} label="Search Users" />}
-      onChange={(evt, value) => onChange(value?.twitterHandle)}
+      onChange={(_, value) => onChange(value?.twitterHandle)}
     />
   );
 }

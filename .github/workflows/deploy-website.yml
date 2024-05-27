@@ -34,14 +34,12 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          name: deployment-artifact
           path: ./dist
 
       - name: Deploy Page
         id: deployment
         uses: actions/deploy-pages@v3
         with:
-          artifact_name: deployment-artifact
           token: ${{ secrets.GITHUB_TOKEN }}
 
 

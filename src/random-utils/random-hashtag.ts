@@ -1,17 +1,55 @@
 import { randomInteger } from "./random-integer";
 
-export const HASHTAGS = [
-  ...new Array(5).fill("#MondayMotivation"),
-  ...new Array(4).fill("#LisanAlGaib"),
-  ...new Array(7).fill("#WeekendVibes"),
-  "#Girls5Eva",
-  ...new Array(4).fill("#TechNews"),
-  ...new Array(9).fill("#Election2024"),
-  ...new Array(4).fill("#FitnessMotivation"),
-  ...new Array(6).fill("#Oscars2024"),
-  ...new Array(20).fill("#AI"),
-  ...new Array(4).fill("#WheresKate"),
+const WEIGHTED_HASTAGS = [
+  {
+    tag: "MondayMotivation",
+    weight: 5,
+  },
+  {
+    tag: "LisanAlGaib",
+    weight: 4,
+  },
+  {
+    tag: "WeekendVibes",
+    weight: 7,
+  },
+  {
+    tag: "Girls5Eva",
+    weight: 1,
+  },
+  {
+    tag: "TechNews",
+    weight: 4,
+  },
+  {
+    tag: "Election2024",
+    weight: 9,
+  },
+  {
+    tag: "FitnessMotivation",
+    weight: 4,
+  },
+  {
+    tag: "Oscars2024",
+    weight: 6,
+  },
+  {
+    tag: "AI",
+    weight: 20,
+  },
+  {
+    tag: "WheresKate",
+    weight: 4,
+  },
 ];
+
+export const HASHTAGS = WEIGHTED_HASTAGS.reduce(
+  (tags: string[], { tag, weight }) => [
+    ...tags,
+    ...new Array(weight).fill(`#${tag}`),
+  ],
+  [],
+);
 
 export function randomHashtag() {
   return HASHTAGS[randomInteger(HASHTAGS.length)];

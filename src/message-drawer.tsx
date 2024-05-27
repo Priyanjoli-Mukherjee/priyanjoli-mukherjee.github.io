@@ -25,9 +25,9 @@ export function MessageDrawer({ messages, user }: Conversation) {
       sx={{
         display: "flex",
         flexDirection: "column",
+        height: "50%",
         width: 300,
-        right: 175,
-        bottom: 30,
+        right: 360,
         top: 103,
         position: "fixed",
       }}
@@ -46,6 +46,7 @@ export function MessageDrawer({ messages, user }: Conversation) {
       <Box
         display="flex"
         flexDirection="column-reverse"
+        flexGrow={1}
         overflow="scroll"
         paddingRight={2}
         paddingLeft={2}

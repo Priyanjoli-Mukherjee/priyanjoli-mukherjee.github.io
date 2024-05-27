@@ -3,5 +3,5 @@ import { Conversation } from "../types/conversation";
 import { initializeConversation } from "./initialize-conversation";
 
 export function initializeConversations(): Array<Conversation> {
-  return USERS.map(initializeConversation);
+  return USERS.filter(() => Math.random() < 0.5).map(initializeConversation);
 }

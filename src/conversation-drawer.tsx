@@ -1,12 +1,17 @@
 import { useMemo, useState } from "react";
 import { useConversations } from "./hooks/use-conversations";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { MessageDrawer } from "./message-drawer";
+import { UserSearch } from "./components/user-search";
+import { addConversation } from "./service/add-conversation";
+import { useQueryClient } from "react-query";
 
 export function ConversationDrawer() {
+  const queryClient = useQueryClient();
   const conversations = useConversations();
 
   const [selectedTwitterHandle, setSelectedTwitterHandle] = useState<string>();
+  const [searchTwitterHandle, setSearchTwitterHandle] = useState<string>();
 
   const selectedConvo = useMemo(
     () =>
@@ -16,6 +21,21 @@ export function ConversationDrawer() {
       ),
     [conversations, selectedTwitterHandle],
   );
+
+  function createNewConversation() {
+    if (searchTwitterHandle) {
+      setSelectedTwitterHandle(searchTwitterHandle);
+      if (
+        !conversations.find(
+          ({ user }) => user.twitterHandle === searchTwitterHandle,
+        )
+      ) {
+        addConversation(searchTwitterHandle);
+        queryClient.invalidateQueries({ queryKey: "conversations" });
+      }
+      setSearchTwitterHandle(undefined);
+    }
+  }
 
   return (
     <Box display="flex">
@@ -66,6 +86,19 @@ export function ConversationDrawer() {
               </Box>
             </Box>
           ))}
+          <Box alignItems="center" display="flex">
+            <UserSearch
+              twitterHandle={searchTwitterHandle}
+              onChange={setSearchTwitterHandle}
+            />
+            <Button
+              variant="contained"
+              sx={{ marginRight: 2 }}
+              onClick={createNewConversation}
+            >
+              Message
+            </Button>
+          </Box>
         </Box>
       </Box>
     </Box>

@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - feature/pmukherjee/build-2
 
 jobs:
   build:

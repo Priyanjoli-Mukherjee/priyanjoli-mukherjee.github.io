@@ -10,4 +10,4 @@ post that is being replied to. Clicking on the comment icon will allow the user 
 the edit and delete icons will allow you to edit or delete your own post.
 
 The message icon in the far upper right corner will allow you to peruse through the direct messages that others have
-sent you.
+sent you. To start a new conversation, merely select a user from the dropdown and select "Message".

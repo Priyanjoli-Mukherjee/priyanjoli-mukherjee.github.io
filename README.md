@@ -1,7 +1,3 @@
-# Live Website
-
-[https://priyanjoli-mukherjee.github.io]
-
 # Introduction
 
 This is the portfolio for Priya Mukherjee. It's a prototype of a social media app that allows for direct messaging,

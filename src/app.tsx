@@ -208,6 +208,7 @@ export function App() {
               <Box />
               <Button
                 variant="contained"
+                disabled={!tweetMessage}
                 sx={{ height: 35, borderRadius: 4, marginBottom: 0.5 }}
                 onClick={() => {
                   addTweet(tweetMessage);

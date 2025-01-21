@@ -156,24 +156,25 @@ export function TweetCard({ tweet }: Props) {
             </Box>
           )}
           {isEditButtonClickable ? (
-            <Box paddingLeft={1} paddingBottom={1} paddingTop={1} width={600}>
+            <Box paddingLeft={1} paddingBottom={1} paddingTop={1} width={"100%"}>
               <textarea
-                rows={3}
-                value={editedMessage}
-                style={{
-                  backgroundColor: "white",
-                  fontSize: 20,
-                  fontWeight: 400,
-                  color: "black",
-                  width: "98%",
-                }}
-                onChange={(evt) => setEditedMessage(evt.target.value)}
+                  rows={3}
+                  value={editedMessage}
+                  style={{
+                    backgroundColor: "white",
+                    fontSize: 20,
+                    fontWeight: 400,
+                    color: "black",
+                    width: "98%",
+                  }}
+                  onChange={(evt) => setEditedMessage(evt.target.value)}
               />
               <Box
                 display="flex"
                 alignItems="center"
                 justifyContent="space-between"
                 paddingRight={0.5}
+                marginTop={0.5}
               >
                 <Box />
                 <Button

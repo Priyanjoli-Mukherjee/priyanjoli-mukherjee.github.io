@@ -76,7 +76,7 @@ export function App() {
           marginLeft={4}
         >
           <TextField
-            label="Search Postit"
+            label="Search Scrollr"
             variant="filled"
             value={searchText}
             sx={{ backgroundColor: "lightgray", borderRadius: 8, marginTop: 1 }}

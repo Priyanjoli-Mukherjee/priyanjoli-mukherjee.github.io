@@ -6,7 +6,7 @@ const WEIGHTED_HASTAGS = [
     weight: 5,
   },
   {
-    tag: "LisanAlGaib",
+    tag: "TravelTuesday",
     weight: 4,
   },
   {
@@ -14,7 +14,7 @@ const WEIGHTED_HASTAGS = [
     weight: 7,
   },
   {
-    tag: "Girls5Eva",
+    tag: "WineWednesday",
     weight: 1,
   },
   {
@@ -22,7 +22,7 @@ const WEIGHTED_HASTAGS = [
     weight: 4,
   },
   {
-    tag: "Election2024",
+    tag: "ThrowbackThursday",
     weight: 9,
   },
   {
@@ -30,7 +30,7 @@ const WEIGHTED_HASTAGS = [
     weight: 4,
   },
   {
-    tag: "Oscars2024",
+    tag: "FridayVibes",
     weight: 6,
   },
   {
@@ -38,7 +38,7 @@ const WEIGHTED_HASTAGS = [
     weight: 20,
   },
   {
-    tag: "WheresKate",
+    tag: "SundayFunday",
     weight: 4,
   },
 ];

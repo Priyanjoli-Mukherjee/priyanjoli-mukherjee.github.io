@@ -71,7 +71,7 @@ export function TweetPage() {
               }}
             >
               <Typography variant="body2" sx={{ fontWeight: 800 }}>
-                Tweet
+                Post
               </Typography>
             </Button>
           </Box>

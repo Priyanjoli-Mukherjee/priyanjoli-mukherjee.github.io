@@ -76,7 +76,7 @@ export function App() {
           marginLeft={4}
         >
           <TextField
-            label="Search Twitter"
+            label="Search Postit"
             variant="filled"
             value={searchText}
             sx={{ backgroundColor: "lightgray", borderRadius: 8, marginTop: 1 }}
@@ -216,7 +216,7 @@ export function App() {
                 }}
               >
                 <Typography variant="body2" sx={{ fontWeight: 800 }}>
-                  Tweet
+                  Post
                 </Typography>
               </Button>
             </Box>

@@ -62,8 +62,9 @@ export function MessageDrawer({ messages, user }: Conversation) {
           onChange={(evt) => setDirectMessage(evt.target.value)}
           sx={{ padding: 2 }}
         />
-        <Box display="flex" justifyContent="flex-end">
+        <Box display="flex" justifyContent="flex-end" style={{ cursor: "pointer" }}>
           <IconButton
+          disabled={!directMessage}
             onClick={() => {
               addMessage(directMessage, user.twitterHandle);
               queryClient.invalidateQueries({ queryKey: "conversations" });

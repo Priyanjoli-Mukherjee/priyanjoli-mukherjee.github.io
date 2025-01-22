@@ -181,6 +181,7 @@ export function TweetCard({ tweet }: Props) {
                 <Box />
                 <Button
                   variant="contained"
+                  disabled={!editedMessage}
                   sx={{ height: 30, borderRadius: 4, marginBottom: 0.5 }}
                   onClick={() => {
                     editTweet(id, editedMessage);

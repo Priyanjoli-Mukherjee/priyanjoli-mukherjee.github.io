@@ -75,7 +75,7 @@ export function MessageDrawer({ messages, user }: Conversation) {
               sx={{
                 color: "white",
                 borderRadius: 10,
-                backgroundColor: "rgb(0, 82, 204)",
+                backgroundColor: directMessage ? "rgb(0, 82, 204)" : "lightgrey",
               }}
             />
           </IconButton>

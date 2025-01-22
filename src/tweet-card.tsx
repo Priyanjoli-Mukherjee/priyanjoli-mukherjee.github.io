@@ -103,15 +103,17 @@ export function TweetCard({ tweet }: Props) {
                   <IconButton color="primary" onClick={toggle}>
                     <EditIcon fontSize="small" />
                   </IconButton>
-                  <IconButton
-                    color="primary"
-                    onClick={() => {
-                      deleteTweet(id);
-                      queryClient.invalidateQueries({ queryKey: "tweets" });
-                    }}
-                  >
-                    <DeleteOutlineIcon fontSize="medium" />
-                  </IconButton>
+                  <Link to="/">
+                    <IconButton
+                      color="primary"
+                      onClick={() => {
+                        deleteTweet(id);
+                        queryClient.invalidateQueries({ queryKey: "tweets" });
+                      }}
+                    >
+                      <DeleteOutlineIcon fontSize="medium" />
+                    </IconButton>
+                  </Link>
                   <Link to={`/tweet/${id}`}>
                     <IconButton color="primary">
                       <OpenInNewIcon />

@@ -5,11 +5,16 @@ export function randomText() {
   const regex = /[A-Z]/g;
   const regexPeriod = /\./g;
 
-  const capitalLetterIndices = LOREM_IPSUM.split("").map((letter, index) => letter.match(regex) ? index : null).filter(( index ) => index !== null);
-  
+  const capitalLetterIndices = LOREM_IPSUM.split("")
+    .map((letter, index) => (letter.match(regex) ? index : null))
+    .filter((index) => index !== null);
+
   const i = capitalLetterIndices[randomInteger(capitalLetterIndices.length)];
-  
-  const periodIndices = LOREM_IPSUM.slice(i + 1).split("").map((letter, index) => letter.match(regexPeriod) ? index : null).filter(( index ) => index !== null);
+
+  const periodIndices = LOREM_IPSUM.slice(i + 1)
+    .split("")
+    .map((letter, index) => (letter.match(regexPeriod) ? index : null))
+    .filter((index) => index !== null);
 
   const j = periodIndices[randomInteger(periodIndices.length)] + i + 1;
 

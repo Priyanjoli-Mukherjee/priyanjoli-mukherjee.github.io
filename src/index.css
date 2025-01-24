@@ -3,6 +3,11 @@
   background-color: #242424;
 }
 
+* {
+  box-sizing: border-box;
+  overscroll-behavior-y: none;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

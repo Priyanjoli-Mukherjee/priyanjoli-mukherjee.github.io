@@ -92,9 +92,7 @@ export function App() {
             onChange={(evt) =>
               navigate(`/${encodeURIComponent(evt.target.value)}`)
             }
-          >
-            search
-          </TextField>
+          />
           <Box
             marginTop={2}
             height="100%"
@@ -157,7 +155,7 @@ export function App() {
             ))}
           </Box>
         </Box>
-        <Box width={1200} height="100vh" overflow="scroll">
+        <Box display="flex" flexDirection="column" height="100vh" width={1200}>
           <Box
             display="flex"
             padding={1}
@@ -222,9 +220,11 @@ export function App() {
               </Button>
             </Box>
           </Box>
-          {filteredTweets?.map((tweet: Tweet) => (
-            <TweetCard key={tweet.id} tweet={tweet} />
-          ))}
+          <Box overflow="scroll">
+            {filteredTweets?.map((tweet: Tweet) => (
+              <TweetCard key={tweet.id} tweet={tweet} />
+            ))}
+          </Box>
         </Box>
         <Box height="100vh" width={300}>
           <HomeButton />

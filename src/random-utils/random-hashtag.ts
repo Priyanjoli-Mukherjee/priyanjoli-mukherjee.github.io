@@ -41,6 +41,10 @@ const WEIGHTED_HASTAGS = [
     tag: "SundayFunday",
     weight: 4,
   },
+  {
+    tag: "SillySaturday",
+    weight: 2,
+  },
 ];
 
 export const HASHTAGS = WEIGHTED_HASTAGS.reduce(

@@ -60,11 +60,19 @@ export function App() {
   );
 
   return (
-    <Box display="flex" justifyContent="center" width="100vw" height="100vh">
+    <Box
+      alignItems="center"
+      display="flex"
+      justifyContent="center"
+      overflow="hidden"
+      width="100vw"
+      height="100vh"
+    >
       <Box
         display="flex"
         alignItems="flex-end"
         justifyContent="space-between"
+        overflow="hidden"
         width="100%"
       >
         <Box
@@ -72,6 +80,7 @@ export function App() {
           flexDirection="column"
           height="100vh"
           justifyContent="flex-start"
+          padding={2}
           width={SIDEBAR_WIDTH}
           marginLeft={4}
         >
@@ -94,10 +103,13 @@ export function App() {
             }
           />
           <Box
+            borderRadius={4}
+            display="flex"
+            flexDirection="column"
             marginTop={2}
+            overflow="hidden"
             height="100%"
-            overflow="scroll"
-            sx={{ backgroundColor: "lightgray", borderRadius: 4 }}
+            sx={{ backgroundColor: "lightgray" }}
           >
             <Box borderBottom="1px solid rgb(179, 179, 204)">
               <Typography
@@ -108,51 +120,53 @@ export function App() {
                 Trends For You
               </Typography>
             </Box>
-            {sortedTrends.map((trend) => (
-              <Box
-                key={trend}
-                display="flex"
-                borderBottom="1px solid rgb(179, 179, 204)"
-              >
-                <Link
-                  to={`/${encodeURIComponent(trend)}`}
-                  style={{ width: "100%" }}
+            <Box overflow="scroll">
+              {sortedTrends.map((trend) => (
+                <Box
+                  key={trend}
+                  display="flex"
+                  borderBottom="1px solid rgb(179, 179, 204)"
                 >
-                  <Button
-                    sx={{
-                      width: "100%",
-                      justifyContent: "flex-start",
-                      cursor: "pointer",
-                    }}
+                  <Link
+                    to={`/${encodeURIComponent(trend)}`}
+                    style={{ width: "100%" }}
                   >
-                    <Box
-                      display="flex"
-                      flexDirection="column"
-                      paddingLeft={2}
-                      paddingBottom={2}
-                      paddingTop={2}
+                    <Button
+                      sx={{
+                        width: "100%",
+                        justifyContent: "flex-start",
+                        cursor: "pointer",
+                      }}
                     >
-                      <Box display="flex" justifyContent="flex-start">
-                        <Typography
-                          variant="body1"
-                          sx={{ fontWeight: 800, color: "black" }}
-                        >
-                          {trend}
-                        </Typography>
+                      <Box
+                        display="flex"
+                        flexDirection="column"
+                        paddingLeft={2}
+                        paddingBottom={2}
+                        paddingTop={2}
+                      >
+                        <Box display="flex" justifyContent="flex-start">
+                          <Typography
+                            variant="body1"
+                            sx={{ fontWeight: 800, color: "black" }}
+                          >
+                            {trend}
+                          </Typography>
+                        </Box>
+                        <Box display="flex" justifyContent="flex-start">
+                          <Typography
+                            variant="body2"
+                            sx={{ fontWeight: 400, color: "black" }}
+                          >
+                            {`${trends[trend]}${"K Tweets"}`}
+                          </Typography>
+                        </Box>
                       </Box>
-                      <Box display="flex" justifyContent="flex-start">
-                        <Typography
-                          variant="body2"
-                          sx={{ fontWeight: 400, color: "black" }}
-                        >
-                          {`${trends[trend]}${"K Tweets"}`}
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </Button>
-                </Link>
-              </Box>
-            ))}
+                    </Button>
+                  </Link>
+                </Box>
+              ))}
+            </Box>
           </Box>
         </Box>
         <Box display="flex" flexDirection="column" height="100vh" width={1200}>

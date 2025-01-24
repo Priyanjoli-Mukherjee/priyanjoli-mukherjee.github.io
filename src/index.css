@@ -3,6 +3,10 @@
   background-color: #242424;
 }
 
+body {
+  margin: 0;
+}
+
 * {
   box-sizing: border-box;
   overscroll-behavior-y: none;

@@ -62,8 +62,13 @@ export function MessageDrawer({ messages, user }: Conversation) {
           onChange={(evt) => setDirectMessage(evt.target.value)}
           sx={{ padding: 2 }}
         />
-        <Box display="flex" justifyContent="flex-end">
+        <Box
+          display="flex"
+          justifyContent="flex-end"
+          style={{ cursor: "pointer" }}
+        >
           <IconButton
+            disabled={!directMessage}
             onClick={() => {
               addMessage(directMessage, user.twitterHandle);
               queryClient.invalidateQueries({ queryKey: "conversations" });
@@ -74,7 +79,9 @@ export function MessageDrawer({ messages, user }: Conversation) {
               sx={{
                 color: "white",
                 borderRadius: 10,
-                backgroundColor: "rgb(0, 82, 204)",
+                backgroundColor: directMessage
+                  ? "rgb(0, 82, 204)"
+                  : "lightgrey",
               }}
             />
           </IconButton>

@@ -38,7 +38,7 @@ export function TweetPage() {
         >
           <textarea
             rows={2}
-            placeholder="Tweet your reply"
+            placeholder="Post your reply"
             value={replyMessage}
             style={{
               backgroundColor: "white",
@@ -63,6 +63,7 @@ export function TweetPage() {
           >
             <Button
               variant="contained"
+              disabled={!replyMessage}
               sx={{ height: 35, borderRadius: 4 }}
               onClick={() => {
                 addTweet(replyMessage, tweetId);
@@ -71,7 +72,7 @@ export function TweetPage() {
               }}
             >
               <Typography variant="body2" sx={{ fontWeight: 800 }}>
-                Tweet
+                Post
               </Typography>
             </Button>
           </Box>

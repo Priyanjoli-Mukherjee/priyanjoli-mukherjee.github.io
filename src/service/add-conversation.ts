@@ -3,5 +3,7 @@ import { conversations } from "./conversations";
 
 export function addConversation(twitterHandle: string) {
   const user = USERS.find((u) => u.twitterHandle === twitterHandle);
-  if (user) [conversations.push({ messages: [], user })];
+  if (user) {
+    conversations.push({ messages: [], user });
+  }
 }

@@ -103,15 +103,17 @@ export function TweetCard({ tweet }: Props) {
                   <IconButton color="primary" onClick={toggle}>
                     <EditIcon fontSize="small" />
                   </IconButton>
-                  <IconButton
-                    color="primary"
-                    onClick={() => {
-                      deleteTweet(id);
-                      queryClient.invalidateQueries({ queryKey: "tweets" });
-                    }}
-                  >
-                    <DeleteOutlineIcon fontSize="medium" />
-                  </IconButton>
+                  <Link to="/">
+                    <IconButton
+                      color="primary"
+                      onClick={() => {
+                        deleteTweet(id);
+                        queryClient.invalidateQueries({ queryKey: "tweets" });
+                      }}
+                    >
+                      <DeleteOutlineIcon fontSize="medium" />
+                    </IconButton>
+                  </Link>
                   <Link to={`/tweet/${id}`}>
                     <IconButton color="primary">
                       <OpenInNewIcon />
@@ -156,7 +158,12 @@ export function TweetCard({ tweet }: Props) {
             </Box>
           )}
           {isEditButtonClickable ? (
-            <Box paddingLeft={1} paddingBottom={1} paddingTop={1} width={600}>
+            <Box
+              paddingLeft={1}
+              paddingBottom={1}
+              paddingTop={1}
+              width={"100%"}
+            >
               <textarea
                 rows={3}
                 value={editedMessage}
@@ -174,10 +181,12 @@ export function TweetCard({ tweet }: Props) {
                 alignItems="center"
                 justifyContent="space-between"
                 paddingRight={0.5}
+                marginTop={0.5}
               >
                 <Box />
                 <Button
                   variant="contained"
+                  disabled={!editedMessage}
                   sx={{ height: 30, borderRadius: 4, marginBottom: 0.5 }}
                   onClick={() => {
                     editTweet(id, editedMessage);

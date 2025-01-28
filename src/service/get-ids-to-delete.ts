@@ -3,12 +3,13 @@ import { tweets } from "./tweets";
 function fillIdsToDelete(
   id: string,
   repliesById: Record<string, string[]>,
-  ids: string[],
-): void {
+  ids: string[] = [],
+): string[] {
   ids.push(id);
   repliesById[id]?.forEach((tweetId) => {
     fillIdsToDelete(tweetId, repliesById, ids);
   });
+  return ids;
 }
 
 export function getIdsToDelete(id: string): string[] {
@@ -23,7 +24,5 @@ export function getIdsToDelete(id: string): string[] {
     }
   });
 
-  const ids: string[] = [];
-  fillIdsToDelete(id, repliesById, ids);
-  return ids;
+  return fillIdsToDelete(id, repliesById);
 }

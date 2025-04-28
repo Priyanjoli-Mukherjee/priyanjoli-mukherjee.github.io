@@ -5,8 +5,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Fragment, Suspense } from "react";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./theme.ts";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { TweetPage } from "./tweet-page.tsx";
+import { BrowserRouter } from "react-router-dom";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,11 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ThemeProvider theme={theme}>
       <Suspense fallback={<Fragment />}>
         <BrowserRouter>
-          <Routes>
-            <Route path="/" index Component={App} />
-            <Route path="/:search" Component={App} />
-            <Route path="/tweet/:tweetId" Component={TweetPage} />
-          </Routes>
+          <App />
         </BrowserRouter>
       </Suspense>
     </ThemeProvider>

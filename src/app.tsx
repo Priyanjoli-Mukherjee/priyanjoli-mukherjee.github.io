@@ -18,6 +18,8 @@ import { Dictionary } from "./types/dictionary";
 import { Tweet } from "./types/tweet";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { HomeButton } from "./home-button";
+import { useFeatureFlag } from "./hooks/use-feature-flag";
+import { FeatureFlag } from "./types/feature-flag";
 
 const SIDEBAR_WIDTH = 500;
 
@@ -33,6 +35,8 @@ export function App() {
   const searchText = decodeURIComponent(search ?? "");
 
   const queryClient = useQueryClient();
+
+  const isMultiPageEnabled = useFeatureFlag(FeatureFlag.MULTI_PAGE_ENABLED);
 
   const filteredTweets = useMemo(() => {
     if (searchText[0] !== "@") {
@@ -59,7 +63,7 @@ export function App() {
     [trends],
   );
 
-  return (
+  return !isMultiPageEnabled ? (
     <Box
       alignItems="center"
       display="flex"
@@ -246,5 +250,7 @@ export function App() {
         </Box>
       </Box>
     </Box>
+  ) : (
+    <div>Home Page Comming Soon</div>
   );
 }

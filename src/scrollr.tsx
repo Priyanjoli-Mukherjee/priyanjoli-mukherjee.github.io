@@ -17,7 +17,6 @@ import { getTrendDictionary } from "./hashtag-utils/get-trend-dictionary";
 import { Dictionary } from "./types/dictionary";
 import { Tweet } from "./types/tweet";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { HomeButton } from "./home-button";
 import { useFeatureFlag } from "./hooks/use-feature-flag";
 import { FeatureFlag } from "./types/feature-flag";
 
@@ -247,7 +246,6 @@ export function Scrollr() {
           </Box>
         </Box>
         <Box height="100vh" width={300}>
-          <HomeButton />
           <MessagesButton />
         </Box>
       </Box>

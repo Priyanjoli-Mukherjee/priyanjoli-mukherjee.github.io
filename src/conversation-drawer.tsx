@@ -1,6 +1,6 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useConversations } from "./hooks/use-conversations";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Popover, Typography } from "@mui/material";
 import { MessageDrawer } from "./message-drawer";
 import { UserSearch } from "./components/user-search";
 import { addConversation } from "./service/add-conversation";
@@ -12,6 +12,8 @@ export function ConversationDrawer() {
 
   const [selectedTwitterHandle, setSelectedTwitterHandle] = useState<string>();
   const [searchTwitterHandle, setSearchTwitterHandle] = useState<string>();
+
+  const anchor = useRef<SVGSVGElement | null>(null);
 
   const selectedConvo = useMemo(
     () =>
@@ -40,12 +42,25 @@ export function ConversationDrawer() {
   return (
     <Box display="flex">
       {selectedConvo && (
-        <MessageDrawer
-          messages={selectedConvo.messages}
-          user={selectedConvo.user}
-        />
+        <Popover
+          anchorEl={anchor.current}
+          open
+          anchorOrigin={{ vertical: "bottom", horizontal: -4 }}
+          transformOrigin={{ vertical: "bottom", horizontal: "right" }}
+          onClose={() => setSelectedTwitterHandle(undefined)}
+        >
+          <MessageDrawer
+            messages={selectedConvo.messages}
+            user={selectedConvo.user}
+          />
+        </Popover>
       )}
-      <Box display="flex" flexDirection="column" justifyContent="center">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        ref={anchor}
+      >
         <Box
           borderBottom="1px solid black"
           paddingBottom={1}

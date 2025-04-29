@@ -1,10 +1,4 @@
-import {
-  Box,
-  IconButton,
-  PopoverPaper,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, IconButton, Paper, TextField, Typography } from "@mui/material";
 import { Conversation } from "./types/conversation";
 import { useMemo, useState } from "react";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
@@ -20,16 +14,13 @@ export function MessageDrawer({ messages, user }: Conversation) {
   const reversed = useMemo(() => messages.reverse(), [messages]);
 
   return (
-    <PopoverPaper
+    <Paper
       elevation={8}
       sx={{
         display: "flex",
         flexDirection: "column",
-        height: "50%",
+        height: "50vh",
         width: 300,
-        right: 360,
-        top: 103,
-        position: "fixed",
       }}
     >
       <Box
@@ -87,6 +78,6 @@ export function MessageDrawer({ messages, user }: Conversation) {
           </IconButton>
         </Box>
       </Box>
-    </PopoverPaper>
+    </Paper>
   );
 }

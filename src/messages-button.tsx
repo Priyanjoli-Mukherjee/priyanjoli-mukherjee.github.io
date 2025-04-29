@@ -1,4 +1,4 @@
-import { Box, IconButton, Popover } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import MailIcon from "@mui/icons-material/Mail";
 import { useRef, useState } from "react";
 import { ConversationDrawer } from "./conversation-drawer";
@@ -15,15 +15,11 @@ export function MessagesButton() {
       <IconButton onClick={toggle} sx={{ color: "rgb(179, 224, 255)" }}>
         <MailIcon ref={anchor} fontSize="large" />
       </IconButton>
-      <Popover
+      <ConversationDrawer
         open={isClicked}
         anchorEl={anchor.current}
         onClose={toggle}
-        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-        transformOrigin={{ vertical: "bottom", horizontal: "right" }}
-      >
-        <ConversationDrawer />
-      </Popover>
+      />
     </Box>
   );
 }

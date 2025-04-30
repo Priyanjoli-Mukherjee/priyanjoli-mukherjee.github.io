@@ -73,7 +73,7 @@ export function TweetCard({ tweet }: Props) {
       >
         <Box display="flex" alignItems="center" width="100%">
           <Link
-            to={`${isMultiPageEnabled ? "scrollr" : ""}/${encodeURIComponent(twitterHandle)}`}
+            to={`${isMultiPageEnabled ? "/scrollr" : ""}/${encodeURIComponent(twitterHandle)}`}
           >
             <Box
               color="black"
@@ -85,7 +85,7 @@ export function TweetCard({ tweet }: Props) {
             </Box>
           </Link>
           <Link
-            to={`${isMultiPageEnabled ? "scrollr" : ""}/${encodeURIComponent(twitterHandle)}`}
+            to={`${isMultiPageEnabled ? "/scrollr" : ""}/${encodeURIComponent(twitterHandle)}`}
           >
             <Box
               color="black"
@@ -111,7 +111,7 @@ export function TweetCard({ tweet }: Props) {
                   <IconButton color="primary" onClick={toggle}>
                     <EditIcon fontSize="small" />
                   </IconButton>
-                  <Link to={`${isMultiPageEnabled ? "scrollr" : ""}/`}>
+                  <Link to={`${isMultiPageEnabled ? "/scrollr" : ""}/`}>
                     <IconButton
                       color="primary"
                       onClick={() => {
@@ -123,7 +123,7 @@ export function TweetCard({ tweet }: Props) {
                     </IconButton>
                   </Link>
                   <Link
-                    to={`${isMultiPageEnabled ? "scrollr" : ""}/tweet/${id}`}
+                    to={`${isMultiPageEnabled ? "/scrollr" : ""}/tweet/${id}`}
                   >
                     <IconButton color="primary">
                       <OpenInNewIcon />
@@ -133,7 +133,7 @@ export function TweetCard({ tweet }: Props) {
               ) : (
                 <Box paddingRight={2}>
                   <Link
-                    to={`${isMultiPageEnabled ? "scrollr" : ""}/tweet/${id}`}
+                    to={`${isMultiPageEnabled ? "/scrollr" : ""}/tweet/${id}`}
                   >
                     <IconButton color="primary">
                       <OpenInNewIcon />
@@ -158,7 +158,7 @@ export function TweetCard({ tweet }: Props) {
           {replyingTo && (
             <Box width="100%" paddingBottom={0.5}>
               <Link
-                to={`${isMultiPageEnabled ? "scrollr" : ""}/tweet/${replyingTo}`}
+                to={`${isMultiPageEnabled ? "/scrollr" : ""}/tweet/${replyingTo}`}
               >
                 <Typography variant="subtitle2" fontWeight={500}>
                   <span style={{ color: "rgb(133, 133, 173)" }}>
@@ -221,7 +221,7 @@ export function TweetCard({ tweet }: Props) {
                   text[0] === "#" ? (
                     <Link
                       key={index}
-                      to={`${isMultiPageEnabled ? "scrollr" : ""}/${encodeURIComponent(text)}`}
+                      to={`${isMultiPageEnabled ? "/scrollr" : ""}/${encodeURIComponent(text)}`}
                     >
                       <span style={{ color: "blue", cursor: "pointer" }}>
                         {text}
@@ -235,7 +235,7 @@ export function TweetCard({ tweet }: Props) {
             </Box>
           )}
           <Box display="flex" justifyContent="flex-end" width="100%">
-            <Link to={`${isMultiPageEnabled ? "scrollr" : ""}/tweet/${id}`}>
+            <Link to={`${isMultiPageEnabled ? "/scrollr" : ""}/tweet/${id}`}>
               <IconButton color="primary">
                 <CommentIcon fontSize="small" />
               </IconButton>

@@ -103,7 +103,7 @@ export function Scrollr() {
             }}
             onChange={(evt) =>
               navigate(
-                `${isMultiPageEnabled ? "scrollr" : ""}/${encodeURIComponent(evt.target.value)}`,
+                `${isMultiPageEnabled ? "/scrollr" : ""}/${encodeURIComponent(evt.target.value)}`,
               )
             }
           />
@@ -133,7 +133,7 @@ export function Scrollr() {
                   borderBottom="1px solid rgb(179, 179, 204)"
                 >
                   <Link
-                    to={`${isMultiPageEnabled ? "scrollr" : ""}/${encodeURIComponent(trend)}`}
+                    to={`${isMultiPageEnabled ? "/scrollr" : ""}/${encodeURIComponent(trend)}`}
                     style={{ width: "100%" }}
                   >
                     <Button

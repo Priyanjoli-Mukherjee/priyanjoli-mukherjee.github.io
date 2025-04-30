@@ -9,7 +9,7 @@ export function HomeButton() {
 
   return (
     <Box position="fixed" top={16} left={16}>
-      <Link to={`${isMultiPageEnabled ? "scrollr" : ""}/`}>
+      <Link to={`${isMultiPageEnabled ? "/scrollr" : ""}/`}>
         <Button variant="text" sx={{ color: "rgb(179, 224, 255)" }}>
           <ArrowBackIcon />
           Back to Scrollr

@@ -3,6 +3,7 @@ import { FeatureFlag } from "./types/feature-flag";
 import { Scrollr } from "./scrollr";
 import { Route, Routes } from "react-router-dom";
 import { TweetPage } from "./tweet-page";
+import { Home } from "./home";
 
 export function App() {
   const isMultiPageEnabled = useFeatureFlag(FeatureFlag.MULTI_PAGE_ENABLED);
@@ -18,7 +19,7 @@ export function App() {
       <Route path="/scrollr" Component={Scrollr} />
       <Route path="/scrollr/:search" Component={Scrollr} />
       <Route path="/scrollr/tweet/:tweetId" Component={TweetPage} />
-      <Route path="/" index Component={() => <div>Hello</div>} />
+      <Route path="/" index Component={Home} />
     </Routes>
   );
 }

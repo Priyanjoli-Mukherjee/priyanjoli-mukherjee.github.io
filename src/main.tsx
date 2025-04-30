@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Fragment, Suspense } from "react";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./theme.ts";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,9 +19,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
     <ThemeProvider theme={theme}>
       <Suspense fallback={<Fragment />}>
-        <BrowserRouter>
+        <HashRouter>
           <App />
-        </BrowserRouter>
+        </HashRouter>
       </Suspense>
     </ThemeProvider>
   </QueryClientProvider>,

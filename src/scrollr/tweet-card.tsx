@@ -1,20 +1,20 @@
 import { Box, Button, IconButton, Typography } from "@mui/material";
-import { Tweet } from "./types/tweet";
-import { formatDate } from "./date-utils/format-date";
-import { deleteTweet } from "./service/delete-tweets";
+import { Tweet } from "../types/tweet";
+import { formatDate } from "../date-utils/format-date";
+import { deleteTweet } from "../service/delete-tweets";
 import { useQueryClient } from "react-query";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import CommentIcon from "@mui/icons-material/Comment";
 import { useMemo, useState } from "react";
-import { editTweet } from "./service/edit-tweets";
-import { useCurrentUser } from "./hooks/use-current-user";
-import { parseHashtags } from "./hashtag-utils/parse-hashtags";
+import { editTweet } from "../service/edit-tweets";
+import { useCurrentUser } from "../hooks/use-current-user";
+import { parseHashtags } from "../hashtag-utils/parse-hashtags";
 import { Link } from "react-router-dom";
-import { tweets } from "./service/tweets";
-import { useFeatureFlag } from "./hooks/use-feature-flag";
-import { FeatureFlag } from "./types/feature-flag";
+import { tweets } from "../service/tweets";
+import { useFeatureFlag } from "../hooks/use-feature-flag";
+import { FeatureFlag } from "../types/feature-flag";
 
 interface Props {
   tweet: Tweet;

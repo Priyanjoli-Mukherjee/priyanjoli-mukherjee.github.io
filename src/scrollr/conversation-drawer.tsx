@@ -1,9 +1,9 @@
 import { useMemo, useRef, useState } from "react";
-import { useConversations } from "./hooks/use-conversations";
+import { useConversations } from "../hooks/use-conversations";
 import { Box, Button, Popover, PopoverProps, Typography } from "@mui/material";
 import { MessageDrawer } from "./message-drawer";
-import { UserSearch } from "./components/user-search";
-import { addConversation } from "./service/add-conversation";
+import { UserSearch } from "../components/user-search";
+import { addConversation } from "../service/add-conversation";
 import { useQueryClient } from "react-query";
 
 type Props = Pick<PopoverProps, "anchorEl" | "onClose" | "open">;

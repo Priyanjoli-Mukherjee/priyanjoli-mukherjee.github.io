@@ -1,8 +1,7 @@
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import priya_rainier from "./images/priya_rainier.jpg";
-import "./style/styles.scss";
+import priya_rainier from "../images/priya_rainier.jpg";
 import { Link } from "react-router-dom";
 
 export function Home() {
@@ -18,10 +17,15 @@ export function Home() {
         }}
       >
         <Box
-          className="header"
           display="flex"
           flexDirection="column"
+          height={100}
           justifyContent="flex-start"
+          width="100vw"
+          sx={{
+            background:
+              "linear-gradient(rgba(0, 51, 153, 0), rgba(0, 51, 153, 1))",
+          }}
         >
           <Typography variant="h4" sx={{ marginLeft: 5, marginTop: 2 }}>
             Software Engineer
@@ -50,7 +54,7 @@ export function Home() {
           }}
         >
           <Typography variant="h4" sx={{ color: "#9999ff", margin: 3 }}>
-            Hey, I'm Priya Mukherjee
+            Hey, I&apos;m Priya Mukherjee
           </Typography>
           <Typography
             variant="body1"

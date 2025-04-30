@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import { Message } from "./types/message";
-import { useCurrentUser } from "./hooks/use-current-user";
+import { Message } from "../types/message";
+import { useCurrentUser } from "../hooks/use-current-user";
 
 interface Props {
   message: Message;

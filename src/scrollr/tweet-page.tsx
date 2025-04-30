@@ -1,11 +1,11 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { useTweets } from "./hooks/use-tweets";
+import { useTweets } from "../hooks/use-tweets";
 import { TweetCard } from "./tweet-card";
 import { useState } from "react";
-import { addTweet } from "./service/add-tweet";
+import { addTweet } from "../service/add-tweet";
 import { useQueryClient } from "react-query";
-import { HomeButton } from "./home-button";
+import { BackButton } from "./back-button";
 import { MessagesButton } from "./messages-button";
 
 export function TweetPage() {
@@ -81,7 +81,7 @@ export function TweetPage() {
           <TweetCard key={tweetReply.id} tweet={tweetReply} />
         ))}
       </Box>
-      <HomeButton />
+      <BackButton />
       <MessagesButton />
     </Box>
   );

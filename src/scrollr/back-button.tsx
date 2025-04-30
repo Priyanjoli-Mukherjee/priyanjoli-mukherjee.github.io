@@ -1,10 +1,10 @@
 import { Box, Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useFeatureFlag } from "./hooks/use-feature-flag";
-import { FeatureFlag } from "./types/feature-flag";
+import { useFeatureFlag } from "../hooks/use-feature-flag";
+import { FeatureFlag } from "../types/feature-flag";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-export function HomeButton() {
+export function BackButton() {
   const isMultiPageEnabled = useFeatureFlag(FeatureFlag.MULTI_PAGE_ENABLED);
 
   return (

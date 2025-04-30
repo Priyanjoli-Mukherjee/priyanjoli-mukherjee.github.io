@@ -2,7 +2,7 @@ import { useFeatureFlag } from "./hooks/use-feature-flag";
 import { FeatureFlag } from "./types/feature-flag";
 import { Scrollr } from "./scrollr";
 import { Route, Routes } from "react-router-dom";
-import { TweetPage } from "./tweet-page";
+import { TweetPage } from "./scrollr/tweet-page";
 import { Home } from "./home";
 
 export function App() {

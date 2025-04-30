@@ -8,17 +8,17 @@ import {
 } from "@mui/material";
 import { useQueryClient } from "react-query";
 import { useMemo, useState } from "react";
-import { addTweet } from "./service/add-tweet";
+import { addTweet } from "../service/add-tweet";
 import { TweetCard } from "./tweet-card";
-import { useTweets } from "./hooks/use-tweets";
+import { useTweets } from "../hooks/use-tweets";
 import { MessagesButton } from "./messages-button";
 import SearchIcon from "@mui/icons-material/Search";
-import { getTrendDictionary } from "./hashtag-utils/get-trend-dictionary";
-import { Dictionary } from "./types/dictionary";
-import { Tweet } from "./types/tweet";
+import { getTrendDictionary } from "../hashtag-utils/get-trend-dictionary";
+import { Dictionary } from "../types/dictionary";
+import { Tweet } from "../types/tweet";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useFeatureFlag } from "./hooks/use-feature-flag";
-import { FeatureFlag } from "./types/feature-flag";
+import { useFeatureFlag } from "../hooks/use-feature-flag";
+import { FeatureFlag } from "../types/feature-flag";
 
 const SIDEBAR_WIDTH = 500;
 

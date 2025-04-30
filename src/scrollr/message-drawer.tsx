@@ -1,8 +1,8 @@
 import { Box, IconButton, Paper, TextField, Typography } from "@mui/material";
-import { Conversation } from "./types/conversation";
+import { Conversation } from "../types/conversation";
 import { useMemo, useState } from "react";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
-import { addMessage } from "./service/add-message";
+import { addMessage } from "../service/add-message";
 import { useQueryClient } from "react-query";
 import { MessageCard } from "./message-card";
 

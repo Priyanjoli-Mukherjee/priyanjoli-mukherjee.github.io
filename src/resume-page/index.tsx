@@ -1,11 +1,27 @@
 import { Document, Page } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import resume from "./Priya Mukherjee resume.pdf";
+import { Box } from "@mui/material";
+import useMeasure from "react-use/lib/useMeasure";
+import { useEffect, useMemo, useState } from "react";
+import { debounce } from "../callback-utils/debounce";
 
 export function ResumePage() {
+  const [ref, { width: measuredWidth }] = useMeasure();
+
+  const [width, setWidth] = useState(measuredWidth);
+
+  const setDebouncedWidth = useMemo(() => debounce(setWidth, 100), []);
+
+  useEffect(() => {
+    setDebouncedWidth(measuredWidth);
+  }, [measuredWidth]);
+
   return (
-    <Document file={resume}>
-      <Page pageNumber={1} />
-    </Document>
+    <Box height="100vh" overflow="scroll" width="100%" ref={ref}>
+      <Document file={resume}>
+        <Page pageNumber={1} width={width} />
+      </Document>
+    </Box>
   );
 }

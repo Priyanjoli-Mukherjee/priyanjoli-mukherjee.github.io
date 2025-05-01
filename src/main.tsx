@@ -6,6 +6,13 @@ import { Fragment, Suspense } from "react";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./theme.ts";
 import { HashRouter } from "react-router-dom";
+import { pdfjs } from "react-pdf";
+import "react-pdf/dist/Page/TextLayer.css";
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.mjs",
+  import.meta.url,
+).toString();
 
 const queryClient = new QueryClient({
   defaultOptions: {

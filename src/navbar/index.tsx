@@ -27,10 +27,12 @@ export function Navbar() {
         display: "flex",
         flexDirection: "column",
         height: "100vh",
+        width: isMenuOpen ? 163 : 68,
         backgroundColor: "#00264d",
         padding: 2,
         paddingTop: 4,
         color: "white",
+        transition: "width 400ms",
       }}
     >
       <Box

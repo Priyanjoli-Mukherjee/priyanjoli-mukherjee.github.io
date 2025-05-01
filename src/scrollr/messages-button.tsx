@@ -11,7 +11,7 @@ export function MessagesButton() {
     setIsClicked(!isClicked);
   }
   return (
-    <Box position="fixed" bottom={20} right={20}>
+    <Box position="absolute" bottom={20} right={20}>
       <IconButton onClick={toggle} sx={{ color: "rgb(179, 224, 255)" }}>
         <MailIcon ref={anchor} fontSize="large" />
       </IconButton>

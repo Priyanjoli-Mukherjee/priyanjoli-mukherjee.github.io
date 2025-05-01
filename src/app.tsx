@@ -18,7 +18,7 @@ export function App() {
     </Routes>
   ) : (
     <Box display="flex" width="100vw">
-      <Box flex="1 1">
+      <Box flex="1 1" overflow="hidden" position="relative">
         <Routes>
           <Route path="/scrollr" Component={Scrollr} />
           <Route path="/scrollr/:search" Component={Scrollr} />

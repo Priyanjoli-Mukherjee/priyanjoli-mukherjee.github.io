@@ -4,6 +4,8 @@ import { Scrollr } from "./scrollr";
 import { Route, Routes } from "react-router-dom";
 import { TweetPage } from "./scrollr/tweet-page";
 import { Home } from "./home";
+import { Box } from "@mui/material";
+import { Navbar } from "./navbar";
 
 export function App() {
   const isMultiPageEnabled = useFeatureFlag(FeatureFlag.MULTI_PAGE_ENABLED);
@@ -15,11 +17,16 @@ export function App() {
       <Route path="/tweet/:tweetId" Component={TweetPage} />
     </Routes>
   ) : (
-    <Routes>
-      <Route path="/scrollr" Component={Scrollr} />
-      <Route path="/scrollr/:search" Component={Scrollr} />
-      <Route path="/scrollr/tweet/:tweetId" Component={TweetPage} />
-      <Route path="/" index Component={Home} />
-    </Routes>
+    <Box display="flex" width="100vw">
+      <Box flex="1 1" overflow="hidden" position="relative">
+        <Routes>
+          <Route path="/scrollr" Component={Scrollr} />
+          <Route path="/scrollr/:search" Component={Scrollr} />
+          <Route path="/scrollr/tweet/:tweetId" Component={TweetPage} />
+          <Route path="/" index Component={Home} />
+        </Routes>
+      </Box>
+      <Navbar />
+    </Box>
   );
 }

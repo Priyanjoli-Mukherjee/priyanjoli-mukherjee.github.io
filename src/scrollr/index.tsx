@@ -68,7 +68,7 @@ export function Scrollr() {
       display="flex"
       justifyContent="center"
       overflow="hidden"
-      width="100vw"
+      width="100%"
       height="100vh"
     >
       <Box
@@ -245,7 +245,7 @@ export function Scrollr() {
             ))}
           </Box>
         </Box>
-        <Box height="100vh" width={300}>
+        <Box height="100%" width={300}>
           <MessagesButton />
         </Box>
       </Box>

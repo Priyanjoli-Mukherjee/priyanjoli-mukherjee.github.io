@@ -6,13 +6,14 @@ import { Link } from "react-router-dom";
 
 export function Home() {
   return (
-    <Box sx={{ display: "flex", height: "100vh" }}>
+    <Box sx={{ display: "flex", height: "100vh", width: "100%" }}>
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          width: "100%",
           height: "100%",
         }}
       >
@@ -21,7 +22,7 @@ export function Home() {
           flexDirection="column"
           height={100}
           justifyContent="flex-start"
-          width="100vw"
+          width="100%"
           sx={{
             background:
               "linear-gradient(rgba(0, 51, 153, 0), rgba(0, 51, 153, 1))",

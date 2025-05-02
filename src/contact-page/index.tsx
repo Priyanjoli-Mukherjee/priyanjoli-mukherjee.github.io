@@ -1,0 +1,90 @@
+import { Box, Typography } from "@mui/material";
+import { ContactField } from "./contact-field";
+import { useState } from "react";
+import { SubmitButton } from "./submit-button";
+
+export function ContactPage() {
+  const [name, SetName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+
+  return (
+    <Box display="flex" justifyContent="space-between" height="100vh">
+      <Box
+        alignItems="center"
+        display="flex"
+        width="50%"
+        height="100%"
+        padding={5}
+        sx={{ backgroundColor: "rgb(0, 51, 153)" }}
+      >
+        <Box>
+          <Typography variant="h3" sx={{ textAlign: "center" }}>
+            Let&apos;s Talk!
+          </Typography>
+          <Typography
+            variant="h5"
+            sx={{ marginBottom: 3, marginTop: 3, textAlign: "justify" }}
+          >
+            Reach out to me if you have a question or would like to start
+            working on a project, or if you just want to get in touch with me!
+          </Typography>
+          <Typography variant="h5" sx={{ textAlign: "justify" }}>
+            Feel free to send me a message through the contact form.
+          </Typography>
+        </Box>
+      </Box>
+      <Box
+        alignItems="center"
+        display="flex"
+        width="50%"
+        height="100%"
+        flexDirection="column"
+        justifyContent="center"
+        padding={5}
+        sx={{ backgroundColor: "white" }}
+      >
+        <Typography variant="h4" sx={{ color: "black", marginBottom: 1 }}>
+          Contact
+        </Typography>
+        <ContactField
+          autoFocus
+          placeholder="Name"
+          required
+          variant="outlined"
+          value={name}
+          onChange={(evt) => SetName(evt.target.value)}
+        />
+        <ContactField
+          placeholder="Email"
+          required
+          variant="outlined"
+          value={email}
+          onChange={(evt) => setEmail(evt.target.value)}
+        />
+        <ContactField
+          placeholder="Phone"
+          variant="outlined"
+          value={phone}
+          onChange={(evt) => setPhone(evt.target.value)}
+        />
+        <ContactField
+          placeholder="Message"
+          variant="outlined"
+          multiline
+          minRows={3}
+          value={message}
+          onChange={(evt) => setMessage(evt.target.value)}
+        />
+        <SubmitButton
+          disabled={!name || !email || !message}
+          variant="contained"
+          onClick={() => console.log({ name, email, phone, message })}
+        >
+          <Typography variant="body1">Submit</Typography>
+        </SubmitButton>
+      </Box>
+    </Box>
+  );
+}

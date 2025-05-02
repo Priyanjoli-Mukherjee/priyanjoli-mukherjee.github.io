@@ -104,7 +104,13 @@ export function ContactPage() {
         <SubmitButton
           disabled={!name || !email || !message}
           variant="contained"
-          onClick={() => sendEmail({ name, email, phone, message })}
+          onClick={async () => {
+            await sendEmail({ name, email, phone, message });
+            setName("");
+            setEmail("");
+            setPhone("");
+            setMessage("");
+          }}
         >
           <Typography variant="body1">Submit</Typography>
         </SubmitButton>

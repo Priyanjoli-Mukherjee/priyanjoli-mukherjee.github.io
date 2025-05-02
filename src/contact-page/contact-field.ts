@@ -6,7 +6,4 @@ export const ContactField = styled(TextField)({
   borderRadius: 5,
   width: "75%",
   margin: 5,
-  "& textarea": {
-    resize: "both",
-  },
 });

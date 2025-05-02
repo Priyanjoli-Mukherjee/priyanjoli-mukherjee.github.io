@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { ContactField } from "./contact-field";
 import { useState } from "react";
 import { SubmitButton } from "./submit-button";
+import { TextArea } from "../components/text-area";
 
 export function ContactPage() {
   const [name, SetName] = useState("");
@@ -52,6 +53,7 @@ export function ContactPage() {
           autoFocus
           placeholder="Name"
           required
+          label="Name"
           variant="outlined"
           value={name}
           onChange={(evt) => SetName(evt.target.value)}
@@ -59,6 +61,7 @@ export function ContactPage() {
         <ContactField
           placeholder="Email"
           required
+          label="Email"
           variant="outlined"
           value={email}
           onChange={(evt) => setEmail(evt.target.value)}
@@ -66,16 +69,22 @@ export function ContactPage() {
         <ContactField
           placeholder="Phone"
           variant="outlined"
+          label="Phone"
           value={phone}
           onChange={(evt) => setPhone(evt.target.value)}
         />
-        <ContactField
-          placeholder="Message"
+        <TextArea
+          placeholder="Message *"
           variant="outlined"
-          multiline
-          minRows={3}
+          required
           value={message}
           onChange={(evt) => setMessage(evt.target.value)}
+          sx={{
+            backgroundColor: "#dadde0",
+            borderRadius: 1.25,
+            width: "75%",
+            margin: 1.25,
+          }}
         />
         <SubmitButton
           disabled={!name || !email || !message}

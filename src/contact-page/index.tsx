@@ -52,23 +52,28 @@ export function ContactPage() {
         </Typography>
         <ContactField
           autoFocus
-          placeholder="Name"
+          placeholder="John Doe"
           required
           label="Name"
           variant="outlined"
           value={name}
           onChange={(evt) => SetName(evt.target.value)}
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
         <ContactField
-          placeholder="Email"
+          placeholder="johndoe@gmail.com"
           required
           label="Email"
           variant="outlined"
           value={email}
           onChange={(evt) => setEmail(evt.target.value)}
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
         <MuiTelInput
-          placeholder="Phone"
           variant="outlined"
           label="Phone"
           value={phone}
@@ -82,8 +87,9 @@ export function ContactPage() {
           }}
         />
         <TextArea
-          placeholder="Message *"
+          placeholder="Tell me what you think!"
           variant="outlined"
+          label="Message"
           required
           value={message}
           onChange={(evt) => setMessage(evt.target.value)}

@@ -1,8 +1,10 @@
 import { Box, Button, IconButton, Typography } from "@mui/material";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import GitHubIcon from "@mui/icons-material/GitHub";
 import priya_rainier from "../images/rainier.jpg";
 import { Link } from "react-router-dom";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import MailIcon from "@mui/icons-material/Mail";
+import WorkIcon from "@mui/icons-material/Work";
 
 export function Home() {
   return (
@@ -107,6 +109,16 @@ export function Home() {
             >
               <GitHubIcon />
             </a>
+          </IconButton>
+          <IconButton>
+            <Link to="/contact" style={{ color: "white" }}>
+              <MailIcon />
+            </Link>
+          </IconButton>
+          <IconButton>
+            <Link to="/resume" style={{ color: "white" }}>
+              <WorkIcon />
+            </Link>
           </IconButton>
         </Box>
       </Box>

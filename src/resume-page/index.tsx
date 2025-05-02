@@ -18,8 +18,32 @@ export function ResumePage() {
   }, [measuredWidth]);
 
   return (
-    <Box height="100vh" overflow="scroll" width="100%" ref={ref}>
-      <Document file={resume}>
+    <Box display="flex" height="100vh" overflow="scroll" width="100%" ref={ref}>
+      <Document
+        file={resume}
+        loading={
+          <Box
+            alignItems="center"
+            display="flex"
+            height="100vh"
+            justifyContent="center"
+            width="100vw"
+          >
+            Loading resume...
+          </Box>
+        }
+        error={
+          <Box
+            alignItems="center"
+            display="flex"
+            height="100vh"
+            justifyContent="center"
+            width="100vw"
+          >
+            Unable to load PDF
+          </Box>
+        }
+      >
         <Page pageNumber={1} width={width} />
       </Document>
     </Box>

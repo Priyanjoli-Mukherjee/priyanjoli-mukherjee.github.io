@@ -4,9 +4,10 @@ import { useState } from "react";
 import { SubmitButton } from "./submit-button";
 import { TextArea } from "../components/text-area";
 import { MuiTelInput } from "mui-tel-input";
+import { sendEmail } from "./send-email";
 
 export function ContactPage() {
-  const [name, SetName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
@@ -57,7 +58,7 @@ export function ContactPage() {
           label="Name"
           variant="outlined"
           value={name}
-          onChange={(evt) => SetName(evt.target.value)}
+          onChange={(evt) => setName(evt.target.value)}
           InputLabelProps={{
             shrink: true,
           }}
@@ -103,7 +104,7 @@ export function ContactPage() {
         <SubmitButton
           disabled={!name || !email || !message}
           variant="contained"
-          onClick={() => console.log({ name, email, phone, message })}
+          onClick={() => sendEmail({ name, email, phone, message })}
         >
           <Typography variant="body1">Submit</Typography>
         </SubmitButton>

@@ -3,6 +3,7 @@ import { ContactField } from "./contact-field";
 import { useState } from "react";
 import { SubmitButton } from "./submit-button";
 import { TextArea } from "../components/text-area";
+import { MuiTelInput } from "mui-tel-input";
 
 export function ContactPage() {
   const [name, SetName] = useState("");
@@ -66,12 +67,19 @@ export function ContactPage() {
           value={email}
           onChange={(evt) => setEmail(evt.target.value)}
         />
-        <ContactField
+        <MuiTelInput
           placeholder="Phone"
           variant="outlined"
           label="Phone"
           value={phone}
-          onChange={(evt) => setPhone(evt.target.value)}
+          defaultCountry="US"
+          onChange={(value) => setPhone(value)}
+          sx={{
+            backgroundColor: "#dadde0",
+            borderRadius: 1.25,
+            width: "75%",
+            margin: 1.25,
+          }}
         />
         <TextArea
           placeholder="Message *"

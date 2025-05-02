@@ -1,6 +1,6 @@
 import { Document, Page } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-import resume from "./Priya Mukherjee resume.pdf";
+import resume from "./Priya Mukherjee portfolio resume.pdf";
 import { Box } from "@mui/material";
 import useMeasure from "react-use/lib/useMeasure";
 import { useEffect, useMemo, useState } from "react";

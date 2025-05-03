@@ -7,6 +7,7 @@ import { Home } from "./home";
 import { Box } from "@mui/material";
 import { Navbar } from "./navbar";
 import { ResumePage } from "./resume-page";
+import { ContactPage } from "./contact-page";
 
 export function App() {
   const isMultiPageEnabled = useFeatureFlag(FeatureFlag.MULTI_PAGE_ENABLED);
@@ -25,6 +26,7 @@ export function App() {
           <Route path="/scrollr/:search" Component={Scrollr} />
           <Route path="/scrollr/tweet/:tweetId" Component={TweetPage} />
           <Route path="/resume" Component={ResumePage} />
+          <Route path="/contact" Component={ContactPage} />
           <Route path="/" index Component={Home} />
         </Routes>
       </Box>

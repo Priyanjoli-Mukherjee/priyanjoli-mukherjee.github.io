@@ -8,11 +8,17 @@ import { theme } from "./theme.ts";
 import { HashRouter } from "react-router-dom";
 import { pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/TextLayer.css";
+import emailjs from "@emailjs/browser";
+import { PUBLIC_KEY } from "./contact-page/public-key.ts";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
   import.meta.url,
 ).toString();
+
+emailjs.init({
+  publicKey: PUBLIC_KEY,
+});
 
 const queryClient = new QueryClient({
   defaultOptions: {

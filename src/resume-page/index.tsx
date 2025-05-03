@@ -1,6 +1,6 @@
 import { Document, Page } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-import resume from "./Priya Mukherjee resume.pdf";
+import resume from "./Priya Mukherjee portfolio resume.pdf";
 import { Box } from "@mui/material";
 import useMeasure from "react-use/lib/useMeasure";
 import { useEffect, useMemo, useState } from "react";
@@ -18,8 +18,32 @@ export function ResumePage() {
   }, [measuredWidth]);
 
   return (
-    <Box height="100vh" overflow="scroll" width="100%" ref={ref}>
-      <Document file={resume}>
+    <Box display="flex" height="100vh" overflow="scroll" width="100%" ref={ref}>
+      <Document
+        file={resume}
+        loading={
+          <Box
+            alignItems="center"
+            display="flex"
+            height="100vh"
+            justifyContent="center"
+            width="100vw"
+          >
+            Loading resume...
+          </Box>
+        }
+        error={
+          <Box
+            alignItems="center"
+            display="flex"
+            height="100vh"
+            justifyContent="center"
+            width="100vw"
+          >
+            Unable to load PDF
+          </Box>
+        }
+      >
         <Page pageNumber={1} width={width} />
       </Document>
     </Box>

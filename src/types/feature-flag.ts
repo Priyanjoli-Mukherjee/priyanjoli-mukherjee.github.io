@@ -1,3 +1,3 @@
 export enum FeatureFlag {
-  MULTI_PAGE_ENABLED = "multi-page-enabled",
+  TEST_FEATURE = "test-feature",
 }

@@ -2,7 +2,12 @@
 
 # Introduction
 
-This is the portfolio for Priya Mukherjee. It's a prototype of a social media app that allows for direct messaging,
+This is the portfolio for Priya Mukherjee. I have a contact page through which you can reach me and some projects that
+I am currently working on.
+
+## Scrollr
+
+Scrollr is a prototype of a social media app that allows for direct messaging,
 posting comments, and seeing tweets in a feed. The search feature can be used to filter the tweets, and can be used
 by either searching for parts or the message or entering in a hashtag. The trends displayed on the left can also be
 used to filter the tweets.

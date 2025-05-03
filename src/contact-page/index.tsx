@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Snackbar, SnackbarContent, Typography } from "@mui/material";
 import { ContactField } from "./contact-field";
 import { useState } from "react";
 import { SubmitButton } from "./submit-button";
@@ -11,6 +11,7 @@ export function ContactPage() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [isToastOpen, setToastOpen] = useState(false);
 
   return (
     <Box display="flex" justifyContent="space-between" height="100vh">
@@ -110,10 +111,26 @@ export function ContactPage() {
             setEmail("");
             setPhone("");
             setMessage("");
+            setToastOpen(true);
           }}
         >
           <Typography variant="body1">Submit</Typography>
         </SubmitButton>
+        <Snackbar
+          open={isToastOpen}
+          autoHideDuration={5000}
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          onClose={() => setToastOpen(false)}
+        >
+          <SnackbarContent
+            message="Email sent!"
+            sx={{
+              backgroundColor: "white",
+              borderLeft: "5px solid green",
+              color: "black",
+            }}
+          />
+        </Snackbar>
       </Box>
     </Box>
   );

@@ -1,7 +1,7 @@
 import { FeatureFlag } from "../types/feature-flag";
 
 const defaultFeatureFlags = {
-  [FeatureFlag.MULTI_PAGE_ENABLED]: false,
+  [FeatureFlag.TEST_FEATURE]: false,
 };
 
 function saveFeatureFlags(flags: Record<FeatureFlag, boolean>) {

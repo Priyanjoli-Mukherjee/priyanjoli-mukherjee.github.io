@@ -17,8 +17,6 @@ import { getTrendDictionary } from "../hashtag-utils/get-trend-dictionary";
 import { Dictionary } from "../types/dictionary";
 import { Tweet } from "../types/tweet";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useFeatureFlag } from "../hooks/use-feature-flag";
-import { FeatureFlag } from "../types/feature-flag";
 
 const SIDEBAR_WIDTH = 500;
 
@@ -34,8 +32,6 @@ export function Scrollr() {
   const searchText = decodeURIComponent(search ?? "");
 
   const queryClient = useQueryClient();
-
-  const isMultiPageEnabled = useFeatureFlag(FeatureFlag.MULTI_PAGE_ENABLED);
 
   const filteredTweets = useMemo(() => {
     if (searchText[0] !== "@") {
@@ -102,9 +98,7 @@ export function Scrollr() {
               ),
             }}
             onChange={(evt) =>
-              navigate(
-                `${isMultiPageEnabled ? "/scrollr" : ""}/${encodeURIComponent(evt.target.value)}`,
-              )
+              navigate(`/scrollr/${encodeURIComponent(evt.target.value)}`)
             }
           />
           <Box
@@ -133,7 +127,7 @@ export function Scrollr() {
                   borderBottom="1px solid rgb(179, 179, 204)"
                 >
                   <Link
-                    to={`${isMultiPageEnabled ? "/scrollr" : ""}/${encodeURIComponent(trend)}`}
+                    to={`/scrollr/${encodeURIComponent(trend)}`}
                     style={{ width: "100%" }}
                   >
                     <Button

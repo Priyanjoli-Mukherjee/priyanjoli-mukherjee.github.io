@@ -13,8 +13,6 @@ import { useCurrentUser } from "../hooks/use-current-user";
 import { parseHashtags } from "../hashtag-utils/parse-hashtags";
 import { Link } from "react-router-dom";
 import { tweets } from "../service/tweets";
-import { useFeatureFlag } from "../hooks/use-feature-flag";
-import { FeatureFlag } from "../types/feature-flag";
 
 interface Props {
   tweet: Tweet;
@@ -43,8 +41,6 @@ export function TweetCard({ tweet }: Props) {
 
   const currentUser = useCurrentUser();
 
-  const isMultiPageEnabled = useFeatureFlag(FeatureFlag.MULTI_PAGE_ENABLED);
-
   return (
     <Box
       display="flex"
@@ -72,9 +68,7 @@ export function TweetCard({ tweet }: Props) {
         marginLeft={2}
       >
         <Box display="flex" alignItems="center" width="100%">
-          <Link
-            to={`${isMultiPageEnabled ? "/scrollr" : ""}/${encodeURIComponent(twitterHandle)}`}
-          >
+          <Link to={`/scrollr/${encodeURIComponent(twitterHandle)}`}>
             <Box
               color="black"
               sx={{ cursor: "pointer", "&:hover": { color: "blue" } }}
@@ -84,9 +78,7 @@ export function TweetCard({ tweet }: Props) {
               </Typography>
             </Box>
           </Link>
-          <Link
-            to={`${isMultiPageEnabled ? "/scrollr" : ""}/${encodeURIComponent(twitterHandle)}`}
-          >
+          <Link to={`/scrollr/${encodeURIComponent(twitterHandle)}`}>
             <Box
               color="black"
               paddingLeft={2}
@@ -111,7 +103,7 @@ export function TweetCard({ tweet }: Props) {
                   <IconButton color="primary" onClick={toggle}>
                     <EditIcon fontSize="small" />
                   </IconButton>
-                  <Link to={`${isMultiPageEnabled ? "/scrollr" : ""}/`}>
+                  <Link to="/scrollr">
                     <IconButton
                       color="primary"
                       onClick={() => {
@@ -122,9 +114,7 @@ export function TweetCard({ tweet }: Props) {
                       <DeleteOutlineIcon fontSize="medium" />
                     </IconButton>
                   </Link>
-                  <Link
-                    to={`${isMultiPageEnabled ? "/scrollr" : ""}/tweet/${id}`}
-                  >
+                  <Link to={`/scrollr/tweet/${id}`}>
                     <IconButton color="primary">
                       <OpenInNewIcon />
                     </IconButton>
@@ -132,9 +122,7 @@ export function TweetCard({ tweet }: Props) {
                 </Box>
               ) : (
                 <Box paddingRight={2}>
-                  <Link
-                    to={`${isMultiPageEnabled ? "/scrollr" : ""}/tweet/${id}`}
-                  >
+                  <Link to={`/scrollr/tweet/${id}`}>
                     <IconButton color="primary">
                       <OpenInNewIcon />
                     </IconButton>
@@ -157,9 +145,7 @@ export function TweetCard({ tweet }: Props) {
         >
           {replyingTo && (
             <Box width="100%" paddingBottom={0.5}>
-              <Link
-                to={`${isMultiPageEnabled ? "/scrollr" : ""}/tweet/${replyingTo}`}
-              >
+              <Link to={`/scrollr/tweet/${replyingTo}`}>
                 <Typography variant="subtitle2" fontWeight={500}>
                   <span style={{ color: "rgb(133, 133, 173)" }}>
                     Replying To
@@ -221,7 +207,7 @@ export function TweetCard({ tweet }: Props) {
                   text[0] === "#" ? (
                     <Link
                       key={index}
-                      to={`${isMultiPageEnabled ? "/scrollr" : ""}/${encodeURIComponent(text)}`}
+                      to={`/scrollr/${encodeURIComponent(text)}`}
                     >
                       <span style={{ color: "blue", cursor: "pointer" }}>
                         {text}
@@ -235,7 +221,7 @@ export function TweetCard({ tweet }: Props) {
             </Box>
           )}
           <Box display="flex" justifyContent="flex-end" width="100%">
-            <Link to={`${isMultiPageEnabled ? "/scrollr" : ""}/tweet/${id}`}>
+            <Link to={`/scrollr/tweet/${id}`}>
               <IconButton color="primary">
                 <CommentIcon fontSize="small" />
               </IconButton>

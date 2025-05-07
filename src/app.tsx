@@ -6,6 +6,7 @@ import { Box } from "@mui/material";
 import { Navbar } from "./navbar";
 import { ResumePage } from "./resume-page";
 import { ContactPage } from "./contact-page";
+import { EventMaster } from "./event-master";
 
 export function App() {
   return (
@@ -17,6 +18,7 @@ export function App() {
           <Route path="/scrollr/tweet/:tweetId" Component={TweetPage} />
           <Route path="/resume" Component={ResumePage} />
           <Route path="/contact" Component={ContactPage} />
+          <Route path="/event-master" Component={EventMaster} />
           <Route path="/" index Component={Home} />
         </Routes>
       </Box>

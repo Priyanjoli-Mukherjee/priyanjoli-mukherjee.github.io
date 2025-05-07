@@ -15,9 +15,14 @@ import Home from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
 import PeopleIcon from "@mui/icons-material/People";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
+import { useFeatureFlag } from "../hooks/use-feature-flag";
+import { FeatureFlag } from "../types/feature-flag";
 
 export function Navbar() {
   const [isMenuOpen, setMenuOpen] = useState(false);
+
+  const isEventMasterEnabled = useFeatureFlag(FeatureFlag.EVENT_MASTER);
 
   return (
     <Paper
@@ -99,12 +104,29 @@ export function Navbar() {
                   </Typography>
                 </Box>
               </Link>
+              {isEventMasterEnabled && (
+                <Link to="/event-master">
+                  <Box alignItems="center" display="flex">
+                    <TheaterComedyIcon fontSize="small" />
+                    <Typography variant="body1" sx={{ paddingLeft: 1 }}>
+                      EventMaster
+                    </Typography>
+                  </Box>
+                </Link>
+              )}
             </AccordionDetails>
           </Accordion>
         ) : (
-          <Link to="/scrollr">
-            <PeopleIcon fontSize="small" />
-          </Link>
+          <>
+            <Link to="/scrollr">
+              <PeopleIcon fontSize="small" />
+            </Link>
+            {isEventMasterEnabled && (
+              <Link to="/event-master">
+                <TheaterComedyIcon fontSize="small" />
+              </Link>
+            )}
+          </>
         )}
       </Box>
       <Box margin={1}>

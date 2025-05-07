@@ -1,12 +1,12 @@
 import { Box, Paper, Typography } from "@mui/material";
 import { useCallback, useMemo, useState } from "react";
 import { getEventData } from "./get-event-data";
-import { TicketmasterEvent } from "./ticketmaster-event";
+import { Event } from "./event";
 import { EventDialog } from "./event-dialog";
 import { CheckoutDrawer } from "./checkout-drawer";
 
-export function EventListPage() {
-  const [selectedEvent, setSelectedEvent] = useState<TicketmasterEvent>();
+export function EventMaster() {
+  const [selectedEvent, setSelectedEvent] = useState<Event>();
   const [numTickets, setNumTickets] = useState<number>();
 
   const events = useMemo(() => getEventData(), []);

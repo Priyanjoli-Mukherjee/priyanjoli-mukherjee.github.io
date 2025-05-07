@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useState } from "react";
-import { TicketmasterEvent } from "./ticketmaster-event";
+import { Event } from "./event";
 import {
   Box,
   Button,
@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 
 type Props = {
-  event: TicketmasterEvent;
+  event: Event;
   onCancel: () => void;
   onSubmit: (numTickets: number) => void;
 };
@@ -48,7 +48,12 @@ export function EventDialog(props: Props) {
             value={numTickets}
             onChange={onChange}
             type="number"
-            style={{ width: 75, height: 75 }}
+            style={{
+              width: 75,
+              height: 75,
+              color: "black",
+              colorScheme: "black",
+            }}
           />
         </Box>
       </DialogContent>

@@ -1,6 +1,6 @@
-import { TicketmasterEvent } from "./ticketmaster-event";
+import { Event } from "./event";
 
-export function getEventData(): TicketmasterEvent[] {
+export function getEventData(): Event[] {
   return ["Taylor Swift", "A R Rahman", "Miley Cyrus", "BTS", "SZA"].map(
     (artist: string, index: number) => ({
       title: `Event ${index + 1}`,

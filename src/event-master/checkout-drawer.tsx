@@ -1,8 +1,8 @@
-import { TicketmasterEvent } from "./ticketmaster-event";
+import { Event } from "./event";
 import { Box, Button, Drawer, Typography } from "@mui/material";
 
 type Props = {
-  event: TicketmasterEvent;
+  event: Event;
   numTickets: number;
   onCancel: () => void;
 };

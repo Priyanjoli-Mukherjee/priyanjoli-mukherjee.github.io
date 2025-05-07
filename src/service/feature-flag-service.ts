@@ -1,6 +1,7 @@
 import { FeatureFlag } from "../types/feature-flag";
 
-const defaultFeatureFlags = {
+const defaultFeatureFlags: Record<FeatureFlag, boolean> = {
+  [FeatureFlag.EVENT_MASTER]: false,
   [FeatureFlag.TEST_FEATURE]: false,
 };
 

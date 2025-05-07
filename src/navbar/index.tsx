@@ -73,7 +73,7 @@ export function Navbar() {
           </Box>
         </Link>
       </Box>
-      <Box margin={1}>
+      <Box display="flex" flexDirection="column" margin={1}>
         {isMenuOpen ? (
           <Accordion
             defaultExpanded
@@ -106,10 +106,10 @@ export function Navbar() {
               </Link>
               {isEventMasterEnabled && (
                 <Link to="/event-master">
-                  <Box alignItems="center" display="flex">
+                  <Box alignItems="center" display="flex" marginTop={1}>
                     <TheaterComedyIcon fontSize="small" />
                     <Typography variant="body1" sx={{ paddingLeft: 1 }}>
-                      EventMaster
+                      Concerto
                     </Typography>
                   </Box>
                 </Link>
@@ -123,7 +123,7 @@ export function Navbar() {
             </Link>
             {isEventMasterEnabled && (
               <Link to="/event-master">
-                <TheaterComedyIcon fontSize="small" />
+                <TheaterComedyIcon fontSize="small" sx={{ marginTop: 1 }} />
               </Link>
             )}
           </>

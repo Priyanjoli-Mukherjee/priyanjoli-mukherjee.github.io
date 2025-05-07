@@ -19,7 +19,7 @@ export function EventMaster() {
 
   return (
     <Box margin={5} display="flex" flexDirection="column" alignItems="center">
-      <Typography variant="h3">Welcome to EventMaster!</Typography>
+      <Typography variant="h3">Welcome to Concerto!</Typography>
       <Typography variant="h4">
         Please select an event below to purchase tickets.
       </Typography>

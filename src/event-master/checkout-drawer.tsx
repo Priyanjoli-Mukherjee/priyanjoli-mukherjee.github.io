@@ -9,7 +9,7 @@ type Props = {
 
 export function CheckoutDrawer(props: Props) {
   return (
-    <Drawer open anchor="right" onClose={props.onCancel}>
+    <Drawer open anchor="left" onClose={props.onCancel}>
       <Box
         width={400}
         height="100%"

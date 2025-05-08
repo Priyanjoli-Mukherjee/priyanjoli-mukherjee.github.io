@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useMemo } from "react";
-import { getArtistData } from "./get-artist-data";
+import { getArtistData } from "./service/get-artist-data";
 import { ArtistCard } from "./artist-card";
 
 export function EventMaster() {

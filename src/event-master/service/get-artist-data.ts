@@ -1,5 +1,5 @@
 import uniqueId from "lodash/uniqueId";
-import { Artist } from "./types/artist";
+import { Artist } from "../types/artist";
 import TaylorSwift from "../images/event-master/Taylor_Swift.jpg";
 import Philharmonic from "../images/event-master/Philharmonic.jpg";
 import Metallica from "../images/event-master/Metallica.jpg";
@@ -13,7 +13,7 @@ import Fireworks from "../images/event-master/4th_of_July.jpg";
 import Rodeo from "../images/event-master/Rodeo.jpg";
 import Polynesian from "../images/event-master/Polynesian.jpg";
 
-const artistData: Artist[] = [
+export const artistData: Artist[] = [
   {
     genre: "Pop",
     image: TaylorSwift,
@@ -77,7 +77,7 @@ const artistData: Artist[] = [
 ].map((artist) => ({
   ...artist,
   description: "",
-  id: uniqueId("id"),
+  id: uniqueId("artist"),
 }));
 
 export function getArtistData() {

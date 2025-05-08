@@ -1,4 +1,5 @@
 export interface Venue {
-  timestamp: number;
+  city: string;
   location: string;
+  timestamp: number;
 }

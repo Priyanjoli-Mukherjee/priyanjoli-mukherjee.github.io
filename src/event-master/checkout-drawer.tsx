@@ -1,4 +1,4 @@
-import { Event } from "./event";
+import { Event } from "./types/event";
 import { Box, Button, Drawer, Typography } from "@mui/material";
 
 type Props = {
@@ -26,10 +26,7 @@ export function CheckoutDrawer(props: Props) {
         <Box display="flex" justifyContent="space-between">
           <Box width={300}>
             <Typography variant="h6">{props.event.title}</Typography>
-            <Typography>{props.event.artist}</Typography>
-            <Typography variant="body2" style={{ fontStyle: "oblique" }}>
-              {props.event.description}
-            </Typography>
+            <Typography>{props.event.artistId}</Typography>
           </Box>
           <Typography variant="h6">
             ${props.event.price} &times; {props.numTickets}

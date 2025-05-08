@@ -3,4 +3,6 @@ export type Event = {
   description: string;
   artist: string;
   price: number;
+  timestamp?: number;
+  image?: string;
 };

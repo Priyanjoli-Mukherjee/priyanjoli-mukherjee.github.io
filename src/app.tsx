@@ -11,7 +11,12 @@ import { EventMaster } from "./event-master";
 export function App() {
   return (
     <Box display="flex" width="100vw">
-      <Box flex="1 1" overflow="hidden" position="relative">
+      <Box
+        flex="1 1"
+        height="100vh"
+        position="relative"
+        sx={{ overflowX: "hidden", overflowY: "auto" }}
+      >
         <Routes>
           <Route path="/scrollr" Component={Scrollr} />
           <Route path="/scrollr/:search" Component={Scrollr} />

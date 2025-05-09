@@ -9,12 +9,16 @@ const eventData: Event[] = [
     artistId: artistData[0].id,
     title: "Eras Tour",
   },
-].map((event) => ({
-  ...event,
-  id: uniqueId("event"),
-  price: randomInteger(100),
-  venues: generateVenues(),
-}));
+]
+  .map((event) =>
+    generateVenues().map((venue) => ({
+      ...event,
+      id: uniqueId("event"),
+      price: randomInteger(100),
+      venue,
+    })),
+  )
+  .flat();
 
 export function getEventData(): Event[] {
   return eventData;

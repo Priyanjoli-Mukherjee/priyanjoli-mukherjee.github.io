@@ -1,17 +1,17 @@
 import uniqueId from "lodash/uniqueId";
 import { Artist } from "../types/artist";
-import TaylorSwift from "../images/event-master/Taylor_Swift.jpg";
-import Philharmonic from "../images/event-master/Philharmonic.jpg";
-import Metallica from "../images/event-master/Metallica.jpg";
-import DJ from "../images/event-master/DJ.jpg";
-import Disney from "../images/event-master/Disney.jpg";
-import GriffithObservatory from "../images/event-master/Griffith_Observatory.jpg";
-import MariachiHuenachi from "../images/event-master/Mariachi_Huenachi.jpg";
-import Bhangra from "../images/event-master/Bhangra.jpg";
-import Flamenco from "../images/event-master/Flamenco.jpg";
-import Fireworks from "../images/event-master/4th_of_July.jpg";
-import Rodeo from "../images/event-master/Rodeo.jpg";
-import Polynesian from "../images/event-master/Polynesian.jpg";
+import TaylorSwift from "../../images/event-master/Taylor_Swift.jpg";
+import Philharmonic from "../../images/event-master/Philharmonic.jpg";
+import Metallica from "../../images/event-master/Metallica.jpg";
+import DJ from "../../images/event-master/DJ.jpg";
+import Disney from "../../images/event-master/Disney.jpg";
+import GriffithObservatory from "../../images/event-master/Griffith_Observatory.jpg";
+import MariachiHuenachi from "../../images/event-master/Mariachi_Huenachi.jpg";
+import Bhangra from "../../images/event-master/Bhangra.jpg";
+import Flamenco from "../../images/event-master/Flamenco.jpg";
+import Fireworks from "../../images/event-master/4th_of_July.jpg";
+import Rodeo from "../../images/event-master/Rodeo.jpg";
+import Polynesian from "../../images/event-master/Polynesian.jpg";
 
 export const artistData: Artist[] = [
   {

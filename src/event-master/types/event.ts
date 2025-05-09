@@ -5,5 +5,5 @@ export interface Event {
   artistId: string;
   price: number;
   title: string;
-  venues: Venue[];
+  venue: Venue;
 }

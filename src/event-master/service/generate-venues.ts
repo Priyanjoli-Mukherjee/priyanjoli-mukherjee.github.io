@@ -2,18 +2,18 @@ import { randomInteger } from "../../random-utils/random-integer";
 import { Venue } from "../types/venue";
 
 const venuesByCity: Record<string, string[]> = {
-  Seattle: ["Space Needle", "Pike's Place"],
-  "San Francisco": ["Dolores Park", "Golden Gate Park"],
-  "Los Angeles": ["Hollywood Bowl", "Griffith Observatory"],
-  "New York City": ["Madison Square Garden", "Times Square"],
-  Orlando: ["Disneyworld", "Universal Studios"],
-  Charleston: ["Charleston Music Hall", "The Charleston Pour House"],
-  Austin: ["Mohawk Austin"],
-  Honolulu: ["Blue Note Hawaii", "Waikiki Shell"],
-  Phoenix: ["PHX Arena", "The Van Buren"],
-  Denver: ["Red Rock Amphitheater"],
-  Boston: ["MGM Music Hall"],
-  Nashville: ["Ryman Auditorium", "Grand Ole Opry"],
+  "Seattle, WA": ["Space Needle", "Pike's Place"],
+  "San Francisco, CA": ["Dolores Park", "Golden Gate Park"],
+  "Los Angeles, CA": ["Hollywood Bowl", "Griffith Observatory"],
+  "New York City, NY": ["Madison Square Garden", "Times Square"],
+  "Orlando, FL": ["Disneyworld", "Universal Studios"],
+  "Charleston, SC": ["Charleston Music Hall", "The Charleston Pour House"],
+  "Austin, TX": ["Mohawk Austin"],
+  "Honolulu, HI": ["Blue Note Hawaii", "Waikiki Shell"],
+  "Phoenix, AZ": ["PHX Arena", "The Van Buren"],
+  "Denver, CO": ["Red Rock Amphitheater"],
+  "Boston, MA": ["MGM Music Hall"],
+  "Nashville, TN": ["Ryman Auditorium", "Grand Ole Opry"],
 };
 
 export function generateVenues() {

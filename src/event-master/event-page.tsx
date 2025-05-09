@@ -7,20 +7,27 @@ import { Event } from "./types/event";
 import { CheckoutDrawer } from "./checkout-drawer";
 import keyBy from "lodash/keyBy";
 import { getArtistData } from "./service/get-artist-data";
+import { SearchBanner } from "./search-banner";
 
 export function EventPage() {
   const events = useMemo(() => getEventData(), []);
   const [searchParams] = useSearchParams();
   const [selectedEvent, setSelectedEvent] = useState<Event>();
 
-  const artistId = useMemo(() => searchParams.get("artistId"), [searchParams]);
+  const artistId = searchParams.get("artistId");
+  const city = searchParams.get("city");
   const artists = useMemo(() => getArtistData(), []);
 
   const artistById = keyBy(artists, (artist) => artist.id);
 
   const filteredEvents = useMemo(
-    () => events.filter((event) => event.artistId === artistId),
-    [events, artistId],
+    () =>
+      events.filter(
+        (event) =>
+          (!artistId || event.artistId === artistId) &&
+          (!city || event.venue.city === city),
+      ),
+    [events, artistId, city],
   );
 
   return (
@@ -33,6 +40,7 @@ export function EventPage() {
       width="100%"
       sx={{ backgroundColor: "white" }}
     >
+      <SearchBanner />
       <Typography color="black" variant="h5" sx={{ marginBottom: 1 }}>
         Concerts in the United States
       </Typography>

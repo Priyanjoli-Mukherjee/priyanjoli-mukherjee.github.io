@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { useMemo } from "react";
 import { getArtistData } from "./service/get-artist-data";
 import { ArtistCard } from "./artist-card";
+import { SearchBanner } from "./search-banner";
 
 export function EventMaster() {
   const artists = useMemo(() => getArtistData(), []);
@@ -17,6 +18,7 @@ export function EventMaster() {
       overflow="auto"
       sx={{ backgroundColor: "white" }}
     >
+      <SearchBanner />
       <Typography color="black" variant="h3">
         Welcome to Concerto!
       </Typography>

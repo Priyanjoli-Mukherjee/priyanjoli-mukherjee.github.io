@@ -1,7 +1,7 @@
 import { randomInteger } from "../../random-utils/random-integer";
 import { Venue } from "../types/venue";
 
-const venuesByCity: Record<string, string[]> = {
+export const venuesByCity: Record<string, string[]> = {
   "Seattle, WA": ["Space Needle", "Pike's Place"],
   "San Francisco, CA": ["Dolores Park", "Golden Gate Park"],
   "Los Angeles, CA": ["Hollywood Bowl", "Griffith Observatory"],

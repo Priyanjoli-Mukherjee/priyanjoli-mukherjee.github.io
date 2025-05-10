@@ -8,7 +8,6 @@ import { CheckoutDrawer } from "./checkout-drawer";
 import keyBy from "lodash/keyBy";
 import { getArtistData } from "./service/get-artist-data";
 import { SearchBanner } from "./search-banner";
-import dayjs from "dayjs";
 
 export function EventPage() {
   const events = useMemo(() => getEventData(), []);
@@ -17,8 +16,8 @@ export function EventPage() {
 
   const artistId = searchParams.get("artistId");
   const city = searchParams.get("city");
-  const startDate = searchParams.get("startDate");
-  const endDate = searchParams.get("endDate");
+  const startDate = parseInt(searchParams.get("startDate") ?? "");
+  const endDate = parseInt(searchParams.get("endDate") ?? "");
 
   const artists = useMemo(() => getArtistData(), []);
 
@@ -30,8 +29,8 @@ export function EventPage() {
         (event) =>
           (!artistId || event.artistId === artistId) &&
           (!city || event.venue.city === city) &&
-          (!startDate || event.venue.timestamp >= dayjs(startDate).valueOf()) &&
-          (!endDate || event.venue.timestamp <= dayjs(endDate).valueOf()),
+          (isNaN(startDate) || event.venue.timestamp >= startDate) &&
+          (isNaN(endDate) || event.venue.timestamp <= endDate),
       ),
     [events, artistId, city],
   );

@@ -55,7 +55,7 @@ export function EventPage() {
       display="flex"
       flexDirection="column"
       height="100%"
-      padding={5}
+      paddingBottom={2}
       width="100%"
       sx={{ backgroundColor: "white" }}
     >
@@ -78,27 +78,38 @@ export function EventPage() {
       {!filteredEvents.length ? (
         <Typography color="black">No Events to Display</Typography>
       ) : (
-        <Paper
-          elevation={24}
-          sx={{
-            flex: "1 1",
-            maxWidth: 1000,
-            minHeight: 0,
-            padding: 2,
-            width: "100%",
-          }}
+        <Box
+          alignItems="center"
+          display="flex"
+          flex="1 1"
+          justifyContent="center"
+          minHeight={0}
+          paddingLeft={2}
+          paddingRight={2}
+          width="100%"
         >
-          <Box height="100%" overflow="auto" width="100%">
-            {filteredEvents.map((event) => (
-              <EventCard
-                key={event.id}
-                event={event}
-                artistName={artistById[event.artistId].name}
-                onSelectEvent={() => setSelectedEvent(event)}
-              />
-            ))}
-          </Box>
-        </Paper>
+          <Paper
+            elevation={24}
+            sx={{
+              height: "100%",
+              maxWidth: 1000,
+              padding: 2,
+              width: "100%",
+            }}
+          >
+            <Box height="100%" overflow="auto" width="100%">
+              {filteredEvents.map((event, index) => (
+                <EventCard
+                  key={event.id}
+                  artistName={artistById[event.artistId].name}
+                  event={event}
+                  isLastCard={index === filteredEvents.length - 1}
+                  onSelectEvent={() => setSelectedEvent(event)}
+                />
+              ))}
+            </Box>
+          </Paper>
+        </Box>
       )}
       {selectedEvent && (
         <CheckoutDrawer

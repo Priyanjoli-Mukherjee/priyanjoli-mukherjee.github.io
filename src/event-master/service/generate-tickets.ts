@@ -6,13 +6,12 @@ export function generateTickets() {
   const tickets: Ticket[] = [];
   const rows = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
   for (let row = 0; row < rows.length; row++) {
-    for (let seat = 1; seat <= 10; seat++) {
-      tickets.push({
-        id: uniqueId("ticket"),
-        price: (rows.length - row) * 10 + randomInteger(150),
-        seat: `${rows[row]}${seat}`,
-      });
-    }
+    tickets.push({
+      amountAvailable: randomInteger(100),
+      id: uniqueId("ticket"),
+      price: (rows.length - row) * 10 + randomInteger(150),
+      seatGroup: `Group ${rows[row]}`,
+    });
   }
   return tickets;
 }

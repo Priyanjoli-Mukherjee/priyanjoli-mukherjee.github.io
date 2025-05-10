@@ -9,31 +9,38 @@ export function EventMaster() {
 
   return (
     <Box
-      padding={5}
+      alignItems="center"
       display="flex"
       flexDirection="column"
-      alignItems="center"
       height="100%"
       width="100%"
-      overflow="auto"
       sx={{ backgroundColor: "white" }}
     >
       <SearchBanner />
-      <Typography color="black" variant="h3">
-        Welcome to Concerto!
-      </Typography>
-      <Typography color="black" variant="h4">
-        Please select an event below to purchase tickets.
-      </Typography>
       <Box
-        display="grid"
-        gridTemplateColumns="repeat(3, 30%)"
-        justifyContent="center"
+        alignItems="center"
+        display="flex"
+        flex="1 1"
+        flexDirection="column"
+        overflow="auto"
         width="100%"
       >
-        {artists.map((artist) => (
-          <ArtistCard key={artist.id} artist={artist} />
-        ))}
+        <Typography color="black" variant="h3">
+          Welcome to Concerto!
+        </Typography>
+        <Typography color="black" variant="h4">
+          Please select an event below to purchase tickets.
+        </Typography>
+        <Box
+          display="grid"
+          gridTemplateColumns="repeat(3, 30%)"
+          justifyContent="center"
+          width="100%"
+        >
+          {artists.map((artist) => (
+            <ArtistCard key={artist.id} artist={artist} />
+          ))}
+        </Box>
       </Box>
     </Box>
   );

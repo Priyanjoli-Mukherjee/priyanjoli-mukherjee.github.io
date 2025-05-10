@@ -14,14 +14,22 @@ export function ArtistAutocomplete({ artistId, onChange }: Props) {
 
   return (
     <Autocomplete
+      getOptionLabel={(art) => art.name}
+      onChange={(_, val) => onChange(val?.id ?? "")}
       options={artists}
-      sx={{ width: 300 }}
+      size="small"
+      value={artistById[artistId]}
       renderInput={(params) => (
         <TextField {...params} placeholder="Select Artist" />
       )}
-      value={artistById[artistId]}
-      onChange={(_, val) => onChange(val?.id ?? "")}
-      getOptionLabel={(art) => art.name}
+      sx={{
+        backgroundColor: "white",
+        borderRadius: 1,
+        flex: "1 1",
+        height: "fit-content",
+        marginLeft: 1,
+        marginRight: 1,
+      }}
     />
   );
 }

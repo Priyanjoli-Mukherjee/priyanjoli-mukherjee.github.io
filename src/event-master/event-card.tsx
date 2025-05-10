@@ -3,12 +3,18 @@ import { Event } from "./types/event";
 import { getDisplayTime } from "./get-display-time";
 
 type Props = {
-  event: Event;
   artistName: string;
+  event: Event;
+  isLastCard: boolean;
   onSelectEvent: (evt: Event) => void;
 };
 
-export function EventCard({ event, artistName, onSelectEvent }: Props) {
+export function EventCard({
+  artistName,
+  event,
+  isLastCard,
+  onSelectEvent,
+}: Props) {
   const { title, venue } = event;
   const { city, location, timestamp } = venue;
   const months = [
@@ -37,7 +43,7 @@ export function EventCard({ event, artistName, onSelectEvent }: Props) {
   return (
     <Box
       alignItems="center"
-      borderBottom="1px solid lightgrey"
+      borderBottom={isLastCard ? "unset" : "1px solid lightgrey"}
       display="flex"
       justifyContent="space-between"
       margin={2.5}
@@ -75,8 +81,7 @@ export function EventCard({ event, artistName, onSelectEvent }: Props) {
             <Typography
               variant="body1"
               sx={{ marginRight: 1 }}
-            >{`${artistName}:`}</Typography>
-            <Typography variant="body1">{title.toUpperCase()}</Typography>
+            >{`${artistName}: ${title.toUpperCase()}`}</Typography>
           </Box>
         </Box>
       </Box>

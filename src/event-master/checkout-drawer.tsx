@@ -1,7 +1,8 @@
 import { ChangeEvent, useMemo, useState } from "react";
 import { Artist } from "./types/artist";
 import { Event } from "./types/event";
-import { Box, Button, Drawer, TextField, Typography } from "@mui/material";
+import { Box, Button, Drawer, Typography } from "@mui/material";
+import { NumberField } from "./number-field";
 
 type Props = {
   artist: Artist;
@@ -35,43 +36,84 @@ export function CheckoutDrawer({ artist, event, onCancel, onSubmit }: Props) {
         display="flex"
         flexDirection="column"
       >
-        <Typography>Purcahse Ticktes</Typography>
-        <Typography>{`${name}: ${title.toUpperCase()}`}</Typography>
-        <Box display="flex" flex="1 1" flexDirection="column" overflow="auto">
-          {tickets.map(({ id, price, seat }) => (
-            <Box display="flex" key={id} justifyContent="space-between">
-              <Typography>{seat}</Typography>
-              <Box display="flex">
-                <Typography>{`$${price}`}</Typography>
-                <Typography>&times;</Typography>
-                <TextField
-                  value={quantityByTicketId[id] ?? 0}
-                  onChange={(evt: ChangeEvent<HTMLInputElement>) =>
-                    setQuantityByTicketId({
-                      ...quantityByTicketId,
-                      [id]: parseInt(evt.target.value),
-                    })
-                  }
+        <Typography variant="h5">Purchase Tickets</Typography>
+        <Typography variant="h6">{`${name}: ${title.toUpperCase()}`}</Typography>
+        <Box
+          display="flex"
+          flex="1 1"
+          flexDirection="column"
+          overflow="auto"
+          padding={1}
+        >
+          {tickets.map(({ amountAvailable, id, price, seatGroup }) => (
+            <Box
+              display="flex"
+              key={id}
+              justifyContent="space-between"
+              marginBottom={1}
+            >
+              <Box>
+                <Typography variant="body1">{seatGroup}</Typography>
+                <Typography variant="caption">{`${amountAvailable} seats available`}</Typography>
+              </Box>
+              <Box alignItems="center" display="flex" height="fit-content">
+                <Typography variant="body1">{`$${price}`}</Typography>
+                <Typography
+                  variant="body1"
+                  sx={{ marginLeft: 1, marginRight: 1 }}
+                >
+                  &times;
+                </Typography>
+                <NumberField
+                  size="small"
                   type="number"
+                  value={quantityByTicketId[id] ?? 0}
+                  onChange={(evt: ChangeEvent<HTMLInputElement>) => {
+                    const num = parseInt(evt.target.value);
+                    if (!isNaN(num) && num >= 0) {
+                      setQuantityByTicketId({
+                        ...quantityByTicketId,
+                        [id]: num,
+                      });
+                    }
+                  }}
                   sx={{
-                    width: 75,
-                    height: 75,
                     color: "black",
                     colorScheme: "black",
+                    height: "fit-content",
+                    width: 75,
                   }}
                 />
               </Box>
             </Box>
           ))}
         </Box>
-        <Box display="flex" justifyContent="flex-end">
-          <Typography>{`Total: $${totalPrice}`}</Typography>
+        <Box
+          display="flex"
+          justifyContent="flex-end"
+          marginBottom={1}
+          marginTop={1}
+        >
+          <Typography variant="h5">{`Total: $${totalPrice}`}</Typography>
         </Box>
         <Box display="flex" justifyContent="flex-end">
-          <Button variant="contained" onClick={onCancel}>
+          <Button
+            variant="contained"
+            onClick={onCancel}
+            sx={{
+              backgroundColor: "lightgrey",
+              color: "black",
+              marginRight: 1,
+              "&:hover": { backgroundColor: "grey" },
+            }}
+          >
             Cancel
           </Button>
-          <Button variant="contained" onClick={onSubmit}>
+          <Button
+            variant="contained"
+            onClick={onSubmit}
+            sx={{ backgroundColor: "#003399" }}
+          >
             Purchase
           </Button>
         </Box>

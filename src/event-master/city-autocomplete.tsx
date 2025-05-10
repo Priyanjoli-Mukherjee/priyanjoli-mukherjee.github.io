@@ -12,13 +12,19 @@ export function CityAutocomplete({ city, onChange }: Props) {
 
   return (
     <Autocomplete
+      onChange={(_, val) => onChange(val ?? "")}
       options={cities}
-      sx={{ width: 300 }}
+      size="small"
+      value={city}
       renderInput={(params) => (
         <TextField {...params} placeholder="Select City" />
       )}
-      value={city}
-      onChange={(_, val) => onChange(val ?? "")}
+      sx={{
+        backgroundColor: "white",
+        borderRadius: 1,
+        flex: "1 1",
+        height: "fit-content",
+      }}
     />
   );
 }

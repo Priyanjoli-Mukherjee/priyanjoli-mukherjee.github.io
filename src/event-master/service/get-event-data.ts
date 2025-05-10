@@ -67,5 +67,5 @@ const eventData: Event[] = [
   .flat();
 
 export function getEventData(): Event[] {
-  return eventData;
+  return [...eventData];
 }

@@ -112,5 +112,5 @@ export const artistData: Artist[] = [
 ];
 
 export function getArtistData() {
-  return artistData;
+  return [...artistData];
 }

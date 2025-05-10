@@ -1,21 +1,24 @@
 import { Autocomplete, TextField } from "@mui/material";
 import { useMemo } from "react";
 import { getCities } from "./service/get-cities";
+import keyBy from "lodash/keyBy";
 
 type Props = {
-  city: string | null;
-  onChange: (city: string) => void;
+  cityId: string | null;
+  onChange: (cityId: string) => void;
 };
 
-export function CityAutocomplete({ city, onChange }: Props) {
+export function CityAutocomplete({ cityId, onChange }: Props) {
   const cities = useMemo(() => getCities(), []);
+  const cityById = useMemo(() => keyBy(cities, ({ id }) => id), [cities]);
 
   return (
     <Autocomplete
-      onChange={(_, val) => onChange(val ?? "")}
+      getOptionLabel={({ name, state }) => `${name}, ${state}`}
+      onChange={(_, val) => onChange(val?.id ?? "")}
       options={cities}
       size="small"
-      value={city}
+      value={cityById[cityId ?? ""]}
       renderInput={(params) => (
         <TextField {...params} placeholder="Select City" />
       )}

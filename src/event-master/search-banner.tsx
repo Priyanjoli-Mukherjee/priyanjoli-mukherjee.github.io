@@ -7,9 +7,7 @@ import { DatePicker } from "../components/date-picker";
 
 export function SearchBanner() {
   const [params] = useSearchParams();
-  const [city, setCity] = useState(
-    decodeURIComponent(params.get("city") ?? ""),
-  );
+  const [cityId, setCityId] = useState(params.get("cityId") ?? "");
   const [artistId, setArtistId] = useState(params.get("artistId") ?? "");
   const [startDate, setStartDate] = useState(
     parseInt(params.get("startDate") ?? ""),
@@ -25,7 +23,7 @@ export function SearchBanner() {
       sx={{ backgroundColor: "black" }}
     >
       <Box display="flex" flexGrow={1} minWidth={0}>
-        <CityAutocomplete city={city} onChange={setCity} />
+        <CityAutocomplete cityId={cityId} onChange={setCityId} />
         <DatePicker
           enableAccessibleFieldDOMStructure={false}
           onChange={(newDate) => setStartDate(newDate)}
@@ -63,7 +61,7 @@ export function SearchBanner() {
         <ArtistAutocomplete artistId={artistId} onChange={setArtistId} />
       </Box>
       <Link
-        to={`/event-master/search?city=${encodeURIComponent(city)}&artistId=${artistId}&startDate=${startDate}&endDate=${endDate}`}
+        to={`/event-master/search?cityId=${cityId}&artistId=${artistId}&startDate=${startDate}&endDate=${endDate}`}
       >
         <Button
           variant="contained"

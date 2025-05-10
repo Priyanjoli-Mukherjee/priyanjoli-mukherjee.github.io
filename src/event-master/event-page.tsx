@@ -18,6 +18,8 @@ import keyBy from "lodash/keyBy";
 import { getArtistData } from "./service/get-artist-data";
 import { SearchBanner } from "./search-banner";
 import { Artist } from "./types/artist";
+import { City } from "./types/city";
+import { getCities } from "./service/get-cities";
 
 export function EventPage() {
   const events = useMemo(() => getEventData(), []);
@@ -26,27 +28,37 @@ export function EventPage() {
   const [isConfirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
 
   const artistId = searchParams.get("artistId");
-  const city = searchParams.get("city");
+  const cityId = searchParams.get("cityId");
   const startDate = parseInt(searchParams.get("startDate") ?? "");
   const endDate = parseInt(searchParams.get("endDate") ?? "");
 
   const artists = useMemo(() => getArtistData(), []);
+  const cities = useMemo(() => getCities(), []);
 
-  const artistById: Record<string, Artist> = keyBy(
-    artists,
-    (artist) => artist.id,
+  const artistById: Record<string, Artist> = useMemo(
+    () => keyBy(artists, ({ id }) => id),
+    [artists],
+  );
+
+  const cityById: Record<string, City> = useMemo(
+    () => keyBy(cities, ({ id }) => id),
+    [cities],
   );
 
   const filteredEvents = useMemo(
     () =>
-      events.filter(
-        (event) =>
-          (!artistId || event.artistId === artistId) &&
-          (!city || event.venue.city === city) &&
-          (isNaN(startDate) || event.venue.timestamp >= startDate) &&
-          (isNaN(endDate) || event.venue.timestamp <= endDate),
-      ),
-    [events, artistId, city],
+      events
+        .filter(
+          (event) =>
+            (!artistId || event.artistId === artistId) &&
+            (!cityId || event.venue.cityId === cityId) &&
+            (isNaN(startDate) || event.venue.timestamp >= startDate) &&
+            (isNaN(endDate) || event.venue.timestamp <= endDate),
+        )
+        .sort(
+          (event1, event2) => event1.venue.timestamp - event2.venue.timestamp,
+        ),
+    [events, artistId, cityId],
   );
 
   const artist = artistId && artistById[artistId];
@@ -108,6 +120,7 @@ export function EventPage() {
                 <EventCard
                   key={event.id}
                   artistName={artistById[event.artistId].name}
+                  city={cityById[event.venue.cityId]}
                   event={event}
                   isLastCard={index === filteredEvents.length - 1}
                   onSelectEvent={() => setSelectedEvent(event)}

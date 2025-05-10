@@ -1,9 +1,11 @@
 import { Box, Button, Typography } from "@mui/material";
 import { Event } from "./types/event";
 import { getDisplayTime } from "./get-display-time";
+import { City } from "./types/city";
 
 type Props = {
   artistName: string;
+  city: City;
   event: Event;
   isLastCard: boolean;
   onSelectEvent: (evt: Event) => void;
@@ -11,12 +13,13 @@ type Props = {
 
 export function EventCard({
   artistName,
+  city,
   event,
   isLastCard,
   onSelectEvent,
 }: Props) {
   const { title, venue } = event;
-  const { city, location, timestamp } = venue;
+  const { location, timestamp } = venue;
   const months = [
     "JAN",
     "FEB",
@@ -71,7 +74,7 @@ export function EventCard({
             <Typography variant="body1">{time}</Typography>
           </Box>
           <Box display="flex">
-            <Typography variant="h6">{city}</Typography>
+            <Typography variant="h6">{`${city.name}, ${city.state}`}</Typography>
             <Typography variant="h6" sx={{ marginLeft: 1, marginRight: 1 }}>
               &bull;
             </Typography>

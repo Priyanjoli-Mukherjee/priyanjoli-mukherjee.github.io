@@ -114,6 +114,7 @@ export function CheckoutDrawer({ artist, event, onCancel, onSubmit }: Props) {
             Cancel
           </Button>
           <Button
+            disabled={totalPrice === 0}
             variant="contained"
             onClick={onSubmit}
             sx={{ backgroundColor: "#003399" }}

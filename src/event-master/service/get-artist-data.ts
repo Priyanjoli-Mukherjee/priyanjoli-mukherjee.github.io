@@ -17,7 +17,7 @@ export const artistData: Artist[] = [
   {
     genre: "Pop",
     image: TaylorSwift,
-    imageOffset: 10,
+    imageOffset: 15,
     name: "Taylor Swift",
   },
   {
@@ -29,7 +29,7 @@ export const artistData: Artist[] = [
   {
     genre: "Heavy Metal",
     image: Metallica,
-    imageOffset: 2,
+    imageOffset: 5,
     name: "Metallica",
   },
   {

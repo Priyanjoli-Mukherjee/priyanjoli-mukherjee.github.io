@@ -1,6 +1,15 @@
 import { useMemo, useState } from "react";
 import { getEventData } from "./service/get-event-data";
-import { Box, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { EventCard } from "./event-card";
 import { useSearchParams } from "react-router-dom";
 import { Event } from "./types/event";
@@ -14,6 +23,7 @@ export function EventPage() {
   const events = useMemo(() => getEventData(), []);
   const [searchParams] = useSearchParams();
   const [selectedEvent, setSelectedEvent] = useState<Event>();
+  const [isConfirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
 
   const artistId = searchParams.get("artistId");
   const city = searchParams.get("city");
@@ -92,9 +102,32 @@ export function EventPage() {
       )}
       {selectedEvent && (
         <CheckoutDrawer
+          artist={artistById[selectedEvent.artistId]}
           event={selectedEvent}
           onCancel={() => setSelectedEvent(undefined)}
+          onSubmit={() => {
+            setConfirmationDialogOpen(true);
+            setSelectedEvent(undefined);
+          }}
         />
+      )}
+      {isConfirmationDialogOpen && (
+        <Dialog open fullWidth maxWidth="xs">
+          <DialogTitle>Transaction Successful</DialogTitle>
+          <DialogContent>
+            <Typography>
+              Your transaction is complete. Enjoy your concert!
+            </Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              variant="outlined"
+              onClick={() => setConfirmationDialogOpen(false)}
+            >
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
       )}
     </Box>
   );

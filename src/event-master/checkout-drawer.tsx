@@ -45,12 +45,16 @@ export function CheckoutDrawer({ artist, event, onCancel, onSubmit }: Props) {
           overflow="auto"
           padding={1}
         >
-          {tickets.map(({ amountAvailable, id, price, seatGroup }) => (
+          {tickets.map(({ amountAvailable, id, price, seatGroup }, index) => (
             <Box
+              borderBottom={
+                index === tickets.length - 1 ? "unset" : "1px solid lightgrey"
+              }
               display="flex"
               key={id}
               justifyContent="space-between"
               marginBottom={1}
+              paddingBottom={1}
             >
               <Box>
                 <Typography variant="body1">{seatGroup}</Typography>

@@ -7,8 +7,9 @@ type Props = {
 };
 
 export function CheckoutDrawer({ event, onCancel }: Props) {
-  const { artistId, price, title } = event;
+  const { artistId, title } = event;
   const numTickets = 1;
+  const price = 100;
   return (
     <Drawer open anchor="left" onClose={onCancel}>
       <Box

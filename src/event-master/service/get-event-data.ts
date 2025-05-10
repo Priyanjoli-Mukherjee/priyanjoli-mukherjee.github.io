@@ -1,8 +1,8 @@
-import { randomInteger } from "../../random-utils/random-integer";
 import { artistData } from "./get-artist-data";
 import { Event } from "../types/event";
 import uniqueId from "lodash/uniqueId";
 import { generateVenues } from "./generate-venues";
+import { generateTickets } from "./generate-tickets";
 
 const eventData: Event[] = [
   {
@@ -11,12 +11,14 @@ const eventData: Event[] = [
   },
 ]
   .map((event) =>
-    generateVenues().map((venue) => ({
-      ...event,
-      id: uniqueId("event"),
-      price: randomInteger(100),
-      venue,
-    })),
+    generateVenues().map(
+      (venue): Event => ({
+        ...event,
+        id: uniqueId("event"),
+        tickets: generateTickets(),
+        venue,
+      }),
+    ),
   )
   .flat();
 

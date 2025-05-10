@@ -65,27 +65,31 @@ export function EventPage() {
       <Typography color="black" variant="h5" sx={{ marginBottom: 1 }}>
         Concerts in the United States
       </Typography>
-      <Paper
-        elevation={24}
-        sx={{
-          flex: "1 1",
-          maxWidth: 1000,
-          minHeight: 0,
-          padding: 2,
-          width: "100%",
-        }}
-      >
-        <Box height="100%" overflow="auto" width="100%">
-          {filteredEvents.map((event) => (
-            <EventCard
-              key={event.id}
-              event={event}
-              artistName={artistById[event.artistId].name}
-              onSelectEvent={() => setSelectedEvent(event)}
-            />
-          ))}
-        </Box>
-      </Paper>
+      {!filteredEvents.length ? (
+        <Typography color="black">No Events to Display</Typography>
+      ) : (
+        <Paper
+          elevation={24}
+          sx={{
+            flex: "1 1",
+            maxWidth: 1000,
+            minHeight: 0,
+            padding: 2,
+            width: "100%",
+          }}
+        >
+          <Box height="100%" overflow="auto" width="100%">
+            {filteredEvents.map((event) => (
+              <EventCard
+                key={event.id}
+                event={event}
+                artistName={artistById[event.artistId].name}
+                onSelectEvent={() => setSelectedEvent(event)}
+              />
+            ))}
+          </Box>
+        </Paper>
+      )}
       {selectedEvent && (
         <CheckoutDrawer
           event={selectedEvent}

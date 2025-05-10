@@ -8,6 +8,7 @@ import { CheckoutDrawer } from "./checkout-drawer";
 import keyBy from "lodash/keyBy";
 import { getArtistData } from "./service/get-artist-data";
 import { SearchBanner } from "./search-banner";
+import { Artist } from "./types/artist";
 
 export function EventPage() {
   const events = useMemo(() => getEventData(), []);
@@ -21,7 +22,10 @@ export function EventPage() {
 
   const artists = useMemo(() => getArtistData(), []);
 
-  const artistById = keyBy(artists, (artist) => artist.id);
+  const artistById: Record<string, Artist> = keyBy(
+    artists,
+    (artist) => artist.id,
+  );
 
   const filteredEvents = useMemo(
     () =>
@@ -46,6 +50,18 @@ export function EventPage() {
       sx={{ backgroundColor: "white" }}
     >
       <SearchBanner />
+      {artistId && (
+        <Box
+          alignItems="center"
+          display="flex"
+          height={200}
+          justifyContent="center"
+          width="100%"
+          overflow="hidden"
+        >
+          <img src={artistById[artistId].image} width="100%" />
+        </Box>
+      )}
       <Typography color="black" variant="h5" sx={{ marginBottom: 1 }}>
         Concerts in the United States
       </Typography>

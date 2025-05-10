@@ -17,61 +17,73 @@ export const artistData: Artist[] = [
   {
     genre: "Pop",
     image: TaylorSwift,
+    imageOffset: 10,
     name: "Taylor Swift",
   },
   {
     genre: "Classical",
     image: Philharmonic,
+    imageOffset: 30,
     name: "Dublin Philharmonic",
   },
   {
     genre: "Heavy Metal",
     image: Metallica,
+    imageOffset: 2,
     name: "Metallica",
   },
   {
     genre: "Electronic",
     image: DJ,
+    imageOffset: 20,
     name: "Electric Boogaloo",
   },
   {
     genre: "Film Scores",
     image: Disney,
+    imageOffset: 15,
     name: "Magic Music Days",
   },
   {
     genre: "Electronic",
     image: GriffithObservatory,
+    imageOffset: 25,
     name: "Bob Moses",
   },
   {
     genre: "Latin",
     image: MariachiHuenachi,
+    imageOffset: 10,
     name: "Mariachi Huenachi",
   },
   {
     genre: "Punjabi",
     image: Bhangra,
+    imageOffset: 15,
     name: "Bhangra Boys",
   },
   {
     genre: "Latin",
     image: Flamenco,
+    imageOffset: 10,
     name: "Flamenco Andalusia",
   },
   {
     genre: "Classical",
     image: Fireworks,
+    imageOffset: 10,
     name: "Pops in the Park",
   },
   {
     genre: "Country",
     image: Rodeo,
+    imageOffset: 10,
     name: "Garth Brooks",
   },
   {
     genre: "Polynesian",
     image: Polynesian,
+    imageOffset: 10,
     name: "The Hula Gals",
   },
 ].map((artist) => ({

@@ -15,7 +15,14 @@ export function ArtistCard({ artist }: Props) {
         elevation={24}
         style={{ margin: 15, padding: 10, cursor: "pointer" }}
       >
-        <Box height={200} width="100%" overflow="hidden">
+        <Box
+          alignItems="center"
+          display="flex"
+          height={200}
+          justifyContent="center"
+          width="100%"
+          overflow="hidden"
+        >
           <img src={image} height={250} />
         </Box>
         <Box>

@@ -3,5 +3,6 @@ export interface Artist {
   name: string;
   genre: string;
   image: string;
+  imageOffset: number;
   description: string;
 }

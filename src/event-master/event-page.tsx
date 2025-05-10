@@ -49,6 +49,8 @@ export function EventPage() {
     [events, artistId, city],
   );
 
+  const artist = artistId && artistById[artistId];
+
   return (
     <Box
       alignItems="center"
@@ -60,16 +62,20 @@ export function EventPage() {
       sx={{ backgroundColor: "white" }}
     >
       <SearchBanner />
-      {artistId && (
+      {artist && (
         <Box
-          alignItems="center"
+          alignItems="flex-start"
           display="flex"
-          height={200}
           justifyContent="center"
-          width="100%"
+          maxHeight={200}
           overflow="hidden"
+          width="100%"
         >
-          <img src={artistById[artistId].image} width="100%" />
+          <img
+            src={artist.image}
+            width="100%"
+            style={{ marginTop: `${-artist.imageOffset}%` }}
+          />
         </Box>
       )}
       <Typography color="black" variant="h5" sx={{ marginBottom: 1 }}>

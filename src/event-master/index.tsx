@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { getArtistData } from "./service/get-artist-data";
 import { ArtistCard } from "./artist-card";
 import { SearchBanner } from "./search-banner";
+import { ArtistsContainer } from "./artists-container";
 
 export function EventMaster() {
   const artists = useMemo(() => getArtistData(), []);
@@ -31,16 +32,11 @@ export function EventMaster() {
         <Typography color="black" variant="h4">
           Please select an event below to purchase tickets.
         </Typography>
-        <Box
-          display="grid"
-          gridTemplateColumns="repeat(3, 30%)"
-          justifyContent="center"
-          width="100%"
-        >
+        <ArtistsContainer>
           {artists.map((artist) => (
             <ArtistCard key={artist.id} artist={artist} />
           ))}
-        </Box>
+        </ArtistsContainer>
       </Box>
     </Box>
   );

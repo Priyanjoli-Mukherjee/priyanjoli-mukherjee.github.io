@@ -21,13 +21,15 @@ export function SearchBanner() {
       <CityAutocomplete city={city} onChange={setCity} />
       <DatePicker
         label="Start Date"
-        timeStamp={startDate}
         onChange={(newDate) => setStartDate(newDate)}
+        startOfDay={true}
+        timeStamp={startDate}
       />
       <DatePicker
         label="End Date"
-        timeStamp={endDate}
         onChange={(newDate) => setEndDate(newDate)}
+        startOfDay={false}
+        timeStamp={endDate}
       />
       <ArtistAutocomplete artistId={artistId} onChange={setArtistId} />
       <Link

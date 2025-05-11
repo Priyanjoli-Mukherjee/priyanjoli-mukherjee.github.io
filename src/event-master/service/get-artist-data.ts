@@ -1,18 +1,18 @@
 import { Artist } from "../types/artist";
-import TaylorSwift from "../../images/event-master/Taylor_Swift.jpg";
-import Philharmonic from "../../images/event-master/Philharmonic.jpg";
-import Metallica from "../../images/event-master/Metallica.jpg";
-import DJ from "../../images/event-master/DJ.jpg";
-import Disney from "../../images/event-master/Disney.jpg";
-import GriffithObservatory from "../../images/event-master/Griffith_Observatory.jpg";
-import MariachiHuenachi from "../../images/event-master/Mariachi_Huenachi.jpg";
-import Bhangra from "../../images/event-master/Bhangra.jpg";
-import Flamenco from "../../images/event-master/Flamenco.jpg";
-import Fireworks from "../../images/event-master/4th_of_July.jpg";
-import Rodeo from "../../images/event-master/Rodeo.jpg";
-import Polynesian from "../../images/event-master/Polynesian.jpg";
+import TaylorSwift from "../../images/event-master/artists/Taylor_Swift.jpg";
+import Philharmonic from "../../images/event-master/artists/Philharmonic.jpg";
+import Metallica from "../../images/event-master/artists/Metallica.jpg";
+import Daft_Punk from "../../images/event-master/artists/Daft_Punk.jpg";
+import MariachiHuenachi from "../../images/event-master/artists/Mariachi_Huenachi.jpg";
+import Bhangra from "../../images/event-master/artists/Bhangra.jpg";
+import Flamenco from "../../images/event-master/artists/Flamenco.jpg";
+import Fireworks from "../../images/event-master/artists/4th_of_July.jpg";
+import ChrisStapleton from "../../images/event-master/artists/Chris_Stapleton.jpg";
+import Polynesian from "../../images/event-master/artists/Polynesian.jpg";
+import EdSheeran from "../../images/event-master/artists/Ed_Sheeran.jpg";
+import Adele from "../../images/event-master/artists/Adele.png";
 
-export const artistData: Artist[] = [
+const artistData: Artist[] = [
   {
     description: "",
     genre: "Pop",
@@ -39,27 +39,27 @@ export const artistData: Artist[] = [
   },
   {
     description: "",
-    genre: "Electronic",
-    id: "electric-boogaloo",
-    image: DJ,
-    imageOffset: 20,
-    name: "Electric Boogaloo",
+    genre: "Soul",
+    id: "adele",
+    image: Adele,
+    imageOffset: 5,
+    name: "Adele",
   },
   {
     description: "",
-    genre: "Film Scores",
-    id: "magic-music-days",
-    image: Disney,
-    imageOffset: 15,
-    name: "Magic Music Days",
+    genre: "Pop",
+    id: "ed-sheeran",
+    image: EdSheeran,
+    imageOffset: 5,
+    name: "Ed Sheeran",
   },
   {
     description: "",
     genre: "Electronic",
-    id: "bob-moses",
-    image: GriffithObservatory,
-    imageOffset: 25,
-    name: "Bob Moses",
+    id: "daft-punk",
+    image: Daft_Punk,
+    imageOffset: 10,
+    name: "Daft Punk",
   },
   {
     description: "",
@@ -90,16 +90,16 @@ export const artistData: Artist[] = [
     genre: "Classical",
     id: "pops-in-the-park",
     image: Fireworks,
-    imageOffset: 10,
+    imageOffset: 20,
     name: "Pops in the Park",
   },
   {
     description: "",
     genre: "Country",
-    id: "garth-brooks",
-    image: Rodeo,
-    imageOffset: 10,
-    name: "Garth Brooks",
+    id: "chris-stapleton",
+    image: ChrisStapleton,
+    imageOffset: 15,
+    name: "Chris Stapleton",
   },
   {
     description: "",

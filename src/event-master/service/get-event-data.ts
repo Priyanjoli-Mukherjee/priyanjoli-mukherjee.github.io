@@ -1,4 +1,3 @@
-import { artistData } from "./get-artist-data";
 import { Event } from "../types/event";
 import uniqueId from "lodash/uniqueId";
 import { generateVenues } from "./generate-venues";
@@ -6,51 +5,51 @@ import { generateTickets } from "./generate-tickets";
 
 const eventData: Event[] = [
   {
-    artistId: artistData[0].id,
+    artistId: "taylor-swift",
     title: "Eras Tour",
   },
   {
-    artistId: artistData[1].id,
+    artistId: "dublin-philharmonic",
     title: "An Evening With Mozart",
   },
   {
-    artistId: artistData[2].id,
+    artistId: "metallica",
     title: "Time Marches On",
   },
   {
-    artistId: artistData[3].id,
-    title: "Dance til you drop!",
+    artistId: "daft-punk",
+    title: "Interstella 5555",
   },
   {
-    artistId: artistData[4].id,
-    title: "Star Wars Spectacular",
+    artistId: "adele",
+    title: "Weekends with Adele",
   },
   {
-    artistId: artistData[5].id,
-    title: "Live in person",
+    artistId: "ed-sheeran",
+    title: "Mathematics tour",
   },
   {
-    artistId: artistData[6].id,
+    artistId: "mariachi-huenachi",
     title: "Musica de la noche",
   },
   {
-    artistId: artistData[7].id,
+    artistId: "bhangra-boys",
     title: "North American Tour",
   },
   {
-    artistId: artistData[8].id,
+    artistId: "flamenco-andalusia",
     title: "Torneo de las rosas",
   },
   {
-    artistId: artistData[9].id,
+    artistId: "pops-in-the-park",
     title: "John Williams' Greatest Hits",
   },
   {
-    artistId: artistData[10].id,
-    title: "Friends in low places",
+    artistId: "chris-stapleton",
+    title: "All-American Road Show Tour",
   },
   {
-    artistId: artistData[11].id,
+    artistId: "hula-gals",
     title: "Songs of my ancestors",
   },
 ]

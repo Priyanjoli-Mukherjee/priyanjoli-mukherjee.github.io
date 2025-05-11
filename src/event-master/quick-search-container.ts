@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-export const ArtistsContainer = styled(Box)({
+export const QuickSearchContainer = styled(Box)({
   display: "grid",
   gridTemplateColumns: "repeat(3, 30%)",
   justifyContent: "center",

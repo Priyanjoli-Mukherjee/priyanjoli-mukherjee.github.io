@@ -3,10 +3,13 @@ import { useMemo } from "react";
 import { getArtistData } from "./service/get-artist-data";
 import { ArtistCard } from "./artist-card";
 import { SearchBanner } from "./search-banner";
-import { ArtistsContainer } from "./artists-container";
+import { QuickSearchContainer } from "./quick-search-container";
+import { getCities } from "./service/get-cities";
+import { CityCard } from "./city-card";
 
 export function EventMaster() {
   const artists = useMemo(() => getArtistData(), []);
+  const cities = useMemo(() => getCities(), []);
 
   return (
     <Box
@@ -26,17 +29,22 @@ export function EventMaster() {
         overflow="auto"
         width="100%"
       >
-        <Typography color="black" variant="h3">
-          Welcome to Concerto!
+        <Typography color="black" variant="h5" sx={{ marginTop: 2 }}>
+          <em>Trending Artists</em>
         </Typography>
-        <Typography color="black" variant="h4">
-          Please select an event below to purchase tickets.
-        </Typography>
-        <ArtistsContainer>
+        <QuickSearchContainer>
           {artists.map((artist) => (
             <ArtistCard key={artist.id} artist={artist} />
           ))}
-        </ArtistsContainer>
+        </QuickSearchContainer>
+        <Typography color="black" variant="h5" sx={{ marginTop: 2 }}>
+          <em>Top Cities</em>
+        </Typography>
+        <QuickSearchContainer>
+          {cities.map((city) => (
+            <CityCard key={city.id} city={city} />
+          ))}
+        </QuickSearchContainer>
       </Box>
     </Box>
   );

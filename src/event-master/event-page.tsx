@@ -65,8 +65,8 @@ export function EventPage() {
   const artist = artistById[artistId ?? ""];
   const city = cityById[cityId ?? ""];
 
-  const { image, imageOffset } = artist ??
-    city ?? { image: DJ, imageOffset: 25 };
+  const { genre, image, imageOffset, name } = artist ??
+    city ?? { image: DJ, imageOffset: 25, name: "Search" };
 
   return (
     <Box
@@ -85,6 +85,7 @@ export function EventPage() {
         justifyContent="center"
         maxHeight={200}
         overflow="hidden"
+        position="relative"
         width="100%"
       >
         <img
@@ -92,6 +93,10 @@ export function EventPage() {
           width="100%"
           style={{ marginTop: `-${imageOffset}%` }}
         />
+        <Box bottom={0} display="flex" flexDirection="column" justifyContent="flex-end" left={0} padding={1} position="absolute" right={0} top={0} sx={{backgroundColor: "#00000055"}}>
+            <Typography variant="h5">{genre}</Typography>
+            <Typography variant="h3">{`${name} Tickets`}</Typography>
+        </Box>
       </Box>
       <Typography color="black" variant="h5" sx={{ marginBottom: 1 }}>
         Concerts in the United States

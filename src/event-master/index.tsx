@@ -1,59 +1,51 @@
-import { Box, Paper, Typography } from "@mui/material";
-import { useCallback, useMemo, useState } from "react";
-import { getEventData } from "./get-event-data";
-import { Event } from "./event";
-import { EventDialog } from "./event-dialog";
-import { CheckoutDrawer } from "./checkout-drawer";
+import { Box, Typography } from "@mui/material";
+import { useMemo } from "react";
+import { getArtistData } from "./service/get-artist-data";
+import { ArtistCard } from "./artist-card";
+import { SearchBanner } from "./search-banner";
+import { QuickSearchContainer } from "./quick-search-container";
+import { getCities } from "./service/get-cities";
+import { CityCard } from "./city-card";
 
 export function EventMaster() {
-  const [selectedEvent, setSelectedEvent] = useState<Event>();
-  const [numTickets, setNumTickets] = useState<number>();
-
-  const events = useMemo(() => getEventData(), []);
-
-  const onCloseDialog = useCallback(() => setSelectedEvent(undefined), []);
-  const onCloseDrawer = useCallback(() => {
-    setSelectedEvent(undefined);
-    setNumTickets(undefined);
-  }, []);
+  const artists = useMemo(() => getArtistData(), []);
+  const cities = useMemo(() => getCities(), []);
 
   return (
-    <Box margin={5} display="flex" flexDirection="column" alignItems="center">
-      <Typography variant="h3">Welcome to Concerto!</Typography>
-      <Typography variant="h4">
-        Please select an event below to purchase tickets.
-      </Typography>
-      {events.map((event) => (
-        <Paper
-          key={event.title}
-          elevation={24}
-          style={{ margin: 15, padding: 10, cursor: "pointer" }}
-          onClick={() => setSelectedEvent(event)}
-        >
-          <Box display="flex" justifyContent="space-between">
-            <Typography variant="h5">{event.title}</Typography>
-            <Typography variant="h5">{`$${event.price}`}</Typography>
-          </Box>
-          <Typography variant="h6">{event.artist}</Typography>
-          <Typography variant="body1" style={{ fontStyle: "oblique" }}>
-            {event.description}
-          </Typography>
-        </Paper>
-      ))}
-      {selectedEvent && !numTickets && (
-        <EventDialog
-          event={selectedEvent}
-          onCancel={onCloseDialog}
-          onSubmit={setNumTickets}
-        />
-      )}
-      {selectedEvent && numTickets && (
-        <CheckoutDrawer
-          event={selectedEvent}
-          numTickets={numTickets}
-          onCancel={onCloseDrawer}
-        />
-      )}
+    <Box
+      alignItems="center"
+      display="flex"
+      flexDirection="column"
+      height="100%"
+      width="100%"
+      sx={{ backgroundColor: "white" }}
+    >
+      <SearchBanner />
+      <Box
+        alignItems="center"
+        display="flex"
+        flex="1 1"
+        flexDirection="column"
+        overflow="auto"
+        width="100%"
+      >
+        <Typography color="black" variant="h5" sx={{ marginTop: 2 }}>
+          <em>Trending Artists</em>
+        </Typography>
+        <QuickSearchContainer>
+          {artists.map((artist) => (
+            <ArtistCard key={artist.id} artist={artist} />
+          ))}
+        </QuickSearchContainer>
+        <Typography color="black" variant="h5" sx={{ marginTop: 2 }}>
+          <em>Top Cities</em>
+        </Typography>
+        <QuickSearchContainer>
+          {cities.map((city) => (
+            <CityCard key={city.id} city={city} />
+          ))}
+        </QuickSearchContainer>
+      </Box>
     </Box>
   );
 }

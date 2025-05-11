@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useState } from "react";
-import { Event } from "./event";
+import { Event } from "./types/event";
 import {
   Box,
   Button,
@@ -42,7 +42,7 @@ export function EventDialog(props: Props) {
         >
           <Box>
             <Typography>{props.event.title}</Typography>
-            <Typography>{props.event.artist}</Typography>
+            <Typography>{props.event.artistId}</Typography>
           </Box>
           <TextField
             value={numTickets}

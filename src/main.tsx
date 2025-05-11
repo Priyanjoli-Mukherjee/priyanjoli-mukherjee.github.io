@@ -10,6 +10,8 @@ import { pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/TextLayer.css";
 import emailjs from "@emailjs/browser";
 import { PUBLIC_KEY } from "./contact-page/public-key.ts";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -31,11 +33,13 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
     <ThemeProvider theme={theme}>
-      <Suspense fallback={<Fragment />}>
-        <HashRouter>
-          <App />
-        </HashRouter>
-      </Suspense>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Suspense fallback={<Fragment />}>
+          <HashRouter>
+            <App />
+          </HashRouter>
+        </Suspense>
+      </LocalizationProvider>
     </ThemeProvider>
   </QueryClientProvider>,
 );

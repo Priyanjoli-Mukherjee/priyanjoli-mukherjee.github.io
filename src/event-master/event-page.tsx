@@ -20,6 +20,7 @@ import { SearchBanner } from "./search-banner";
 import { Artist } from "./types/artist";
 import { City } from "./types/city";
 import { getCities } from "./service/get-cities";
+import DJ from "../images/event-master/DJ.jpg";
 
 export function EventPage() {
   const events = useMemo(() => getEventData(), []);
@@ -61,18 +62,11 @@ export function EventPage() {
     [events, artistId, cityId],
   );
 
-  const artist = artistId && artistById[artistId];
-  const city = cityId && cityById[cityId];
+  const artist = artistById[artistId ?? ""];
+  const city = cityById[cityId ?? ""];
 
-  const imageAttributes = useMemo(
-    () =>
-      artist
-        ? { image: artist.image, imageOffset: artist.imageOffset }
-        : city
-          ? { image: city.image, imageOffset: city.imageOffset }
-          : null,
-    [],
-  );
+  const { image, imageOffset } = artist ??
+    city ?? { image: DJ, imageOffset: 25 };
 
   return (
     <Box
@@ -85,22 +79,20 @@ export function EventPage() {
       sx={{ backgroundColor: "white" }}
     >
       <SearchBanner />
-      {imageAttributes && (
-        <Box
-          alignItems="flex-start"
-          display="flex"
-          justifyContent="center"
-          maxHeight={200}
-          overflow="hidden"
+      <Box
+        alignItems="flex-start"
+        display="flex"
+        justifyContent="center"
+        maxHeight={200}
+        overflow="hidden"
+        width="100%"
+      >
+        <img
+          src={image}
           width="100%"
-        >
-          <img
-            src={imageAttributes.image}
-            width="100%"
-            style={{ marginTop: `${-imageAttributes.imageOffset}%` }}
-          />
-        </Box>
-      )}
+          style={{ marginTop: `-${imageOffset}%` }}
+        />
+      </Box>
       <Typography color="black" variant="h5" sx={{ marginBottom: 1 }}>
         Concerts in the United States
       </Typography>

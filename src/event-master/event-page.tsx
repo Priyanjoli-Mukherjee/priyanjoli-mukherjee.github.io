@@ -7,11 +7,13 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  IconButton,
   Paper,
   Typography,
 } from "@mui/material";
+import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { EventCard } from "./event-card";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Event } from "./types/event";
 import { CheckoutDrawer } from "./checkout-drawer";
 import keyBy from "lodash/keyBy";
@@ -93,9 +95,27 @@ export function EventPage() {
           width="100%"
           style={{ marginTop: `-${imageOffset}%` }}
         />
-        <Box bottom={0} display="flex" flexDirection="column" justifyContent="flex-end" left={0} padding={1} position="absolute" right={0} top={0} sx={{backgroundColor: "#00000055"}}>
+        <Box
+          bottom={0}
+          display="flex"
+          flexDirection="column"
+          justifyContent="space-between"
+          left={0}
+          padding={1}
+          position="absolute"
+          right={0}
+          top={0}
+          sx={{ backgroundColor: "#00000055" }}
+        >
+          <Link to="/event-master">
+            <IconButton sx={{ color: "white" }}>
+              <ArrowCircleLeftIcon fontSize="large" />
+            </IconButton>
+          </Link>
+          <Box display="flex" flexDirection="column" paddingLeft={1}>
             <Typography variant="h5">{genre}</Typography>
             <Typography variant="h3">{`${name} Tickets`}</Typography>
+          </Box>
         </Box>
       </Box>
       <Typography color="black" variant="h5" sx={{ marginBottom: 1 }}>

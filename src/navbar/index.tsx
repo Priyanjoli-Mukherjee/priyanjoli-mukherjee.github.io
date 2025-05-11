@@ -16,13 +16,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import PeopleIcon from "@mui/icons-material/People";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
-import { useFeatureFlag } from "../hooks/use-feature-flag";
-import { FeatureFlag } from "../types/feature-flag";
 
 export function Navbar() {
   const [isMenuOpen, setMenuOpen] = useState(false);
-
-  const isEventMasterEnabled = useFeatureFlag(FeatureFlag.EVENT_MASTER);
 
   return (
     <Paper
@@ -104,16 +100,14 @@ export function Navbar() {
                   </Typography>
                 </Box>
               </Link>
-              {isEventMasterEnabled && (
-                <Link to="/event-master">
-                  <Box alignItems="center" display="flex" marginTop={1}>
-                    <TheaterComedyIcon fontSize="small" />
-                    <Typography variant="body1" sx={{ paddingLeft: 1 }}>
-                      Concerto
-                    </Typography>
-                  </Box>
-                </Link>
-              )}
+              <Link to="/event-master">
+                <Box alignItems="center" display="flex" marginTop={1}>
+                  <TheaterComedyIcon fontSize="small" />
+                  <Typography variant="body1" sx={{ paddingLeft: 1 }}>
+                    Concerto
+                  </Typography>
+                </Box>
+              </Link>
             </AccordionDetails>
           </Accordion>
         ) : (
@@ -121,11 +115,9 @@ export function Navbar() {
             <Link to="/scrollr">
               <PeopleIcon fontSize="small" />
             </Link>
-            {isEventMasterEnabled && (
-              <Link to="/event-master">
-                <TheaterComedyIcon fontSize="small" sx={{ marginTop: 1 }} />
-              </Link>
-            )}
+            <Link to="/event-master">
+              <TheaterComedyIcon fontSize="small" sx={{ marginTop: 1 }} />
+            </Link>
           </>
         )}
       </Box>

@@ -61,7 +61,7 @@ export function EventPage() {
         .sort(
           (event1, event2) => event1.venue.timestamp - event2.venue.timestamp,
         ),
-    [events, artistId, cityId],
+    [artistId, cityId, endDate, events, startDate],
   );
 
   const artist = artistById[artistId ?? ""];

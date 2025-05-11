@@ -16,7 +16,7 @@ const cities: City[] = [
   {
     id: "seattle",
     image: Seattle,
-    imageOffset: 0,
+    imageOffset: 15,
     locations: ["Space Needle", "Pike's Place"],
     name: "Seattle",
     state: "WA",
@@ -24,7 +24,7 @@ const cities: City[] = [
   {
     id: "san-francisco",
     image: GoldenGate,
-    imageOffset: 0,
+    imageOffset: 20,
     locations: ["Dolores Park", "Golden Gate Park"],
     name: "San Francisco",
     state: "CA",
@@ -32,7 +32,7 @@ const cities: City[] = [
   {
     id: "los-angeles",
     image: LosAngeles,
-    imageOffset: 0,
+    imageOffset: 30,
     locations: ["Hollywood Bowl", "Griffith Observatory"],
     name: "Los Angeles",
     state: "CA",
@@ -40,7 +40,7 @@ const cities: City[] = [
   {
     id: "new-york",
     image: StatueOfLiberty,
-    imageOffset: 0,
+    imageOffset: 10,
     locations: ["Madison Square Garden", "Times Square"],
     name: "New York",
     state: "NY",
@@ -48,7 +48,7 @@ const cities: City[] = [
   {
     id: "orlando",
     image: Disney,
-    imageOffset: 0,
+    imageOffset: 20,
     locations: ["Disneyworld", "Universal Studios"],
     name: "Orlando",
     state: "FL",
@@ -56,7 +56,7 @@ const cities: City[] = [
   {
     id: "charleston",
     image: Charleston,
-    imageOffset: 0,
+    imageOffset: 20,
     locations: ["Charleston Music Hall", "The Charleston Pour House"],
     name: "Charleston",
     state: "SC",
@@ -64,7 +64,7 @@ const cities: City[] = [
   {
     id: "austin",
     image: Austin,
-    imageOffset: 0,
+    imageOffset: 20,
     locations: ["Mohawk Austin"],
     name: "Austin",
     state: "TX",
@@ -72,7 +72,7 @@ const cities: City[] = [
   {
     id: "honolulu",
     image: Kuaui,
-    imageOffset: 0,
+    imageOffset: 30,
     locations: ["Blue Note Hawaii", "Waikiki Shell"],
     name: "Honolulu",
     state: "HI",
@@ -80,7 +80,7 @@ const cities: City[] = [
   {
     id: "phoenix",
     image: Saguaro,
-    imageOffset: 0,
+    imageOffset: 20,
     locations: ["PHX Arena", "The Van Buren"],
     name: "Phoenix",
     state: "AZ",
@@ -88,7 +88,7 @@ const cities: City[] = [
   {
     id: "denver",
     image: RedRocks,
-    imageOffset: 0,
+    imageOffset: 20,
     locations: ["Red Rock Amphitheater"],
     name: "Denver",
     state: "CO",
@@ -96,7 +96,7 @@ const cities: City[] = [
   {
     id: "boston",
     image: Boston,
-    imageOffset: 0,
+    imageOffset: 50,
     locations: ["MGM Music Hall"],
     name: "Boston",
     state: "MA",
@@ -104,7 +104,7 @@ const cities: City[] = [
   {
     id: "nashville",
     image: Nashville,
-    imageOffset: 0,
+    imageOffset: 20,
     locations: ["Ryman Auditorium", "Grand Ole Opry"],
     name: "Nashville",
     state: "TN",

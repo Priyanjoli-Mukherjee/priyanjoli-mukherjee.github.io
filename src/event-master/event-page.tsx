@@ -62,6 +62,17 @@ export function EventPage() {
   );
 
   const artist = artistId && artistById[artistId];
+  const city = cityId && cityById[cityId];
+
+  const imageAttributes = useMemo(
+    () =>
+      artist
+        ? { image: artist.image, imageOffset: artist.imageOffset }
+        : city
+          ? { image: city.image, imageOffset: city.imageOffset }
+          : null,
+    [],
+  );
 
   return (
     <Box
@@ -74,7 +85,7 @@ export function EventPage() {
       sx={{ backgroundColor: "white" }}
     >
       <SearchBanner />
-      {artist && (
+      {imageAttributes && (
         <Box
           alignItems="flex-start"
           display="flex"
@@ -84,9 +95,9 @@ export function EventPage() {
           width="100%"
         >
           <img
-            src={artist.image}
+            src={imageAttributes.image}
             width="100%"
-            style={{ marginTop: `${-artist.imageOffset}%` }}
+            style={{ marginTop: `${-imageAttributes.imageOffset}%` }}
           />
         </Box>
       )}

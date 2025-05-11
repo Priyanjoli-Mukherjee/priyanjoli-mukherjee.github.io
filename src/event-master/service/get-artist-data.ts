@@ -1,16 +1,16 @@
 import { Artist } from "../types/artist";
-import TaylorSwift from "../../images/event-master/artists/Taylor_Swift.jpg";
-import Philharmonic from "../../images/event-master/artists/Philharmonic.jpg";
-import Metallica from "../../images/event-master/artists/Metallica.jpg";
-import Daft_Punk from "../../images/event-master/artists/Daft_Punk.jpg";
-import MariachiHuenachi from "../../images/event-master/artists/Mariachi_Huenachi.jpg";
-import Bhangra from "../../images/event-master/artists/Bhangra.jpg";
-import Flamenco from "../../images/event-master/artists/Flamenco.jpg";
-import Fireworks from "../../images/event-master/artists/4th_of_July.jpg";
-import ChrisStapleton from "../../images/event-master/artists/Chris_Stapleton.jpg";
-import Polynesian from "../../images/event-master/artists/Polynesian.jpg";
-import EdSheeran from "../../images/event-master/artists/Ed_Sheeran.jpg";
 import Adele from "../../images/event-master/artists/Adele.png";
+import Bhangra from "../../images/event-master/artists/Bhangra.jpg";
+import ChrisStapleton from "../../images/event-master/artists/Chris_Stapleton.jpg";
+import Daft_Punk from "../../images/event-master/artists/Daft_Punk.jpg";
+import EdSheeran from "../../images/event-master/artists/Ed_Sheeran.jpg";
+import Fireworks from "../../images/event-master/artists/4th_of_July.jpg";
+import Flamenco from "../../images/event-master/artists/Flamenco.jpg";
+import MariachiHuenachi from "../../images/event-master/artists/Mariachi_Huenachi.jpg";
+import Metallica from "../../images/event-master/artists/Metallica.jpg";
+import Philharmonic from "../../images/event-master/artists/Philharmonic.jpg";
+import Polynesian from "../../images/event-master/artists/Polynesian.jpg";
+import TaylorSwift from "../../images/event-master/artists/Taylor_Swift.jpg";
 
 const artistData: Artist[] = [
   {

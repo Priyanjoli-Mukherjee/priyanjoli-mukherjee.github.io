@@ -18,3 +18,15 @@ the edit and delete icons will allow you to edit or delete your own post.
 
 The message icon in the far upper right corner will allow you to peruse through the direct messages that others have
 sent you. To start a new conversation, merely select a user from the dropdown and select "Message".
+
+## Concerto
+
+Concerto is a prototype of an event booking app. You can use it to filter events by artist,
+city, and date range, all within the search bar at the top of the app. If you prefer to use preexisting filters,
+there are quick filters available on the home page for the top trending artists and cities.
+
+Once you've found an event that suits your taste, click "Find Tickets" to select seats at your preferred price range.
+You can mix and match the seats to your heart's content.
+
+Note: since this is a *mock* of a website, clicking "Purchase" won't trigger an actual credit card page -- I wanted to avoid
+asking for any personal information!

@@ -1,6 +1,7 @@
 import { FeatureFlag } from "../types/feature-flag";
 
 const defaultFeatureFlags: Record<FeatureFlag, boolean> = {
+  [FeatureFlag.KANBAN]: false,
   [FeatureFlag.TEST_FEATURE]: false,
 };
 

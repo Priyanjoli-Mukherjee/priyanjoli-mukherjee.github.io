@@ -8,6 +8,7 @@ import { ResumePage } from "./resume-page";
 import { ContactPage } from "./contact-page";
 import { EventMaster } from "./event-master";
 import { EventPage } from "./event-master/event-page";
+import { Kanban } from "./kanban/kanban-page";
 
 export function App() {
   return (
@@ -26,6 +27,7 @@ export function App() {
           <Route path="/contact" Component={ContactPage} />
           <Route path="/event-master" Component={EventMaster} />
           <Route path="/event-master/search" Component={EventPage} />
+          <Route path="/kanban" Component={Kanban} />
           <Route path="/" index Component={Home} />
         </Routes>
       </Box>

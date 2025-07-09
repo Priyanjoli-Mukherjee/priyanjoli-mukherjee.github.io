@@ -5,5 +5,5 @@ export interface Props {
   title: string;
   submitText: string;
   onClose(): void;
-  onSubmit(task: Task): Promise<Task>;
+  onSubmit(task: Task): Promise<void>;
 }

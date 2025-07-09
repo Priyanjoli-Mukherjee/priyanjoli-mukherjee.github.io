@@ -11,7 +11,9 @@ export function Kanban() {
   const [selectedTask, setSelectedTask] = useState<Task>();
   const [isAddDialogOpen, setAddDialogOpen] = useState(false);
 
-  const tasks = useTasks();
+  const _tasks = useTasks();
+
+  const [tasks, setTasks] = useState(_tasks);
 
   return (
     <Box>
@@ -31,7 +33,10 @@ export function Kanban() {
           title="Edit Task"
           submitText="Update"
           onClose={() => setSelectedTask(undefined)}
-          onSubmit={updateTask}
+          onSubmit={async (task) => {
+            setTasks(tasks.map((t) => (t.id === task.id ? task : t)));
+            await updateTask(task);
+          }}
         />
       )}
       {isAddDialogOpen && (
@@ -39,7 +44,10 @@ export function Kanban() {
           title="Add Task"
           submitText="Create"
           onClose={() => setAddDialogOpen(false)}
-          onSubmit={createTask}
+          onSubmit={async (task) => {
+            const newTask = await createTask(task);
+            setTasks([...tasks, newTask]);
+          }}
         />
       )}
     </Box>

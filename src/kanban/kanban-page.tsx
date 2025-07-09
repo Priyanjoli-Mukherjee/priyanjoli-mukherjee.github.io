@@ -1,38 +1,47 @@
-import { Box, Button } from "@mui/material";
+import { Box, IconButton, Paper } from "@mui/material";
 import { useTasks } from "../hooks/use-tasks";
 import { createTask } from "../service/create-task";
-import { Status } from "../types/kanban/status";
 import { updateTask } from "../service/update-task";
-import { deleteTask } from "../service/delete-task";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { TaskModal } from "./task-modal";
+import { useState } from "react";
+import { Task } from "../types/kanban/task";
 
 export function Kanban() {
+  const [selectedTask, setSelectedTask] = useState<Task>();
+  const [isAddDialogOpen, setAddDialogOpen] = useState(false);
+
   const tasks = useTasks();
 
   return (
     <Box>
-      <Button
-        onClick={() =>
-          createTask({
-            title: "Test",
-            description: "Testing",
-            rank: 0,
-            status: Status.DONE,
-          })
-        }
-      >
-        Add
-      </Button>
-      {tasks.map((task) => (
-        <Box key={task.id}>
-          {task.title}
-          <Button
-            onClick={() => updateTask({ ...task, description: "Test 2" })}
-          >
-            Update
-          </Button>
-          <Button onClick={() => deleteTask(task)}>Delete</Button>
-        </Box>
-      ))}
+      <IconButton onClick={() => setAddDialogOpen(true)}>
+        <AddCircleIcon />
+      </IconButton>
+      <Paper>
+        {tasks.map((task) => (
+          <Paper key={task.id} onClick={() => setSelectedTask(task)}>
+            {task.title}
+          </Paper>
+        ))}
+      </Paper>
+      {selectedTask && (
+        <TaskModal
+          task={selectedTask}
+          title="Edit Task"
+          submitText="Update"
+          onClose={() => setSelectedTask(undefined)}
+          onSubmit={updateTask}
+        />
+      )}
+      {isAddDialogOpen && (
+        <TaskModal
+          title="Add Task"
+          submitText="Create"
+          onClose={() => setAddDialogOpen(false)}
+          onSubmit={createTask}
+        />
+      )}
     </Box>
   );
 }

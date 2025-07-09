@@ -12,6 +12,8 @@ import {
 import { Props } from "./props";
 import { Status } from "../../types/kanban/status";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
+import { DatePicker } from "@mui/x-date-pickers";
+import dayjs from "dayjs";
 
 export function TaskModal({
   task,
@@ -33,7 +35,19 @@ export function TaskModal({
   return (
     <Box>
       <Dialog open>
-        <DialogTitle>{title}</DialogTitle>
+        <DialogTitle>
+          {title}
+          <IconButton
+            onClick={onClose}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <CancelPresentationIcon />
+          </IconButton>
+        </DialogTitle>
         <DialogContent>
           <Box display="flex" justifyContent="space-between">
             <Box display="flex" flexDirection="column">
@@ -59,15 +73,12 @@ export function TaskModal({
                 fullWidth
                 required
               />
-              <TextField
+              <DatePicker
                 label="Due Date"
-                type="date"
-                variant="outlined"
-                value={newTask.dueDate}
-                onChange={(evt) =>
-                  setNewTask({ ...newTask, dueDate: evt.target.value })
+                value={newTask.dueDate ? dayjs(newTask.dueDate) : undefined}
+                onChange={(newValue) =>
+                  setNewTask({ ...newTask, dueDate: newValue?.toString() })
                 }
-                fullWidth
               />
               <TextField
                 label="Assignee"
@@ -94,20 +105,11 @@ export function TaskModal({
                 fullWidth
               />
             </Box>
-            <IconButton
-              onClick={onClose}
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <CancelPresentationIcon />
-            </IconButton>
           </Box>
         </DialogContent>
         <DialogActions>
           <Button
+            variant="contained"
             onClick={async () => {
               await onSubmit(newTask);
               onClose();

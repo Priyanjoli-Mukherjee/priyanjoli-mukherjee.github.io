@@ -28,6 +28,7 @@ export function Kanban() {
             key={task.id}
             onClick={() => setSelectedTask(task)}
             style={{
+              cursor: "pointer",
               margin: 10,
               padding: 10,
               display: "flex",

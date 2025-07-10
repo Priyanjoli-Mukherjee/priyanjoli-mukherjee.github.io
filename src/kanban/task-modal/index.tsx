@@ -9,6 +9,7 @@ import {
   TextField,
   IconButton,
   Autocomplete,
+  Typography,
 } from "@mui/material";
 import { Props } from "./props";
 import { Status } from "../../types/kanban/status";
@@ -38,8 +39,14 @@ export function TaskModal({
 
   return (
     <Box>
-      <Dialog open>
-        <DialogTitle>
+      <Dialog fullWidth maxWidth="md" open>
+        <DialogTitle
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           {title}
           <IconButton
             onClick={onClose}
@@ -53,8 +60,8 @@ export function TaskModal({
           </IconButton>
         </DialogTitle>
         <DialogContent>
-          <Box display="flex" justifyContent="space-between">
-            <Box display="flex" flexDirection="column">
+          <Box display="flex" justifyContent="space-between" width="100%">
+            <Box display="flex" flexDirection="column" width="100%">
               <TextField
                 label="Title"
                 placeholder="Title"
@@ -65,9 +72,12 @@ export function TaskModal({
                 }
                 fullWidth
                 required
+                sx={{ marginBottom: 2 }}
               />
               <TextField
                 label="Description"
+                multiline
+                rows={3}
                 placeholder="Description"
                 variant="outlined"
                 value={newTask.description}
@@ -76,56 +86,60 @@ export function TaskModal({
                 }
                 fullWidth
                 required
+                sx={{ marginBottom: 2 }}
               />
-              <DatePicker
-                label="Due Date"
-                value={newTask.dueDate ? dayjs(newTask.dueDate) : null}
-                onChange={(newValue) =>
-                  setNewTask({ ...newTask, dueDate: newValue?.toString() })
-                }
-              />
-              <Autocomplete
-                disablePortal
-                options={kanbanUsers}
-                sx={{ width: 300 }}
-                getOptionLabel={(option) => option.name}
-                renderInput={(params) => (
-                  <TextField {...params} label="Assignee" />
-                )}
-                value={
-                  kanbanUsers.find((user) => user.id === newTask.assignee) ||
-                  null
-                }
-                onChange={(_evt, newValue) =>
-                  setNewTask({ ...newTask, assignee: newValue?.id })
-                }
-              />
-              <TextField
-                label="Story Points"
-                placeholder="Story Points"
-                variant="outlined"
-                type="number"
-                value={newTask.storyPoints}
-                onChange={(evt) =>
-                  setNewTask({
-                    ...newTask,
-                    storyPoints: parseInt(evt.target.value),
-                  })
-                }
-                fullWidth
-              />
+              <Box display="flex" width="100%">
+                <DatePicker
+                  label="Due Date"
+                  value={newTask.dueDate ? dayjs(newTask.dueDate) : null}
+                  onChange={(newValue) =>
+                    setNewTask({ ...newTask, dueDate: newValue?.toString() })
+                  }
+                  sx={{ flex: "1 1", marginRight: 1, minWidth: 0 }}
+                />
+                <Autocomplete
+                  options={kanbanUsers}
+                  getOptionLabel={(option) => option.name}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Assignee" />
+                  )}
+                  value={
+                    kanbanUsers.find((user) => user.id === newTask.assignee) ||
+                    null
+                  }
+                  onChange={(_evt, newValue) =>
+                    setNewTask({ ...newTask, assignee: newValue?.id })
+                  }
+                  sx={{ flex: "1 1", marginRight: 1, minWidth: 0 }}
+                />
+                <TextField
+                  label="Story Points"
+                  placeholder="Story Points"
+                  variant="outlined"
+                  type="number"
+                  value={newTask.storyPoints || 0}
+                  onChange={(evt) =>
+                    setNewTask({
+                      ...newTask,
+                      storyPoints: parseInt(evt.target.value),
+                    })
+                  }
+                  sx={{ flex: "1 1", minWidth: 0 }}
+                />
+              </Box>
             </Box>
           </Box>
         </DialogContent>
         <DialogActions>
           <Button
             variant="contained"
+            disabled={!newTask?.title || !newTask?.description}
             onClick={async () => {
               await onSubmit(newTask);
               onClose();
             }}
           >
-            {submitText}
+            <Typography variant="body2">{submitText}</Typography>
           </Button>
         </DialogActions>
       </Dialog>

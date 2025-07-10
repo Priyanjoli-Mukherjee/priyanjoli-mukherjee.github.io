@@ -8,6 +8,7 @@ import {
   Box,
   TextField,
   IconButton,
+  Autocomplete,
 } from "@mui/material";
 import { Props } from "./props";
 import { Status } from "../../types/kanban/status";
@@ -33,9 +34,7 @@ export function TaskModal({
     },
   );
 
-  const _kanbanUsers = useKanbanUsers();
-
-  const [kanbanUsers, setKanbanUsers] = useState(_kanbanUsers);
+  const kanbanUsers = useKanbanUsers();
 
   return (
     <Box>
@@ -80,21 +79,26 @@ export function TaskModal({
               />
               <DatePicker
                 label="Due Date"
-                value={newTask.dueDate ? dayjs(newTask.dueDate) : undefined}
+                value={newTask.dueDate ? dayjs(newTask.dueDate) : null}
                 onChange={(newValue) =>
                   setNewTask({ ...newTask, dueDate: newValue?.toString() })
                 }
               />
-              <TextField
-                label="Assignee"
-                placeholder="Assignee"
-                variant="outlined"
-                value={newTask.assignee}
-                onChange={(evt) =>
-                  setNewTask({ ...newTask, assignee: evt.target.value })
+              <Autocomplete
+                disablePortal
+                options={kanbanUsers}
+                sx={{ width: 300 }}
+                getOptionLabel={(option) => option.name}
+                renderInput={(params) => (
+                  <TextField {...params} label="Assignee" />
+                )}
+                value={
+                  kanbanUsers.find((user) => user.id === newTask.assignee) ||
+                  null
                 }
-                fullWidth
-                onClick={() => console.log(kanbanUsers)}
+                onChange={(_evt, newValue) =>
+                  setNewTask({ ...newTask, assignee: newValue?.id })
+                }
               />
               <TextField
                 label="Story Points"

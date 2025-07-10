@@ -14,6 +14,7 @@ import { Status } from "../../types/kanban/status";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
+import { useKanbanUsers } from "../../hooks/use-kanban-users";
 
 export function TaskModal({
   task,
@@ -31,6 +32,10 @@ export function TaskModal({
       rank: 0,
     },
   );
+
+  const _kanbanUsers = useKanbanUsers();
+
+  const [kanbanUsers, setKanbanUsers] = useState(_kanbanUsers);
 
   return (
     <Box>
@@ -89,6 +94,7 @@ export function TaskModal({
                   setNewTask({ ...newTask, assignee: evt.target.value })
                 }
                 fullWidth
+                onClick={() => console.log(kanbanUsers)}
               />
               <TextField
                 label="Story Points"

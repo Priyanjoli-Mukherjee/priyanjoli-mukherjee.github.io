@@ -3,7 +3,7 @@ import { useTasks } from "../hooks/use-tasks";
 import { createTask } from "../service/create-task";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { TaskModal } from "./task-modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { KanbanLane } from "./kanban-lane";
 import { Status } from "../types/kanban/status";
 
@@ -20,6 +20,10 @@ export function Kanban() {
     { status: Status.IN_REVIEW, title: "In Review" },
     { status: Status.DONE, title: "Done" },
   ];
+
+  useEffect(() => {
+    setTasks(_tasks);
+  }, [_tasks]);
 
   return (
     <Box width="100%">

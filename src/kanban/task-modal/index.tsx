@@ -19,6 +19,7 @@ import dayjs from "dayjs";
 import { useKanbanUsers } from "../../hooks/use-kanban-users";
 
 export function TaskModal({
+  open,
   task,
   title,
   submitText,
@@ -39,7 +40,7 @@ export function TaskModal({
 
   return (
     <Box>
-      <Dialog fullWidth maxWidth="md" open>
+      <Dialog fullWidth maxWidth="md" open={open}>
         <DialogTitle
           sx={{
             display: "flex",

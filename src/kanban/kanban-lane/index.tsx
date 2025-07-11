@@ -51,18 +51,17 @@ export function KanbanLane({
           </Paper>
         ))}
       </Paper>
-      {selectedTask && (
-        <TaskModal
-          task={selectedTask}
-          title="Edit Task"
-          submitText="Update"
-          onClose={() => setSelectedTask(undefined)}
-          onSubmit={async (task) => {
-            onChange(task);
-            await updateTask(task);
-          }}
-        />
-      )}
+      <TaskModal
+        open={!!selectedTask}
+        task={selectedTask}
+        title="Edit Task"
+        submitText="Update"
+        onClose={() => setSelectedTask(undefined)}
+        onSubmit={async (task) => {
+          onChange(task);
+          await updateTask(task);
+        }}
+      />
     </Box>
   );
 }

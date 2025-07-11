@@ -32,10 +32,10 @@ export function Kanban() {
             tasks={tasks}
             title={title}
             status={status}
-            onChange={(task) => setTasks(tasks.filter((t) => t.id !== task.id))}
-            onDelete={(task) =>
+            onChange={(task) =>
               setTasks(tasks.map((t) => (t.id === task.id ? task : t)))
             }
+            onDelete={(task) => setTasks(tasks.filter((t) => t.id !== task.id))}
           />
         ))}
       </Box>

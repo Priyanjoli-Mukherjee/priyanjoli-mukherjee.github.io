@@ -3,6 +3,5 @@ import { getTasks } from "../service/get-tasks";
 
 export function useTasks() {
   const { data: tasks } = useQuery("tasks", getTasks);
-
   return tasks!;
 }

@@ -13,6 +13,7 @@ export function Kanban() {
   const _tasks = useTasks();
 
   const [tasks, setTasks] = useState(_tasks);
+
   const lanes = [
     { status: Status.TO_DO, title: "To Do" },
     { status: Status.IN_PROGRESS, title: "In Progress" },
@@ -32,24 +33,23 @@ export function Kanban() {
             tasks={tasks}
             title={title}
             status={status}
-            onChange={(task) => setTasks(tasks.filter((t) => t.id !== task.id))}
-            onDelete={(task) =>
+            onChange={(task) =>
               setTasks(tasks.map((t) => (t.id === task.id ? task : t)))
             }
+            onDelete={(task) => setTasks(tasks.filter((t) => t.id !== task.id))}
           />
         ))}
       </Box>
-      {isAddDialogOpen && (
-        <TaskModal
-          title="Add Task"
-          submitText="Create"
-          onClose={() => setAddDialogOpen(false)}
-          onSubmit={async (task) => {
-            const newTask = await createTask(task);
-            setTasks([...tasks, newTask]);
-          }}
-        />
-      )}
+      <TaskModal
+        open={isAddDialogOpen}
+        title="Add Task"
+        submitText="Create"
+        onClose={() => setAddDialogOpen(false)}
+        onSubmit={async (task) => {
+          const newTask = await createTask(task);
+          setTasks([...tasks, newTask]);
+        }}
+      />
     </Box>
   );
 }

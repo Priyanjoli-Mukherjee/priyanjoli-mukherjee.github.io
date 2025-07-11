@@ -1,66 +1,44 @@
-import { Box, IconButton, Paper } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import { useTasks } from "../hooks/use-tasks";
 import { createTask } from "../service/create-task";
-import { updateTask } from "../service/update-task";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { TaskModal } from "./task-modal";
 import { useState } from "react";
-import { Task } from "../types/kanban/task";
-import { deleteTask } from "../service/delete-task";
+import { KanbanLane } from "./kanban-lane";
+import { Status } from "../types/kanban/status";
 
 export function Kanban() {
-  const [selectedTask, setSelectedTask] = useState<Task>();
   const [isAddDialogOpen, setAddDialogOpen] = useState(false);
 
   const _tasks = useTasks();
 
   const [tasks, setTasks] = useState(_tasks);
+  const lanes = [
+    { status: Status.TO_DO, title: "To Do" },
+    { status: Status.IN_PROGRESS, title: "In Progress" },
+    { status: Status.IN_REVIEW, title: "In Review" },
+    { status: Status.DONE, title: "Done" },
+  ];
 
   return (
-    <Box>
+    <Box width="100%">
       <IconButton onClick={() => setAddDialogOpen(true)}>
         <AddCircleIcon />
       </IconButton>
-      <Paper style={{ padding: 10 }}>
-        {tasks.map((task) => (
-          <Paper
-            key={task.id}
-            onClick={() => setSelectedTask(task)}
-            style={{
-              cursor: "pointer",
-              margin: 10,
-              padding: 10,
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Box>{task.title}</Box>
-            <IconButton
-              onClick={async (evt) => {
-                evt.stopPropagation();
-                setTasks(tasks.filter((t) => t.id !== task.id));
-                await deleteTask(task);
-              }}
-            >
-              <DeleteIcon />
-            </IconButton>
-          </Paper>
+      <Box display="flex" width="100%">
+        {lanes.map(({ status, title }) => (
+          <KanbanLane
+            key={status}
+            tasks={tasks}
+            title={title}
+            status={status}
+            onChange={(task) => setTasks(tasks.filter((t) => t.id !== task.id))}
+            onDelete={(task) =>
+              setTasks(tasks.map((t) => (t.id === task.id ? task : t)))
+            }
+          />
         ))}
-      </Paper>
-      {selectedTask && (
-        <TaskModal
-          task={selectedTask}
-          title="Edit Task"
-          submitText="Update"
-          onClose={() => setSelectedTask(undefined)}
-          onSubmit={async (task) => {
-            setTasks(tasks.map((t) => (t.id === task.id ? task : t)));
-            await updateTask(task);
-          }}
-        />
-      )}
+      </Box>
       {isAddDialogOpen && (
         <TaskModal
           title="Add Task"

@@ -30,7 +30,7 @@ export function TaskModal({
       id: "",
       title: "",
       description: "",
-      status: Status.IN_PROGRESS,
+      status: Status.TO_DO,
       rank: 0,
     },
   );

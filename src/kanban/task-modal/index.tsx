@@ -130,7 +130,8 @@ export function TaskModal({
                   placeholder="Story Points"
                   variant="outlined"
                   type="number"
-                  value={newTask.storyPoints || 0}
+                  value={newTask.storyPoints}
+                  InputProps={{ inputProps: { min: 0 } }}
                   onChange={(evt) =>
                     setNewTask({
                       ...newTask,

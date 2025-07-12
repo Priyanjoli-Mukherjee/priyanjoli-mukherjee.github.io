@@ -3,9 +3,20 @@ import { useTasks } from "../hooks/use-tasks";
 import { createTask } from "../service/create-task";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { TaskModal } from "./task-modal";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { KanbanLane } from "./kanban-lane";
 import { Status } from "../types/kanban/status";
+import {
+  closestCenter,
+  DndContext,
+  DragEndEvent,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
+import { Task } from "../types/kanban/task";
 
 export function Kanban() {
   const [isAddDialogOpen, setAddDialogOpen] = useState(false);
@@ -21,6 +32,55 @@ export function Kanban() {
     { status: Status.DONE, title: "Done" },
   ];
 
+  const sortedTasks = useMemo(
+    () => [...tasks].sort((task1, task2) => task1.rank - task2.rank),
+    [tasks],
+  );
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  );
+
+  const taskById = useMemo(() => {
+    const dict: Record<string, Task> = {};
+    for (const task of tasks) {
+      dict[task.id] = task;
+    }
+    return dict;
+  }, [tasks]);
+
+  function onChange(task: Task) {
+    setTasks(tasks.map((t) => (t.id === task.id ? task : t)));
+  }
+
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, delta, over } = event;
+    if (!over || active.id === over.id) {
+      return;
+    }
+    let rank: number;
+    const activeTask = taskById[active.id];
+    const overTask = taskById[over.id];
+    const overIndex = sortedTasks.findIndex((task) => task.id === over.id);
+    if (delta.y > 0) {
+      if (overIndex === sortedTasks.length - 1) {
+        rank = overTask.rank + 1;
+      } else {
+        rank = (overTask.rank + sortedTasks[overIndex + 1].rank) / 2;
+      }
+    } else {
+      if (overIndex === 0) {
+        rank = overTask.rank - 1;
+      } else {
+        rank = (overTask.rank + sortedTasks[overIndex - 1].rank) / 2;
+      }
+    }
+    onChange({ ...activeTask, rank });
+  }
+
   useEffect(() => {
     setTasks(_tasks);
   }, [_tasks]);
@@ -30,27 +90,34 @@ export function Kanban() {
       <IconButton onClick={() => setAddDialogOpen(true)}>
         <AddCircleIcon />
       </IconButton>
-      <Box display="flex" width="100%">
-        {lanes.map(({ status, title }) => (
-          <KanbanLane
-            key={status}
-            tasks={tasks}
-            title={title}
-            status={status}
-            onChange={(task) =>
-              setTasks(tasks.map((t) => (t.id === task.id ? task : t)))
-            }
-            onDelete={(task) => setTasks(tasks.filter((t) => t.id !== task.id))}
-          />
-        ))}
-      </Box>
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
+        <Box display="flex" width="100%">
+          {lanes.map(({ status, title }) => (
+            <KanbanLane
+              key={status}
+              tasks={sortedTasks}
+              title={title}
+              status={status}
+              onChange={onChange}
+              onDelete={(task) =>
+                setTasks(tasks.filter((t) => t.id !== task.id))
+              }
+            />
+          ))}
+        </Box>
+      </DndContext>
       <TaskModal
         open={isAddDialogOpen}
         title="Add Task"
         submitText="Create"
         onClose={() => setAddDialogOpen(false)}
         onSubmit={async (task) => {
-          const newTask = await createTask(task);
+          const maxRank = Math.max(...tasks.map(({ rank }) => rank));
+          const newTask = await createTask({ ...task, rank: maxRank + 1 });
           setTasks([...tasks, newTask]);
         }}
       />

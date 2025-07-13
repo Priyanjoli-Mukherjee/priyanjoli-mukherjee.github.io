@@ -96,7 +96,7 @@ export function Kanban() {
 
   async function handleDragEnd(event: DragEndEvent) {
     const { active, delta, over } = event;
-    if (!over || active.id === over.id) {
+    if (!over) {
       return;
     }
     let rank: number;

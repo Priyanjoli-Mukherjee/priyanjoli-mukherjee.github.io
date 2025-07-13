@@ -6,7 +6,10 @@ export function DroppableArea({ id, children }: PropsWithChildren<Props>) {
   const { setNodeRef } = useDroppable({ id });
 
   return (
-    <div ref={setNodeRef} style={{ padding: 20, border: "2px dashed #ccc" }}>
+    <div
+      ref={setNodeRef}
+      style={{ flex: "1 1", padding: 20, border: "2px dashed #ccc" }}
+    >
       {children}
     </div>
   );

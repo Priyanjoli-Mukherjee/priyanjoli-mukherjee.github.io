@@ -8,6 +8,8 @@ import { KanbanLane } from "./kanban-lane";
 import { Status } from "../types/kanban/status";
 import {
   closestCenter,
+  Collision,
+  CollisionDetection,
   DndContext,
   DragEndEvent,
   DragOverEvent,
@@ -58,14 +60,36 @@ export function Kanban() {
     setTasks(tasks.map((t) => (t.id === task.id ? task : t)));
   }
 
+  const collisionDetection: CollisionDetection = (args) => {
+    const laneId = closestCenter({
+      ...args,
+      droppableContainers: args.droppableContainers.filter((container) =>
+        Object.values(Status).includes(container.id as Status),
+      ),
+    })[0]?.id;
+
+    const activeTask = taskById[args.active.id];
+    if (activeTask.status !== laneId) {
+      return [{ id: laneId } as Collision];
+    } else {
+      const taskIdsInLane = new Set(
+        tasks.filter((task) => task.status === laneId).map((task) => task.id),
+      );
+      const cardId = closestCenter({
+        ...args,
+        droppableContainers: args.droppableContainers.filter((container) =>
+          taskIdsInLane.has(container.id as string),
+        ),
+      })[0]?.id;
+      return [{ id: cardId } as Collision];
+    }
+  };
+
   function handleDragOver(event: DragOverEvent) {
     const { active, over } = event;
     const status = over?.id as unknown as Status;
     const activeTask = taskById[active.id];
-    if (
-      Object.values(Status).includes(status) &&
-      status !== activeTask.status
-    ) {
+    if (Object.values(Status).includes(status)) {
       onChange({ ...activeTask, status });
     }
   }
@@ -105,17 +129,17 @@ export function Kanban() {
   }, [_tasks]);
 
   return (
-    <Box width="100%">
+    <Box display="flex" flexDirection="column" height="100%" width="100%">
       <IconButton onClick={() => setAddDialogOpen(true)}>
         <AddCircleIcon />
       </IconButton>
       <DndContext
         sensors={sensors}
-        collisionDetection={closestCenter}
+        collisionDetection={collisionDetection}
         onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
       >
-        <Box display="flex" width="100%">
+        <Box display="flex" flex="1 1" width="100%">
           {lanes.map(({ status, title }) => (
             <KanbanLane
               key={status}

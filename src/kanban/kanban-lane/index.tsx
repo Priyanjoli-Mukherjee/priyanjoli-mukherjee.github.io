@@ -32,7 +32,14 @@ export function KanbanLane({
 
   return (
     <Box flex="1 1">
-      <Paper style={{ padding: 10, display: "flex", flexDirection: "column" }}>
+      <Paper
+        style={{
+          padding: 10,
+          display: "flex",
+          flexDirection: "column",
+          height: "100%",
+        }}
+      >
         <Typography variant="h6">{title}</Typography>
         <DroppableArea id={status}>
           <SortableContext

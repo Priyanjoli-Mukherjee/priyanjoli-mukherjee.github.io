@@ -10,6 +10,7 @@ import {
   closestCenter,
   DndContext,
   DragEndEvent,
+  DragOverEvent,
   KeyboardSensor,
   PointerSensor,
   useSensor,
@@ -17,6 +18,7 @@ import {
 } from "@dnd-kit/core";
 import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 import { Task } from "../types/kanban/task";
+import { updateTask } from "../service/update-task";
 
 export function Kanban() {
   const [isAddDialogOpen, setAddDialogOpen] = useState(false);
@@ -56,7 +58,19 @@ export function Kanban() {
     setTasks(tasks.map((t) => (t.id === task.id ? task : t)));
   }
 
-  function handleDragEnd(event: DragEndEvent) {
+  function handleDragOver(event: DragOverEvent) {
+    const { active, over } = event;
+    const status = over?.id as unknown as Status;
+    const activeTask = taskById[active.id];
+    if (
+      Object.values(Status).includes(status) &&
+      status !== activeTask.status
+    ) {
+      onChange({ ...activeTask, status });
+    }
+  }
+
+  async function handleDragEnd(event: DragEndEvent) {
     const { active, delta, over } = event;
     if (!over || active.id === over.id) {
       return;
@@ -65,6 +79,9 @@ export function Kanban() {
     const activeTask = taskById[active.id];
     const overTask = taskById[over.id];
     const overIndex = sortedTasks.findIndex((task) => task.id === over.id);
+    if (overIndex < 0) {
+      return;
+    }
     if (delta.y > 0) {
       if (overIndex === sortedTasks.length - 1) {
         rank = overTask.rank + 1;
@@ -78,7 +95,9 @@ export function Kanban() {
         rank = (overTask.rank + sortedTasks[overIndex - 1].rank) / 2;
       }
     }
-    onChange({ ...activeTask, rank });
+    const task = { ...activeTask, rank };
+    onChange(task);
+    await updateTask(task);
   }
 
   useEffect(() => {
@@ -94,6 +113,7 @@ export function Kanban() {
         sensors={sensors}
         collisionDetection={closestCenter}
         onDragEnd={handleDragEnd}
+        onDragOver={handleDragOver}
       >
         <Box display="flex" width="100%">
           {lanes.map(({ status, title }) => (

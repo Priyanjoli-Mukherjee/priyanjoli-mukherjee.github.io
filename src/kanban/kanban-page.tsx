@@ -28,7 +28,6 @@ export function Kanban() {
   const _tasks = useTasks();
 
   const [tasks, setTasks] = useState(_tasks);
-  const [clonedTasks, setClonedTasks] = useState(_tasks);
 
   const lanes = [
     { status: Status.TO_DO, title: "To Do" },
@@ -70,6 +69,9 @@ export function Kanban() {
     })[0]?.id;
 
     const activeTask = taskById[args.active.id];
+    if (!activeTask) {
+      return [];
+    }
     if (activeTask.status !== laneId) {
       return [{ id: laneId } as Collision];
     } else {
@@ -95,15 +97,10 @@ export function Kanban() {
     }
   }
 
-  function handleDragStart() {
-    setClonedTasks([...tasks]);
-  }
-
   async function handleDragEnd(event: DragEndEvent) {
     const { active, delta, over } = event;
 
     if (!over) {
-      setTasks(clonedTasks);
       return;
     }
     let rank: number;
@@ -111,7 +108,6 @@ export function Kanban() {
     const overTask = taskById[over.id];
     const overIndex = sortedTasks.findIndex((task) => task.id === over.id);
     if (overIndex < 0) {
-      setTasks(clonedTasks);
       return;
     }
     if (delta.y > 0) {
@@ -144,7 +140,6 @@ export function Kanban() {
       <DndContext
         sensors={sensors}
         collisionDetection={collisionDetection}
-        onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
       >

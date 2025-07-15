@@ -12,6 +12,8 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { KanbanUser } from "../../types/kanban/kanban-user";
+import { useKanbanUsers } from "../../hooks/use-kanban-users";
 
 export function KanbanLane({
   tasks,
@@ -30,45 +32,117 @@ export function KanbanLane({
     [tasks, status],
   );
 
+  const ticketNumbers = useMemo(
+    () => tasks.map((_task, index) => `PROJ-${index}`),
+    [tasks],
+  );
+
+  const kanbanUsers = useKanbanUsers();
+
+  const userById = useMemo(() => {
+    const dict: Record<string, KanbanUser> = {};
+    for (const user of kanbanUsers) {
+      dict[user.id] = user;
+    }
+    return dict;
+  }, [kanbanUsers]);
+
+  function getInitials(name: string): string {
+    const names = name.split(" ");
+    const firstInitial = names[0][0];
+    const lastInitial = names[names.length - 1][0];
+    return `${firstInitial} ${lastInitial}`;
+  }
+
   return (
-    <Box flex="1 1">
+    <Box flex="1 1" marginRight={1}>
       <Paper
         style={{
           padding: 10,
           display: "flex",
           flexDirection: "column",
           height: "100%",
+          backgroundColor: "rgb(242, 242, 242)",
         }}
       >
-        <Typography variant="h6">{title}</Typography>
+        <Typography variant="subtitle1">{title}</Typography>
         <DroppableArea id={status}>
           <SortableContext
             items={filteredTasks}
             strategy={verticalListSortingStrategy}
           >
-            {filteredTasks.map((task) => (
+            {filteredTasks.map((task, index) => (
               <DraggableItem key={task.id} id={task.id}>
                 <Paper
                   onClick={() => setSelectedTask(task)}
                   style={{
                     cursor: "pointer",
-                    margin: 10,
-                    padding: 10,
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
                   }}
                 >
-                  <Box>{task.title}</Box>
-                  <IconButton
-                    onMouseDown={async (evt) => {
-                      evt.stopPropagation();
-                      onDelete(task);
-                      await deleteTask(task);
-                    }}
+                  <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    marginTop={1}
+                    marginBottom={0.5}
+                    marginRight={1}
+                    marginLeft={1}
                   >
-                    <DeleteIcon />
-                  </IconButton>
+                    <Typography variant="subtitle1">{task.title}</Typography>
+                    <IconButton
+                      onMouseDown={async (evt) => {
+                        evt.stopPropagation();
+                        onDelete(task);
+                        await deleteTask(task);
+                      }}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </Box>
+                  <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    paddingBottom={1.5}
+                    marginBottom={1}
+                    marginRight={2}
+                    marginLeft={1}
+                  >
+                    <Typography variant="caption">
+                      {ticketNumbers[index]}
+                    </Typography>
+                    <Box
+                      width={25}
+                      height={25}
+                      borderRadius={15}
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                      style={{ backgroundColor: "rgb(191, 191, 191)" }}
+                    >
+                      <Typography variant="caption">
+                        {task.storyPoints}
+                      </Typography>
+                    </Box>
+                    {task.assignee && (
+                      <Box
+                        width={26}
+                        height={26}
+                        borderRadius={15}
+                        display="flex"
+                        justifyContent="center"
+                        alignItems="center"
+                        style={{ backgroundColor: "rgb(191, 191, 191)" }}
+                      >
+                        <Typography
+                          variant="caption"
+                          style={{ fontSize: "x-small" }}
+                        >
+                          {getInitials(userById[task.assignee].name)}
+                        </Typography>
+                      </Box>
+                    )}
+                  </Box>
                 </Paper>
               </DraggableItem>
             ))}

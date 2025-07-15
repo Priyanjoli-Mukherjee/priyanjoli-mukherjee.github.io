@@ -143,7 +143,7 @@ export function Kanban() {
         onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
       >
-        <Box display="flex" flex="1 1" width="100%">
+        <Box display="flex" flex="1 1" width="100%" margin={1}>
           {lanes.map(({ status, title }) => (
             <KanbanLane
               key={status}

@@ -38,20 +38,25 @@ export function DraggableItem({
           marginRight={1}
           marginLeft={1}
         >
-          <Typography variant="subtitle1">{task.title}</Typography>
-          <Box display="flex" alignItems="center">
-            <Box {...listeners}>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Box
+              {...listeners}
+              color="rgb(180, 180, 180)"
+              marginRight={0.5}
+              sx={{ cursor: "grab" }}
+            >
               <DragIndicatorIcon />
             </Box>
-            <IconButton
-              onMouseDown={async (evt) => {
-                evt.stopPropagation();
-                onDelete();
-              }}
-            >
-              <DeleteIcon />
-            </IconButton>
+            <Typography variant="subtitle1">{task.title}</Typography>
           </Box>
+          <IconButton
+            onMouseDown={async (evt) => {
+              evt.stopPropagation();
+              onDelete();
+            }}
+          >
+            <DeleteIcon />
+          </IconButton>
         </Box>
         <Box
           display="flex"

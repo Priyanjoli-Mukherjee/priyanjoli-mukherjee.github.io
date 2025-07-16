@@ -184,7 +184,12 @@ export function Kanban() {
             <TextField
               value={searchText}
               placeholder="Search"
-              sx={{ width: "100%", height: "100%" }}
+              label="Search"
+              sx={{
+                width: "100%",
+                height: "100%",
+                backgroundColor: "rgb(242, 242, 242)",
+              }}
               onChange={(evt) => setSearchText(evt.target.value)}
               InputProps={{ sx: { borderRadius: 2 } }}
             />
@@ -206,7 +211,9 @@ export function Kanban() {
                 alignItems="center"
                 margin={0.25}
                 sx={{
-                  backgroundColor: "rgb(191, 191, 191)",
+                  backgroundColor: assignees[user.id]
+                    ? "rgba(0, 0, 0, 0.54)"
+                    : "rgb(191, 191, 191)",
                   cursor: "pointer",
                 }}
                 onClick={() =>

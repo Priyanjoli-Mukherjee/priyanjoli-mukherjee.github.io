@@ -85,7 +85,7 @@ export function TaskModal({
                 }
                 fullWidth
                 required
-                sx={{ marginBottom: 2 }}
+                sx={{ marginBottom: 2, marginTop: 1 }}
               />
               <TextField
                 label="Description"

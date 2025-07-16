@@ -27,7 +27,7 @@ import { useKanbanUsers } from "../hooks/use-kanban-users";
 export function Kanban() {
   const [isAddDialogOpen, setAddDialogOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
-  const [assignee, setAssignee] = useState<string>();
+  const [assignees, setAssignees] = useState<Record<string, boolean>>({});
 
   const _tasks = useTasks();
   const kanbanUsers = useKanbanUsers();
@@ -64,18 +64,22 @@ export function Kanban() {
     return `${firstInitial}${lastInitial}`;
   }
 
+  const isAssigneeFilterApplied = !!Object.values(assignees).filter(
+    (val) => !!val,
+  ).length;
+
   const filteredTasks = useMemo(
     () =>
       tasks.filter(
         (task) =>
-          (!assignee || task.assignee === assignee) &&
+          (!isAssigneeFilterApplied || assignees[task.assignee ?? ""]) &&
           (task.title.toLowerCase().includes(searchText.toLowerCase()) ||
             (task.assignee &&
               getInitials(userById[task.assignee].name)
                 .toLowerCase()
                 .includes(searchText.toLowerCase()))),
       ),
-    [assignee, tasks, searchText, userById],
+    [assignees, isAssigneeFilterApplied, tasks, searchText, userById],
   );
 
   const sortedTasks = useMemo(
@@ -206,9 +210,7 @@ export function Kanban() {
                   cursor: "pointer",
                 }}
                 onClick={() =>
-                  user.id !== assignee
-                    ? setAssignee(user.id)
-                    : setAssignee(undefined)
+                  setAssignees({ ...assignees, [user.id]: !assignees[user.id] })
                 }
               >
                 <Typography variant="caption" style={{ fontSize: "x-small" }}>

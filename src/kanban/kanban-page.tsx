@@ -1,4 +1,4 @@
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, TextField, Typography } from "@mui/material";
 import { useTasks } from "../hooks/use-tasks";
 import { createTask } from "../service/create-task";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -21,11 +21,16 @@ import {
 import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 import { Task } from "../types/kanban/task";
 import { updateTask } from "../service/update-task";
+import { KanbanUser } from "../types/kanban/kanban-user";
+import { useKanbanUsers } from "../hooks/use-kanban-users";
 
 export function Kanban() {
   const [isAddDialogOpen, setAddDialogOpen] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  const [assignee, setAssignee] = useState<string>();
 
   const _tasks = useTasks();
+  const kanbanUsers = useKanbanUsers();
 
   const [tasks, setTasks] = useState(_tasks);
 
@@ -36,9 +41,46 @@ export function Kanban() {
     { status: Status.DONE, title: "Done" },
   ];
 
+  const taskById = useMemo(() => {
+    const dict: Record<string, Task> = {};
+    for (const task of tasks) {
+      dict[task.id] = task;
+    }
+    return dict;
+  }, [tasks]);
+
+  const userById = useMemo(() => {
+    const dict: Record<string, KanbanUser> = {};
+    for (const user of kanbanUsers) {
+      dict[user.id] = user;
+    }
+    return dict;
+  }, [kanbanUsers]);
+
+  function getInitials(name: string): string {
+    const names = name.split(" ");
+    const firstInitial = names[0][0];
+    const lastInitial = names[names.length - 1][0];
+    return `${firstInitial}${lastInitial}`;
+  }
+
+  const filteredTasks = useMemo(
+    () =>
+      tasks.filter(
+        (task) =>
+          (!assignee || task.assignee === assignee) &&
+          (task.title.toLowerCase().includes(searchText.toLowerCase()) ||
+            (task.assignee &&
+              getInitials(userById[task.assignee].name)
+                .toLowerCase()
+                .includes(searchText.toLowerCase()))),
+      ),
+    [assignee, tasks, searchText, userById],
+  );
+
   const sortedTasks = useMemo(
-    () => [...tasks].sort((task1, task2) => task1.rank - task2.rank),
-    [tasks],
+    () => [...filteredTasks].sort((task1, task2) => task1.rank - task2.rank),
+    [filteredTasks],
   );
 
   const sensors = useSensors(
@@ -47,14 +89,6 @@ export function Kanban() {
       coordinateGetter: sortableKeyboardCoordinates,
     }),
   );
-
-  const taskById = useMemo(() => {
-    const dict: Record<string, Task> = {};
-    for (const task of tasks) {
-      dict[task.id] = task;
-    }
-    return dict;
-  }, [tasks]);
 
   function onChange(task: Task) {
     setTasks(tasks.map((t) => (t.id === task.id ? task : t)));
@@ -133,10 +167,61 @@ export function Kanban() {
   }, [_tasks]);
 
   return (
-    <Box display="flex" flexDirection="column" height="100%" width="100%">
-      <IconButton onClick={() => setAddDialogOpen(true)}>
-        <AddCircleIcon />
-      </IconButton>
+    <Box
+      display="flex"
+      flexDirection="column"
+      height="100%"
+      width="100%"
+      style={{ backgroundColor: "white" }}
+    >
+      <Box display="flex" margin={1} justifyContent="space-between">
+        <Box display="flex">
+          <Box width={250}>
+            <TextField
+              value={searchText}
+              placeholder="Search"
+              sx={{ width: "100%", height: "100%" }}
+              onChange={(evt) => setSearchText(evt.target.value)}
+              InputProps={{ sx: { borderRadius: 2 } }}
+            />
+          </Box>
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            marginLeft={2}
+          >
+            {kanbanUsers.map((user) => (
+              <Box
+                key={user.id}
+                width={26}
+                height={26}
+                borderRadius={15}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                margin={0.25}
+                sx={{
+                  backgroundColor: "rgb(191, 191, 191)",
+                  cursor: "pointer",
+                }}
+                onClick={() =>
+                  user.id !== assignee
+                    ? setAssignee(user.id)
+                    : setAssignee(undefined)
+                }
+              >
+                <Typography variant="caption" style={{ fontSize: "x-small" }}>
+                  {getInitials(user.name)}
+                </Typography>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+        <IconButton onClick={() => setAddDialogOpen(true)}>
+          <AddCircleIcon />
+        </IconButton>
+      </Box>
       <DndContext
         sensors={sensors}
         collisionDetection={collisionDetection}

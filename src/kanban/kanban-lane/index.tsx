@@ -1,6 +1,5 @@
-import { Box, IconButton, Paper, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import { Props } from "./props";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { useMemo, useState } from "react";
 import { Task } from "../../types/kanban/task";
 import { TaskModal } from "../task-modal";
@@ -47,13 +46,6 @@ export function KanbanLane({
     return dict;
   }, [kanbanUsers]);
 
-  function getInitials(name: string): string {
-    const names = name.split(" ");
-    const firstInitial = names[0][0];
-    const lastInitial = names[names.length - 1][0];
-    return `${firstInitial} ${lastInitial}`;
-  }
-
   return (
     <Box flex="1 1" marginRight={1}>
       <Paper
@@ -72,79 +64,17 @@ export function KanbanLane({
             strategy={verticalListSortingStrategy}
           >
             {filteredTasks.map((task, index) => (
-              <DraggableItem key={task.id} id={task.id}>
-                <Paper
-                  onClick={() => setSelectedTask(task)}
-                  style={{
-                    cursor: "pointer",
-                  }}
-                >
-                  <Box
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    marginTop={1}
-                    marginBottom={0.5}
-                    marginRight={1}
-                    marginLeft={1}
-                  >
-                    <Typography variant="subtitle1">{task.title}</Typography>
-                    <IconButton
-                      onMouseDown={async (evt) => {
-                        evt.stopPropagation();
-                        onDelete(task);
-                        await deleteTask(task);
-                      }}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </Box>
-                  <Box
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    paddingBottom={1.5}
-                    marginBottom={1}
-                    marginRight={2}
-                    marginLeft={1}
-                  >
-                    <Typography variant="caption">
-                      {ticketNumbers[index]}
-                    </Typography>
-                    <Box
-                      width={25}
-                      height={25}
-                      borderRadius={15}
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                      style={{ backgroundColor: "rgb(191, 191, 191)" }}
-                    >
-                      <Typography variant="caption">
-                        {task.storyPoints}
-                      </Typography>
-                    </Box>
-                    {task.assignee && (
-                      <Box
-                        width={26}
-                        height={26}
-                        borderRadius={15}
-                        display="flex"
-                        justifyContent="center"
-                        alignItems="center"
-                        style={{ backgroundColor: "rgb(191, 191, 191)" }}
-                      >
-                        <Typography
-                          variant="caption"
-                          style={{ fontSize: "x-small" }}
-                        >
-                          {getInitials(userById[task.assignee].name)}
-                        </Typography>
-                      </Box>
-                    )}
-                  </Box>
-                </Paper>
-              </DraggableItem>
+              <DraggableItem
+                key={task.id}
+                task={task}
+                ticketNumber={ticketNumbers[index]}
+                user={task.assignee ? userById[task.assignee] : undefined}
+                onDelete={async () => {
+                  onDelete(task);
+                  await deleteTask(task);
+                }}
+                onSelect={() => setSelectedTask(task)}
+              />
             ))}
           </SortableContext>
         </DroppableArea>

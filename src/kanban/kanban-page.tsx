@@ -23,6 +23,7 @@ import { Task } from "../types/kanban/task";
 import { updateTask } from "../service/update-task";
 import { KanbanUser } from "../types/kanban/kanban-user";
 import { useKanbanUsers } from "../hooks/use-kanban-users";
+import { getInitials } from "./kanban-lane/draggable-item/get-initials";
 
 export function Kanban() {
   const [isAddDialogOpen, setAddDialogOpen] = useState(false);
@@ -56,13 +57,6 @@ export function Kanban() {
     }
     return dict;
   }, [kanbanUsers]);
-
-  function getInitials(name: string): string {
-    const names = name.split(" ");
-    const firstInitial = names[0][0];
-    const lastInitial = names[names.length - 1][0];
-    return `${firstInitial}${lastInitial}`;
-  }
 
   const isAssigneeFilterApplied = !!Object.values(assignees).filter(
     (val) => !!val,

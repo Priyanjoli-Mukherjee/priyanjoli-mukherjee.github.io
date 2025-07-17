@@ -11,6 +11,7 @@ export function UserBadge({ isSelected, user, onClick }: Props) {
       padding={0.25}
       borderRadius={15}
       border={`2px solid ${isSelected ? "blue" : "white"}`}
+      title={user?.name ?? "Unassigned"}
     >
       <Box
         width={26}

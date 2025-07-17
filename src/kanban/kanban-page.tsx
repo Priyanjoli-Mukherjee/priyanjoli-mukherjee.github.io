@@ -67,11 +67,7 @@ export function Kanban() {
       tasks.filter(
         (task) =>
           (!isAssigneeFilterApplied || assignees[task.assignee ?? ""]) &&
-          (task.title.toLowerCase().includes(searchText.toLowerCase()) ||
-            (task.assignee &&
-              getInitials(userById[task.assignee].name)
-                .toLowerCase()
-                .includes(searchText.toLowerCase()))),
+          task.title.toLowerCase().includes(searchText.toLowerCase()),
       ),
     [assignees, isAssigneeFilterApplied, tasks, searchText, userById],
   );

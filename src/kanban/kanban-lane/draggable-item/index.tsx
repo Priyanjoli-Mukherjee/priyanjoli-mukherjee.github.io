@@ -6,13 +6,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import { UserBadge } from "../../user-badge";
 
-export function DraggableItem({
-  task,
-  ticketNumber,
-  user,
-  onSelect,
-  onDelete,
-}: Props) {
+export function DraggableItem({ task, user, onSelect, onDelete }: Props) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: task.id });
 
@@ -67,7 +61,7 @@ export function DraggableItem({
           marginRight={2}
           marginLeft={1}
         >
-          <Typography variant="caption">{ticketNumber}</Typography>
+          <Typography variant="caption">{`PROJ-${task.ticketNumber}`}</Typography>
           <Box display="flex" justifyContent="center" alignItems="center">
             <Box
               width={25}

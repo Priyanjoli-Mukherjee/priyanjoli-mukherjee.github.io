@@ -17,6 +17,7 @@ import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { useKanbanUsers } from "../../hooks/use-kanban-users";
+import { Task } from "../../types/kanban/task";
 
 export function TaskModal({
   open,
@@ -26,13 +27,14 @@ export function TaskModal({
   onClose,
   onSubmit,
 }: Props) {
-  const [newTask, setNewTask] = useState(
+  const [newTask, setNewTask] = useState<Task>(
     task ?? {
       id: "",
       title: "",
       description: "",
       status: Status.TO_DO,
       rank: 0,
+      ticketNumber: 0,
     },
   );
 
@@ -46,6 +48,7 @@ export function TaskModal({
         description: "",
         status: Status.TO_DO,
         rank: 0,
+        ticketNumber: 0,
       },
     );
   }, [open, task]);

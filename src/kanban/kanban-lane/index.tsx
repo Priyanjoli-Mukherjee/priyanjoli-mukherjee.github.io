@@ -31,11 +31,6 @@ export function KanbanLane({
     [tasks, status],
   );
 
-  const ticketNumbers = useMemo(
-    () => tasks.map((_task, index) => `PROJ-${index}`),
-    [tasks],
-  );
-
   const kanbanUsers = useKanbanUsers();
 
   const userById = useMemo(() => {
@@ -63,11 +58,10 @@ export function KanbanLane({
             items={filteredTasks}
             strategy={verticalListSortingStrategy}
           >
-            {filteredTasks.map((task, index) => (
+            {filteredTasks.map((task) => (
               <DraggableItem
                 key={task.id}
                 task={task}
-                ticketNumber={ticketNumbers[index]}
                 user={task.assignee ? userById[task.assignee] : undefined}
                 onDelete={async () => {
                   onDelete(task);

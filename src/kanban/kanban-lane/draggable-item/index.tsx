@@ -6,6 +6,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import { getInitials } from "./get-initials";
 import PersonOffIcon from "@mui/icons-material/PersonOff";
+import { getBadgeStyle } from "./get-badge-style";
 
 export function DraggableItem({
   task,
@@ -89,7 +90,7 @@ export function DraggableItem({
               justifyContent="center"
               alignItems="center"
               marginLeft={1}
-              style={{ backgroundColor: "rgb(191, 191, 191)" }}
+              style={getBadgeStyle(user?.name)}
             >
               {user ? (
                 <Typography variant="caption" style={{ fontSize: "x-small" }}>

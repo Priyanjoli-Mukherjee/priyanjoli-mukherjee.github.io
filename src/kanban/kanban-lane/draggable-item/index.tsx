@@ -4,9 +4,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { Box, IconButton, Paper, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
-import { getInitials } from "./get-initials";
-import PersonOffIcon from "@mui/icons-material/PersonOff";
-import { getBadgeStyle } from "./get-badge-style";
+import { UserBadge } from "../../user-badge";
 
 export function DraggableItem({
   task,
@@ -82,24 +80,7 @@ export function DraggableItem({
             >
               <Typography variant="caption">{task.storyPoints}</Typography>
             </Box>
-            <Box
-              width={26}
-              height={26}
-              borderRadius={15}
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              marginLeft={1}
-              style={getBadgeStyle(user?.name)}
-            >
-              {user ? (
-                <Typography variant="caption" style={{ fontSize: "x-small" }}>
-                  {getInitials(user.name)}
-                </Typography>
-              ) : (
-                <PersonOffIcon color="disabled" fontSize="small" />
-              )}
-            </Box>
+            <UserBadge user={user} />
           </Box>
         </Box>
       </Paper>

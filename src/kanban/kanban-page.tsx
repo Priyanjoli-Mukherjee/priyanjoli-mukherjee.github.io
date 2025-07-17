@@ -1,4 +1,4 @@
-import { Box, IconButton, TextField, Typography } from "@mui/material";
+import { Box, IconButton, TextField } from "@mui/material";
 import { useTasks } from "../hooks/use-tasks";
 import { createTask } from "../service/create-task";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -23,7 +23,7 @@ import { Task } from "../types/kanban/task";
 import { updateTask } from "../service/update-task";
 import { KanbanUser } from "../types/kanban/kanban-user";
 import { useKanbanUsers } from "../hooks/use-kanban-users";
-import { getInitials } from "./kanban-lane/draggable-item/get-initials";
+import { UserBadge } from "./user-badge";
 
 export function Kanban() {
   const [isAddDialogOpen, setAddDialogOpen] = useState(false);
@@ -191,29 +191,14 @@ export function Kanban() {
             marginLeft={2}
           >
             {kanbanUsers.map((user) => (
-              <Box
+              <UserBadge
                 key={user.id}
-                width={26}
-                height={26}
-                borderRadius={15}
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                margin={0.25}
-                sx={{
-                  backgroundColor: assignees[user.id]
-                    ? "rgba(0, 0, 0, 0.54)"
-                    : "rgb(191, 191, 191)",
-                  cursor: "pointer",
-                }}
+                isSelected={assignees[user.id]}
+                user={user}
                 onClick={() =>
                   setAssignees({ ...assignees, [user.id]: !assignees[user.id] })
                 }
-              >
-                <Typography variant="caption" style={{ fontSize: "x-small" }}>
-                  {getInitials(user.name)}
-                </Typography>
-              </Box>
+              />
             ))}
           </Box>
         </Box>

@@ -5,6 +5,7 @@ import { Box, IconButton, Paper, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import { getInitials } from "./get-initials";
+import PersonOffIcon from "@mui/icons-material/PersonOff";
 
 export function DraggableItem({
   task,
@@ -80,22 +81,24 @@ export function DraggableItem({
             >
               <Typography variant="caption">{task.storyPoints}</Typography>
             </Box>
-            {user && (
-              <Box
-                width={26}
-                height={26}
-                borderRadius={15}
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                marginLeft={1}
-                style={{ backgroundColor: "rgb(191, 191, 191)" }}
-              >
+            <Box
+              width={26}
+              height={26}
+              borderRadius={15}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              marginLeft={1}
+              style={{ backgroundColor: "rgb(191, 191, 191)" }}
+            >
+              {user ? (
                 <Typography variant="caption" style={{ fontSize: "x-small" }}>
                   {getInitials(user.name)}
                 </Typography>
-              </Box>
-            )}
+              ) : (
+                <PersonOffIcon color="disabled" fontSize="small" />
+              )}
+            </Box>
           </Box>
         </Box>
       </Paper>

@@ -2,7 +2,15 @@ import { Box, InputAdornment, TextField } from "@mui/material";
 import { Props } from "./props";
 import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
 
-export function NumberField({ max, min, value, onChange, ...props }: Props) {
+export function NumberField({
+  InputLabelProps,
+  InputProps,
+  max,
+  min,
+  value,
+  onChange,
+  ...props
+}: Props) {
   const lowerBound = min ?? -Infinity;
   const upperBound = max ?? Infinity;
 
@@ -24,7 +32,9 @@ export function NumberField({ max, min, value, onChange, ...props }: Props) {
           handleChange(parsed);
         }
       }}
+      InputLabelProps={{ ...InputLabelProps, shrink: true }}
       InputProps={{
+        ...InputProps,
         endAdornment: (
           <InputAdornment position="end">
             <Box display="flex" flexDirection="column">
@@ -47,6 +57,7 @@ export function NumberField({ max, min, value, onChange, ...props }: Props) {
             </Box>
           </InputAdornment>
         ),
+        notched: true,
       }}
     />
   );

@@ -14,7 +14,7 @@ import {
 import { Props } from "./props";
 import { Status } from "../../types/kanban/status";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
-import { DatePicker } from "@mui/x-date-pickers";
+import { DatePicker, pickersSectionListClasses } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { useKanbanUsers } from "../../hooks/use-kanban-users";
 import { Task } from "../../types/kanban/task";
@@ -112,13 +112,35 @@ export function TaskModal({
                   onChange={(newValue) =>
                     setNewTask({ ...newTask, dueDate: newValue?.toString() })
                   }
-                  sx={{ flex: "1 1", marginRight: 1, minWidth: 0 }}
+                  slotProps={{
+                    textField: {
+                      InputLabelProps: { shrink: true },
+                      InputProps: { notched: true },
+                    },
+                  }}
+                  sx={{
+                    flex: "1 1",
+                    marginRight: 1,
+                    minWidth: 0,
+                    [`& .${pickersSectionListClasses.root}`]: {
+                      opacity: 1,
+                    },
+                  }}
                 />
                 <Autocomplete
                   options={kanbanUsers}
                   getOptionLabel={(option) => option.name}
                   renderInput={(params) => (
-                    <TextField {...params} label="Assignee" />
+                    <TextField
+                      {...params}
+                      InputLabelProps={{
+                        ...params.InputLabelProps,
+                        shrink: true,
+                      }}
+                      InputProps={{ ...params.InputProps, notched: true }}
+                      label="Assignee"
+                      placeholder="Assign to User"
+                    />
                   )}
                   value={
                     kanbanUsers.find((user) => user.id === newTask.assignee) ||
@@ -132,7 +154,7 @@ export function TaskModal({
                 <NumberField
                   label="Story Points"
                   min={0}
-                  placeholder="Story Points"
+                  placeholder="Assign Points"
                   value={newTask.storyPoints}
                   onChange={(value) =>
                     setNewTask({

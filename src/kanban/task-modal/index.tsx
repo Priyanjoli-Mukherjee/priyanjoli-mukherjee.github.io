@@ -18,6 +18,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { useKanbanUsers } from "../../hooks/use-kanban-users";
 import { Task } from "../../types/kanban/task";
+import { NumberField } from "../../components/number-field";
 
 export function TaskModal({
   open,
@@ -128,17 +129,15 @@ export function TaskModal({
                   }
                   sx={{ flex: "1 1", marginRight: 1, minWidth: 0 }}
                 />
-                <TextField
+                <NumberField
                   label="Story Points"
+                  min={0}
                   placeholder="Story Points"
-                  variant="outlined"
-                  type="number"
                   value={newTask.storyPoints}
-                  InputProps={{ inputProps: { min: 0 } }}
-                  onChange={(evt) =>
+                  onChange={(value) =>
                     setNewTask({
                       ...newTask,
-                      storyPoints: parseInt(evt.target.value),
+                      storyPoints: value,
                     })
                   }
                   sx={{ flex: "1 1", minWidth: 0 }}

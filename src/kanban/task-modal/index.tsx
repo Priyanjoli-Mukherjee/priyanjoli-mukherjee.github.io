@@ -19,6 +19,7 @@ import dayjs from "dayjs";
 import { useKanbanUsers } from "../../hooks/use-kanban-users";
 import { Task } from "../../types/kanban/task";
 import { NumberField } from "../../components/number-field";
+import { TextArea } from "../../components/text-area";
 
 export function TaskModal({
   open,
@@ -80,6 +81,10 @@ export function TaskModal({
           <Box display="flex" justifyContent="space-between" width="100%">
             <Box display="flex" flexDirection="column" width="100%">
               <TextField
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{ notched: true }}
                 label="Title"
                 placeholder="Title"
                 variant="outlined"
@@ -91,10 +96,8 @@ export function TaskModal({
                 required
                 sx={{ marginBottom: 2, marginTop: 1 }}
               />
-              <TextField
+              <TextArea
                 label="Description"
-                multiline
-                rows={3}
                 placeholder="Description"
                 variant="outlined"
                 value={newTask.description}

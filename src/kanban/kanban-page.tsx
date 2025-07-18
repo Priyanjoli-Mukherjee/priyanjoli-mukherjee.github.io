@@ -213,7 +213,15 @@ export function Kanban() {
         onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
       >
-        <Box display="flex" flex="1 1" marginBottom={1} marginTop={1}>
+        <Box
+          display="grid"
+          flex="1 1"
+          gridTemplateColumns="repeat(4, 25%)"
+          paddingBottom={1}
+          paddingTop={1}
+          minHeight={0}
+          sx={{ overflowY: "auto" }}
+        >
           {lanes.map(({ status, title }) => (
             <KanbanLane
               key={status}

@@ -24,6 +24,7 @@ export function DraggableItem({ task, user, onSelect, onDelete }: Props) {
           cursor: "pointer",
           display: "flex",
           marginBottom: 8,
+          width: "100%",
         }}
       >
         <Box
@@ -40,15 +41,33 @@ export function DraggableItem({ task, user, onSelect, onDelete }: Props) {
           flexDirection="column"
           justifyContent="space-between"
           margin={0.5}
+          minWidth={0}
         >
           <Box
             alignItems="center"
             display="flex"
             justifyContent="space-between"
             marginRight={0.5}
+            width="100%"
           >
-            <Box display="flex" alignItems="center" justifyContent="center">
-              <Typography variant="subtitle1">{task.title}</Typography>
+            <Box
+              alignItems="center"
+              display="flex"
+              flex="1 1"
+              justifyContent="center"
+              minWidth={0}
+            >
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                  width: "100%",
+                }}
+              >
+                {task.title}
+              </Typography>
             </Box>
             <IconButton
               onMouseDown={async (evt) => {

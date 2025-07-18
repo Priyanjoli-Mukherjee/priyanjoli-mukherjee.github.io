@@ -1,7 +1,7 @@
-import { Box, IconButton, TextField } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import { useTasks } from "../hooks/use-tasks";
 import { createTask } from "../service/create-task";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
+import AddIcon from "@mui/icons-material/Add";
 import { TaskModal } from "./task-modal";
 import { useEffect, useMemo, useState } from "react";
 import { KanbanLane } from "./kanban-lane";
@@ -202,9 +202,10 @@ export function Kanban() {
             ))}
           </Box>
         </Box>
-        <IconButton onClick={() => setAddDialogOpen(true)}>
-          <AddCircleIcon />
-        </IconButton>
+        <Button variant="contained" onClick={() => setAddDialogOpen(true)}>
+          <AddIcon />
+          <Typography sx={{ marginLeft: 1 }}>Create Task</Typography>
+        </Button>
       </Box>
       <DndContext
         sensors={sensors}
@@ -212,7 +213,7 @@ export function Kanban() {
         onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
       >
-        <Box display="flex" flex="1 1" width="100%" margin={1}>
+        <Box display="flex" flex="1 1" marginBottom={1} marginTop={1}>
           {lanes.map(({ status, title }) => (
             <KanbanLane
               key={status}

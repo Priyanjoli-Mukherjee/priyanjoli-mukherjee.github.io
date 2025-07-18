@@ -42,7 +42,7 @@ export function KanbanLane({
   }, [kanbanUsers]);
 
   return (
-    <Box flex="1 1" marginRight={1}>
+    <Box flex="1 1" marginLeft={1} marginRight={1}>
       <Paper
         style={{
           padding: 10,

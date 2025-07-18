@@ -7,7 +7,6 @@ import { Props } from "./props";
 export function UserBadge({ isSelected, user, onClick }: Props) {
   return (
     <Box
-      marginLeft={1}
       padding={0.25}
       borderRadius={15}
       border={`2px solid ${isSelected ? "blue" : "white"}`}

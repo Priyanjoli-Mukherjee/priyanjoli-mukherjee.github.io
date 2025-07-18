@@ -20,61 +20,64 @@ export function DraggableItem({ task, user, onSelect, onDelete }: Props) {
       <Paper
         onClick={() => onSelect()}
         style={{
+          alignItems: "center",
           cursor: "pointer",
+          display: "flex",
+          marginBottom: 8,
         }}
       >
         <Box
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          marginTop={1}
-          marginBottom={0.5}
-          marginRight={1}
-          marginLeft={1}
+          {...listeners}
+          color="rgb(180, 180, 180)"
+          marginRight={0.5}
+          sx={{ cursor: "grab" }}
         >
-          <Box display="flex" alignItems="center" justifyContent="center">
-            <Box
-              {...listeners}
-              color="rgb(180, 180, 180)"
-              marginRight={0.5}
-              sx={{ cursor: "grab" }}
-            >
-              <DragIndicatorIcon />
-            </Box>
-            <Typography variant="subtitle1">{task.title}</Typography>
-          </Box>
-          <IconButton
-            onMouseDown={async (evt) => {
-              evt.stopPropagation();
-              onDelete();
-            }}
-          >
-            <DeleteIcon />
-          </IconButton>
+          <DragIndicatorIcon />
         </Box>
         <Box
           display="flex"
+          flex="1 1"
+          flexDirection="column"
           justifyContent="space-between"
-          alignItems="center"
-          paddingBottom={1.5}
-          marginBottom={1}
-          marginRight={2}
-          marginLeft={1}
+          margin={0.5}
         >
-          <Typography variant="caption">{`PROJ-${task.ticketNumber}`}</Typography>
-          <Box display="flex" justifyContent="center" alignItems="center">
-            <Box
-              width={25}
-              height={25}
-              borderRadius={15}
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              style={{ backgroundColor: "rgb(191, 191, 191)" }}
-            >
-              <Typography variant="caption">{task.storyPoints}</Typography>
+          <Box
+            alignItems="center"
+            display="flex"
+            justifyContent="space-between"
+            marginRight={0.5}
+          >
+            <Box display="flex" alignItems="center" justifyContent="center">
+              <Typography variant="subtitle1">{task.title}</Typography>
             </Box>
-            <UserBadge user={user} />
+            <IconButton
+              onMouseDown={async (evt) => {
+                evt.stopPropagation();
+                onDelete();
+              }}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Box>
+          <Box
+            alignItems="center"
+            display="flex"
+            justifyContent="space-between"
+            marginRight={1}
+          >
+            <Typography variant="caption">{`PROJ-${task.ticketNumber}`}</Typography>
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <Box
+                borderRadius={2}
+                paddingLeft={1}
+                paddingRight={1}
+                marginRight={0.5}
+                style={{ backgroundColor: "rgb(225, 225, 225)" }}
+              >
+                <Typography variant="caption">{task.storyPoints}</Typography>
+              </Box>
+              <UserBadge user={user} />
+            </Box>
           </Box>
         </Box>
       </Paper>

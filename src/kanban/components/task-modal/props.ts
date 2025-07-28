@@ -1,4 +1,4 @@
-import { Task } from "../../types/kanban/task";
+import { Task } from "../../types/task";
 
 export interface Props {
   open: boolean;

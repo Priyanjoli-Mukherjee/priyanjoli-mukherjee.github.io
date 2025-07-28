@@ -1,4 +1,4 @@
-import { KanbanUser } from "../../types/kanban/kanban-user";
+import { KanbanUser } from "../../types/kanban-user";
 
 export interface Props {
   isSelected?: boolean;

@@ -19,8 +19,8 @@ export function UserBadge({ isSelected, user, onClick }: Props) {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        style={{ ...getBadgeStyle(user?.name), cursor: onClick && "pointer" }}
         onClick={onClick}
+        sx={{ ...getBadgeStyle(user?.name), cursor: onClick && "pointer" }}
       >
         {user ? (
           <Typography variant="caption" style={{ fontSize: "x-small" }}>

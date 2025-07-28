@@ -1,5 +1,5 @@
-import { Status } from "../../types/kanban/status";
-import { Task } from "../../types/kanban/task";
+import { Status } from "../../types/status";
+import { Task } from "../../types/task";
 
 export interface Props {
   tasks: Task[];

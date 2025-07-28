@@ -12,14 +12,14 @@ import {
   Typography,
 } from "@mui/material";
 import { Props } from "./props";
-import { Status } from "../../types/kanban/status";
+import { Status } from "../../types/status";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
 import { DatePicker, pickersSectionListClasses } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { useKanbanUsers } from "../../hooks/use-kanban-users";
-import { Task } from "../../types/kanban/task";
-import { NumberField } from "../../components/number-field";
-import { TextArea } from "../../components/text-area";
+import { Task } from "../../types/task";
+import { NumberField } from "../../../components/number-field";
+import { TextArea } from "../../../components/text-area";
 
 export function TaskModal({
   open,

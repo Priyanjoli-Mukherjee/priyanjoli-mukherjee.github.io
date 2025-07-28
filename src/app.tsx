@@ -8,7 +8,7 @@ import { ResumePage } from "./resume-page";
 import { ContactPage } from "./contact-page";
 import { EventMaster } from "./event-master";
 import { EventPage } from "./event-master/components/event-page";
-import { Kanban } from "./kanban/kanban-page";
+import { Kanban } from "./kanban";
 
 export function App() {
   return (

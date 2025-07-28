@@ -1,7 +1,7 @@
 import { Box, Paper, Typography } from "@mui/material";
 import { Props } from "./props";
 import { useMemo, useState } from "react";
-import { Task } from "../../types/kanban/task";
+import { Task } from "../../types/task";
 import { TaskModal } from "../task-modal";
 import { deleteTask } from "../../service/delete-task";
 import { updateTask } from "../../service/update-task";
@@ -11,7 +11,7 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { KanbanUser } from "../../types/kanban/kanban-user";
+import { KanbanUser } from "../../types/kanban-user";
 import { useKanbanUsers } from "../../hooks/use-kanban-users";
 
 export function KanbanLane({

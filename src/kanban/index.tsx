@@ -1,11 +1,11 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { useTasks } from "../hooks/use-tasks";
-import { createTask } from "../service/create-task";
+import { useTasks } from "./hooks/use-tasks";
+import { createTask } from "./service/create-task";
 import AddIcon from "@mui/icons-material/Add";
-import { TaskModal } from "./task-modal";
+import { TaskModal } from "./components/task-modal";
 import { useEffect, useMemo, useState } from "react";
-import { KanbanLane } from "./kanban-lane";
-import { Status } from "../types/kanban/status";
+import { KanbanLane } from "./components/kanban-lane";
+import { Status } from "./types/status";
 import {
   closestCenter,
   Collision,
@@ -21,12 +21,12 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
-import { Task } from "../types/kanban/task";
-import { updateTask } from "../service/update-task";
-import { KanbanUser } from "../types/kanban/kanban-user";
-import { useKanbanUsers } from "../hooks/use-kanban-users";
-import { UserBadge } from "./user-badge";
-import { KanbanCard } from "./kanban-lane/kanban-card";
+import { Task } from "./types/task";
+import { updateTask } from "./service/update-task";
+import { KanbanUser } from "./types/kanban-user";
+import { useKanbanUsers } from "./hooks/use-kanban-users";
+import { UserBadge } from "./components/user-badge";
+import { KanbanCard } from "./components/kanban-lane/kanban-card";
 
 export function Kanban() {
   const [isAddDialogOpen, setAddDialogOpen] = useState(false);

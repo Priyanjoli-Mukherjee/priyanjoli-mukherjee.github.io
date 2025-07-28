@@ -247,7 +247,14 @@ export function Kanban() {
         </Box>
         {draggingTask && (
           <DragOverlay>
-            <KanbanCard task={draggingTask} />
+            <KanbanCard
+              task={draggingTask}
+              user={
+                draggingTask.assignee
+                  ? userById[draggingTask.assignee]
+                  : undefined
+              }
+            />
           </DragOverlay>
         )}
       </DndContext>

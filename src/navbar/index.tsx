@@ -109,14 +109,14 @@ export function Navbar() {
                   </Typography>
                 </Box>
               </Link>
-                <Link to="/kanban">
-                  <Box alignItems="center" display="flex" marginTop={1}>
-                    <FormatListNumberedIcon fontSize="small" />
-                    <Typography variant="body1" sx={{ paddingLeft: 1 }}>
-                      Kanban
-                    </Typography>
-                  </Box>
-                </Link>
+              <Link to="/kanban">
+                <Box alignItems="center" display="flex" marginTop={1}>
+                  <FormatListNumberedIcon fontSize="small" />
+                  <Typography variant="body1" sx={{ paddingLeft: 1 }}>
+                    Kanban
+                  </Typography>
+                </Box>
+              </Link>
             </AccordionDetails>
           </Accordion>
         ) : (
@@ -127,12 +127,9 @@ export function Navbar() {
             <Link to="/event-master">
               <TheaterComedyIcon fontSize="small" sx={{ marginTop: 1 }} />
             </Link>
-              <Link to="/kanban">
-                <FormatListNumberedIcon
-                  fontSize="small"
-                  sx={{ marginTop: 1 }}
-                />
-              </Link>
+            <Link to="/kanban">
+              <FormatListNumberedIcon fontSize="small" sx={{ marginTop: 1 }} />
+            </Link>
           </>
         )}
       </Box>

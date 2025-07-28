@@ -114,21 +114,21 @@ export function Home() {
               <Typography variant="body1">Concerto</Typography>
             </Button>
           </Link>
-            <Link to="/kanban">
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "#003399",
-                  display: "flex",
-                  flexDirection: "column",
-                  paddingLeft: 4,
-                  paddingRight: 4,
-                  marginLeft: 1,
-                }}
-              >
-                <Typography variant="body1">Kanban</Typography>
-              </Button>
-            </Link>
+          <Link to="/kanban">
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "#003399",
+                display: "flex",
+                flexDirection: "column",
+                paddingLeft: 4,
+                paddingRight: 4,
+                marginLeft: 1,
+              }}
+            >
+              <Typography variant="body1">Kanban</Typography>
+            </Button>
+          </Link>
         </Box>
         <Box sx={{ display: "flex", flex: "1 1", alignItems: "flex-end" }}>
           <IconButton>

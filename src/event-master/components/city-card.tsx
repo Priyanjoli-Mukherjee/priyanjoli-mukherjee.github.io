@@ -1,6 +1,6 @@
 import { Box, Paper, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import { City } from "./types/city";
+import { City } from "../types/city";
 
 type Props = {
   city: City;

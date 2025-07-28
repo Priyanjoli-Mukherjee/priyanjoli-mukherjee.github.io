@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
-import { Event } from "./types/event";
-import { getDisplayTime } from "./get-display-time";
-import { City } from "./types/city";
+import { Event } from "../types/event";
+import { getDisplayTime } from "../utils/get-display-time";
+import { City } from "../types/city";
 
 type Props = {
   artistName: string;

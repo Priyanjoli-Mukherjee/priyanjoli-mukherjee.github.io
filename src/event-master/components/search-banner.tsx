@@ -4,8 +4,8 @@ import { CityAutocomplete } from "./city-autocomplete";
 import { Link, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { ArtistAutocomplete } from "./artist-autocomplete";
-import { DatePicker } from "../components/date-picker";
-import Concerto from "../images/event-master/Concerto.png";
+import { DatePicker } from "../../components/date-picker";
+import Concerto from "../images/Concerto.png";
 
 export function SearchBanner() {
   const [params] = useSearchParams();

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { getEventData } from "./service/get-event-data";
+import { getEventData } from "../service/get-event-data";
 import {
   Box,
   Button,
@@ -14,15 +14,15 @@ import {
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { EventCard } from "./event-card";
 import { Link, useSearchParams } from "react-router-dom";
-import { Event } from "./types/event";
+import { Event } from "../types/event";
 import { CheckoutDrawer } from "./checkout-drawer";
 import keyBy from "lodash/keyBy";
-import { getArtistData } from "./service/get-artist-data";
+import { getArtistData } from "../service/get-artist-data";
 import { SearchBanner } from "./search-banner";
-import { Artist } from "./types/artist";
-import { City } from "./types/city";
-import { getCities } from "./service/get-cities";
-import DJ from "../images/event-master/DJ.jpg";
+import { Artist } from "../types/artist";
+import { City } from "../types/city";
+import { getCities } from "../service/get-cities";
+import DJ from "../images/DJ.jpg";
 
 export function EventPage() {
   const events = useMemo(() => getEventData(), []);

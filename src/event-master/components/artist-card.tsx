@@ -1,5 +1,5 @@
 import { Box, Paper, Typography } from "@mui/material";
-import { Artist } from "./types/artist";
+import { Artist } from "../types/artist";
 import { Link } from "react-router-dom";
 
 type Props = {

@@ -1,11 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import { useMemo } from "react";
 import { getArtistData } from "./service/get-artist-data";
-import { ArtistCard } from "./artist-card";
-import { SearchBanner } from "./search-banner";
-import { QuickSearchContainer } from "./quick-search-container";
+import { ArtistCard } from "./components/artist-card";
+import { SearchBanner } from "./components/search-banner";
+import { QuickSearchContainer } from "./styles/quick-search-container";
 import { getCities } from "./service/get-cities";
-import { CityCard } from "./city-card";
+import { CityCard } from "./components/city-card";
 
 export function EventMaster() {
   const artists = useMemo(() => getArtistData(), []);

@@ -1,6 +1,6 @@
 import { Autocomplete, TextField } from "@mui/material";
 import { useMemo } from "react";
-import { getCities } from "./service/get-cities";
+import { getCities } from "../service/get-cities";
 import keyBy from "lodash/keyBy";
 
 type Props = {

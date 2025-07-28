@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useState } from "react";
-import { Event } from "./types/event";
+import { Event } from "../types/event";
 import {
   Box,
   Button,

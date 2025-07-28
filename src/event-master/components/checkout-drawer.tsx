@@ -1,8 +1,8 @@
 import { ChangeEvent, useMemo, useState } from "react";
-import { Artist } from "./types/artist";
-import { Event } from "./types/event";
+import { Artist } from "../types/artist";
+import { Event } from "../types/event";
 import { Box, Button, Drawer, Typography } from "@mui/material";
-import { NumberField } from "./number-field";
+import { NumberField } from "../styles/number-field";
 
 type Props = {
   artist: Artist;

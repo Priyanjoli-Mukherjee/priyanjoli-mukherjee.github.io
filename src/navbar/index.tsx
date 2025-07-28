@@ -17,12 +17,9 @@ import PeopleIcon from "@mui/icons-material/People";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
-import { useFeatureFlag } from "../hooks/use-feature-flag";
-import { FeatureFlag } from "../types/feature-flag";
 
 export function Navbar() {
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const isKanbanEnabled = useFeatureFlag(FeatureFlag.KANBAN);
 
   return (
     <Paper
@@ -112,7 +109,6 @@ export function Navbar() {
                   </Typography>
                 </Box>
               </Link>
-              {isKanbanEnabled && (
                 <Link to="/kanban">
                   <Box alignItems="center" display="flex" marginTop={1}>
                     <FormatListNumberedIcon fontSize="small" />
@@ -121,7 +117,6 @@ export function Navbar() {
                     </Typography>
                   </Box>
                 </Link>
-              )}
             </AccordionDetails>
           </Accordion>
         ) : (
@@ -132,14 +127,12 @@ export function Navbar() {
             <Link to="/event-master">
               <TheaterComedyIcon fontSize="small" sx={{ marginTop: 1 }} />
             </Link>
-            {isKanbanEnabled && (
               <Link to="/kanban">
                 <FormatListNumberedIcon
                   fontSize="small"
                   sx={{ marginTop: 1 }}
                 />
               </Link>
-            )}
           </>
         )}
       </Box>

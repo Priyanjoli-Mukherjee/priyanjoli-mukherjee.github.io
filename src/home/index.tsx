@@ -5,12 +5,8 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import MailIcon from "@mui/icons-material/Mail";
 import WorkIcon from "@mui/icons-material/Work";
-import { useFeatureFlag } from "../hooks/use-feature-flag";
-import { FeatureFlag } from "../types/feature-flag";
 
 export function Home() {
-  const isKanbanEnabled = useFeatureFlag(FeatureFlag.KANBAN);
-
   return (
     <Box sx={{ display: "flex", height: "100vh", width: "100%" }}>
       <Box
@@ -118,7 +114,6 @@ export function Home() {
               <Typography variant="body1">Concerto</Typography>
             </Button>
           </Link>
-          {isKanbanEnabled && (
             <Link to="/kanban">
               <Button
                 variant="contained"
@@ -134,7 +129,6 @@ export function Home() {
                 <Typography variant="body1">Kanban</Typography>
               </Button>
             </Link>
-          )}
         </Box>
         <Box sx={{ display: "flex", flex: "1 1", alignItems: "flex-end" }}>
           <IconButton>

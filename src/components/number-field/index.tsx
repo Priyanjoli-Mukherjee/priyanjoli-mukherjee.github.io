@@ -39,20 +39,26 @@ export function NumberField({
           <InputAdornment position="end">
             <Box display="flex" flexDirection="column">
               <Box
-                height={24}
-                marginBottom={-0.75}
+                borderRadius={6}
+                height={12}
                 onClick={() => handleChange((value ?? 0) + 1)}
-                sx={{ cursor: "pointer" }}
+                sx={{
+                  cursor: "pointer",
+                  "&:hover": { backgroundColor: "rgb(225, 225, 225)" },
+                }}
               >
-                <ArrowDropUp />
+                <ArrowDropUp sx={{ position: "relative", bottom: 6 }} />
               </Box>
               <Box
-                height={24}
-                marginTop={-0.75}
+                borderRadius={6}
+                height={12}
                 onClick={() => handleChange((value ?? 0) - 1)}
-                sx={{ cursor: "pointer" }}
+                sx={{
+                  cursor: "pointer",
+                  "&:hover": { backgroundColor: "rgb(225, 225, 225)" },
+                }}
               >
-                <ArrowDropDown />
+                <ArrowDropDown sx={{ position: "relative", bottom: 6 }} />
               </Box>
             </Box>
           </InputAdornment>

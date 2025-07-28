@@ -14,9 +14,12 @@ import {
 import { Props } from "./props";
 import { Status } from "../../types/kanban/status";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
-import { DatePicker } from "@mui/x-date-pickers";
+import { DatePicker, pickersSectionListClasses } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { useKanbanUsers } from "../../hooks/use-kanban-users";
+import { Task } from "../../types/kanban/task";
+import { NumberField } from "../../components/number-field";
+import { TextArea } from "../../components/text-area";
 
 export function TaskModal({
   open,
@@ -26,13 +29,14 @@ export function TaskModal({
   onClose,
   onSubmit,
 }: Props) {
-  const [newTask, setNewTask] = useState(
+  const [newTask, setNewTask] = useState<Task>(
     task ?? {
       id: "",
       title: "",
       description: "",
       status: Status.TO_DO,
       rank: 0,
+      ticketNumber: 0,
     },
   );
 
@@ -46,6 +50,7 @@ export function TaskModal({
         description: "",
         status: Status.TO_DO,
         rank: 0,
+        ticketNumber: 0,
       },
     );
   }, [open, task]);
@@ -76,6 +81,10 @@ export function TaskModal({
           <Box display="flex" justifyContent="space-between" width="100%">
             <Box display="flex" flexDirection="column" width="100%">
               <TextField
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{ notched: true }}
                 label="Title"
                 placeholder="Title"
                 variant="outlined"
@@ -85,12 +94,10 @@ export function TaskModal({
                 }
                 fullWidth
                 required
-                sx={{ marginBottom: 2 }}
+                sx={{ marginBottom: 2, marginTop: 1 }}
               />
-              <TextField
+              <TextArea
                 label="Description"
-                multiline
-                rows={3}
                 placeholder="Description"
                 variant="outlined"
                 value={newTask.description}
@@ -108,13 +115,35 @@ export function TaskModal({
                   onChange={(newValue) =>
                     setNewTask({ ...newTask, dueDate: newValue?.toString() })
                   }
-                  sx={{ flex: "1 1", marginRight: 1, minWidth: 0 }}
+                  slotProps={{
+                    textField: {
+                      InputLabelProps: { shrink: true },
+                      InputProps: { notched: true },
+                    },
+                  }}
+                  sx={{
+                    flex: "1 1",
+                    marginRight: 1,
+                    minWidth: 0,
+                    [`& .${pickersSectionListClasses.root}`]: {
+                      opacity: 1,
+                    },
+                  }}
                 />
                 <Autocomplete
                   options={kanbanUsers}
                   getOptionLabel={(option) => option.name}
                   renderInput={(params) => (
-                    <TextField {...params} label="Assignee" />
+                    <TextField
+                      {...params}
+                      InputLabelProps={{
+                        ...params.InputLabelProps,
+                        shrink: true,
+                      }}
+                      InputProps={{ ...params.InputProps, notched: true }}
+                      label="Assignee"
+                      placeholder="Assign to User"
+                    />
                   )}
                   value={
                     kanbanUsers.find((user) => user.id === newTask.assignee) ||
@@ -125,17 +154,15 @@ export function TaskModal({
                   }
                   sx={{ flex: "1 1", marginRight: 1, minWidth: 0 }}
                 />
-                <TextField
+                <NumberField
                   label="Story Points"
-                  placeholder="Story Points"
-                  variant="outlined"
-                  type="number"
+                  min={0}
+                  placeholder="Assign Points"
                   value={newTask.storyPoints}
-                  InputProps={{ inputProps: { min: 0 } }}
-                  onChange={(evt) =>
+                  onChange={(value) =>
                     setNewTask({
                       ...newTask,
-                      storyPoints: parseInt(evt.target.value),
+                      storyPoints: value,
                     })
                   }
                   sx={{ flex: "1 1", minWidth: 0 }}

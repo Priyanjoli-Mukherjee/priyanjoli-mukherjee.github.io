@@ -1,11 +1,18 @@
-import { Box, IconButton, Paper, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import { Props } from "./props";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { useMemo, useState } from "react";
 import { Task } from "../../types/kanban/task";
 import { TaskModal } from "../task-modal";
 import { deleteTask } from "../../service/delete-task";
 import { updateTask } from "../../service/update-task";
+import { DraggableItem } from "./draggable-item";
+import { DroppableArea } from "./droppable-area";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { KanbanUser } from "../../types/kanban/kanban-user";
+import { useKanbanUsers } from "../../hooks/use-kanban-users";
 
 export function KanbanLane({
   tasks,
@@ -17,39 +24,54 @@ export function KanbanLane({
   const [selectedTask, setSelectedTask] = useState<Task>();
 
   const filteredTasks = useMemo(
-    () => tasks.filter((task) => task.status === status),
+    () =>
+      tasks
+        .filter((task) => task.status === status)
+        .sort((task1, task2) => task1.rank - task2.rank),
     [tasks, status],
   );
 
+  const kanbanUsers = useKanbanUsers();
+
+  const userById = useMemo(() => {
+    const dict: Record<string, KanbanUser> = {};
+    for (const user of kanbanUsers) {
+      dict[user.id] = user;
+    }
+    return dict;
+  }, [kanbanUsers]);
+
   return (
-    <Box flex="1 1">
-      <Paper style={{ padding: 10, display: "flex", flexDirection: "column" }}>
-        <Typography variant="h6">{title}</Typography>
-        {filteredTasks.map((task) => (
-          <Paper
-            key={task.id}
-            onClick={() => setSelectedTask(task)}
-            style={{
-              cursor: "pointer",
-              margin: 10,
-              padding: 10,
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
+    <Box flex="1 1" marginLeft={1} marginRight={1}>
+      <Paper
+        style={{
+          padding: 10,
+          display: "flex",
+          flexDirection: "column",
+          height: "100%",
+          backgroundColor: "rgb(242, 242, 242)",
+        }}
+      >
+        <Typography variant="subtitle1">{title}</Typography>
+        <DroppableArea id={status}>
+          <SortableContext
+            items={filteredTasks}
+            strategy={verticalListSortingStrategy}
           >
-            <Box>{task.title}</Box>
-            <IconButton
-              onClick={async (evt) => {
-                evt.stopPropagation();
-                onDelete(task);
-                await deleteTask(task);
-              }}
-            >
-              <DeleteIcon />
-            </IconButton>
-          </Paper>
-        ))}
+            {filteredTasks.map((task) => (
+              <DraggableItem
+                key={task.id}
+                task={task}
+                user={task.assignee ? userById[task.assignee] : undefined}
+                onDelete={async () => {
+                  onDelete(task);
+                  await deleteTask(task);
+                }}
+                onSelect={() => setSelectedTask(task)}
+              />
+            ))}
+          </SortableContext>
+        </DroppableArea>
       </Paper>
       <TaskModal
         open={!!selectedTask}

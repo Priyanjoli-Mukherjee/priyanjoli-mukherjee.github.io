@@ -9,4 +9,5 @@ export interface Task {
   storyPoints?: number;
   status: Status;
   rank: number;
+  ticketNumber: number;
 }

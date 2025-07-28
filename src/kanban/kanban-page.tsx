@@ -13,6 +13,8 @@ import {
   DndContext,
   DragEndEvent,
   DragOverEvent,
+  DragOverlay,
+  DragStartEvent,
   KeyboardSensor,
   PointerSensor,
   useSensor,
@@ -24,11 +26,13 @@ import { updateTask } from "../service/update-task";
 import { KanbanUser } from "../types/kanban/kanban-user";
 import { useKanbanUsers } from "../hooks/use-kanban-users";
 import { UserBadge } from "./user-badge";
+import { KanbanCard } from "./kanban-lane/kanban-card";
 
 export function Kanban() {
   const [isAddDialogOpen, setAddDialogOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [assignees, setAssignees] = useState<Record<string, boolean>>({});
+  const [draggingTask, setDraggingTask] = useState<Task>();
 
   const _tasks = useTasks();
   const kanbanUsers = useKanbanUsers();
@@ -116,6 +120,10 @@ export function Kanban() {
     }
   };
 
+  function handleDragStart({ active }: DragStartEvent) {
+    setDraggingTask(taskById[active.id]);
+  }
+
   function handleDragOver(event: DragOverEvent) {
     const { active, over } = event;
     const status = over?.id as unknown as Status;
@@ -127,6 +135,7 @@ export function Kanban() {
 
   async function handleDragEnd(event: DragEndEvent) {
     const { active, delta, over } = event;
+    setDraggingTask(undefined);
 
     if (!over) {
       return;
@@ -212,6 +221,7 @@ export function Kanban() {
         collisionDetection={collisionDetection}
         onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
+        onDragStart={handleDragStart}
       >
         <Box
           display="grid"
@@ -235,6 +245,11 @@ export function Kanban() {
             />
           ))}
         </Box>
+        {draggingTask && (
+          <DragOverlay>
+            <KanbanCard task={draggingTask} />
+          </DragOverlay>
+        )}
       </DndContext>
       <TaskModal
         open={isAddDialogOpen}

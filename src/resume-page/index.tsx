@@ -4,7 +4,7 @@ import resume from "./Priya Mukherjee portfolio resume.pdf";
 import { Box } from "@mui/material";
 import useMeasure from "react-use/lib/useMeasure";
 import { useEffect, useMemo, useState } from "react";
-import { debounce } from "../callback-utils/debounce";
+import { debounce } from "../utils/callback-utils/debounce";
 
 export function ResumePage() {
   const [ref, { width: measuredWidth }] = useMeasure();

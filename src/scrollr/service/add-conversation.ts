@@ -1,4 +1,4 @@
-import { USERS } from "../random-utils/random-user";
+import { USERS } from "../utils/random-utils/random-user";
 import { conversations } from "../service/conversations";
 
 export function addConversation(twitterHandle: string) {

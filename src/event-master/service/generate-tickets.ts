@@ -1,4 +1,4 @@
-import { randomInteger } from "../../random-utils/random-integer";
+import { randomInteger } from "../../utils/random-utils/random-integer";
 import { Ticket } from "../types/ticket";
 import uniqueId from "lodash/uniqueId";
 

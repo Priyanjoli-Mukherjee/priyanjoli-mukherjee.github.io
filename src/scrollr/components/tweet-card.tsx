@@ -1,6 +1,6 @@
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import { Tweet } from "../types/tweet";
-import { formatDate } from "../../date-utils/format-date";
+import { formatDate } from "../../utils/date-utils/format-date";
 import { deleteTweet } from "../service/delete-tweets";
 import { useQueryClient } from "react-query";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
@@ -10,7 +10,7 @@ import CommentIcon from "@mui/icons-material/Comment";
 import { useMemo, useState } from "react";
 import { editTweet } from "../service/edit-tweets";
 import { useCurrentUser } from "../hooks/use-current-user";
-import { parseHashtags } from "../../hashtag-utils/parse-hashtags";
+import { parseHashtags } from "../utils/hashtag-utils/parse-hashtags";
 import { Link } from "react-router-dom";
 import { tweets } from "../service/tweets";
 

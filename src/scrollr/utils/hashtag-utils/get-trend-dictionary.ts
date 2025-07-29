@@ -1,5 +1,5 @@
-import { Dictionary } from "../scrollr/types/dictionary";
-import { Tweet } from "../scrollr/types/tweet";
+import { Dictionary } from "../../types/dictionary";
+import { Tweet } from "../../types/tweet";
 import { getHashtags } from "./get-hashtags";
 
 export function getTrendDictionary(tweets: Array<Tweet>) {

@@ -13,7 +13,7 @@ import { TweetCard } from "./components/tweet-card";
 import { useTweets } from "./hooks/use-tweets";
 import { MessagesButton } from "./components/messages-button";
 import SearchIcon from "@mui/icons-material/Search";
-import { getTrendDictionary } from "../hashtag-utils/get-trend-dictionary";
+import { getTrendDictionary } from "./utils/hashtag-utils/get-trend-dictionary";
 import { Dictionary } from "./types/dictionary";
 import { Tweet } from "./types/tweet";
 import { Link, useNavigate, useParams } from "react-router-dom";

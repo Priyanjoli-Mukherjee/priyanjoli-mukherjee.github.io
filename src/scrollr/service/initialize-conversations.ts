@@ -1,4 +1,4 @@
-import { USERS } from "../random-utils/random-user";
+import { USERS } from "../utils/random-utils/random-user";
 import { Conversation } from "../types/conversation";
 import { initializeConversation } from "./initialize-conversation";
 

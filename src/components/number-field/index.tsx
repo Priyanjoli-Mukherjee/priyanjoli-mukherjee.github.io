@@ -1,6 +1,10 @@
-import { Box, InputAdornment, TextField } from "@mui/material";
+import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUp from "@mui/icons-material/ArrowDropUp";
+import Box from "@mui/material/Box";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
+
 import { Props } from "./props";
-import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
 
 export function NumberField({
   InputLabelProps,

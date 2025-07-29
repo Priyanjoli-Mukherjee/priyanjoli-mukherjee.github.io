@@ -1,14 +1,15 @@
-import { Scrollr } from "./scrollr";
+import Box from "@mui/material/Box";
 import { Route, Routes } from "react-router-dom";
-import { TweetPage } from "./scrollr/tweet-page";
-import { Home } from "./home";
-import { Box } from "@mui/material";
-import { Navbar } from "./navbar";
-import { ResumePage } from "./resume-page";
+
 import { ContactPage } from "./contact-page";
 import { EventMaster } from "./event-master";
-import { EventPage } from "./event-master/event-page";
-import { Kanban } from "./kanban/kanban-page";
+import { EventPage } from "./event-master/components/event-page";
+import { Home } from "./home";
+import { Kanban } from "./kanban";
+import { Navbar } from "./navbar";
+import { ResumePage } from "./resume-page";
+import { Scrollr } from "./scrollr";
+import { TweetPage } from "./scrollr/components/tweet-page";
 
 export function App() {
   return (

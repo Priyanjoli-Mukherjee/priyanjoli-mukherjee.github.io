@@ -1,4 +1,6 @@
-import { AccordionSummary, accordionSummaryClasses } from "@mui/material";
+import AccordionSummary, {
+  accordionSummaryClasses,
+} from "@mui/material/AccordionSummary";
 import { styled } from "@mui/material/styles";
 
 export const NavAccordionSummary = styled(AccordionSummary)({

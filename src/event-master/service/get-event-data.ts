@@ -1,7 +1,8 @@
-import { Event } from "../types/event";
 import uniqueId from "lodash/uniqueId";
-import { generateVenues } from "./generate-venues";
+
+import { Event } from "../types/event";
 import { generateTickets } from "./generate-tickets";
+import { generateVenues } from "./generate-venues";
 
 const eventData: Event[] = [
   {

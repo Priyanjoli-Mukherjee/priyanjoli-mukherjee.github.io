@@ -1,22 +1,21 @@
-import {
-  Box,
-  Button,
-  IconButton,
-  InputAdornment,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { useQueryClient } from "react-query";
-import { useMemo, useState } from "react";
-import { addTweet } from "../service/add-tweet";
-import { TweetCard } from "./tweet-card";
-import { useTweets } from "../hooks/use-tweets";
-import { MessagesButton } from "./messages-button";
 import SearchIcon from "@mui/icons-material/Search";
-import { getTrendDictionary } from "../hashtag-utils/get-trend-dictionary";
-import { Dictionary } from "../types/dictionary";
-import { Tweet } from "../types/tweet";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { useMemo, useState } from "react";
+import { useQueryClient } from "react-query";
 import { Link, useNavigate, useParams } from "react-router-dom";
+
+import { MessagesButton } from "./components/messages-button";
+import { TweetCard } from "./components/tweet-card";
+import { useTweets } from "./hooks/use-tweets";
+import { addTweet } from "./service/add-tweet";
+import { Dictionary } from "./types/dictionary";
+import { Tweet } from "./types/tweet";
+import { getTrendDictionary } from "./utils/hashtag-utils/get-trend-dictionary";
 
 const SIDEBAR_WIDTH = 500;
 

@@ -1,4 +1,4 @@
-import { TextFieldProps } from "@mui/material";
+import { TextFieldProps } from "@mui/material/TextField";
 
 export interface Props
   extends Omit<TextFieldProps, "value" | "onChange" | "slotProps"> {

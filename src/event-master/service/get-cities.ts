@@ -1,16 +1,16 @@
+import Austin from "../images/cities/Austin.jpg";
+import Boston from "../images/cities/Boston.jpg";
+import Charleston from "../images/cities/Charleston.jpg";
+import Disney from "../images/cities/Disney.jpg";
+import GoldenGate from "../images/cities/Golden_Gate.jpg";
+import Kuaui from "../images/cities/Kuaui.jpg";
+import LosAngeles from "../images/cities/Los_Angeles.jpg";
+import Nashville from "../images/cities/Nashville.jpg";
+import RedRocks from "../images/cities/Red_Rocks_Amphitheatre.jpg";
+import Saguaro from "../images/cities/Saguaro.jpg";
+import Seattle from "../images/cities/Seattle.jpeg";
+import StatueOfLiberty from "../images/cities/Statue_of_Liberty.jpg";
 import { City } from "../types/city";
-import Austin from "../../images/event-master/cities/Austin.jpg";
-import Boston from "../../images/event-master/cities/Boston.jpg";
-import Charleston from "../../images/event-master/cities/Charleston.jpg";
-import Disney from "../../images/event-master/cities/Disney.jpg";
-import GoldenGate from "../../images/event-master/cities/Golden_Gate.jpg";
-import Kuaui from "../../images/event-master/cities/Kuaui.jpg";
-import LosAngeles from "../../images/event-master/cities/Los_Angeles.jpg";
-import Nashville from "../../images/event-master/cities/Nashville.jpg";
-import RedRocks from "../../images/event-master/cities/Red_Rocks_Amphitheatre.jpg";
-import Saguaro from "../../images/event-master/cities/Saguaro.jpg";
-import Seattle from "../../images/event-master/cities/Seattle.jpeg";
-import StatueOfLiberty from "../../images/event-master/cities/Statue_of_Liberty.jpg";
 
 const cities: City[] = [
   {

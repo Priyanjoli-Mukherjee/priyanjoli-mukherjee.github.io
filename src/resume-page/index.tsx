@@ -1,10 +1,12 @@
-import { Document, Page } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-import resume from "./Priya Mukherjee portfolio resume.pdf";
-import { Box } from "@mui/material";
-import useMeasure from "react-use/lib/useMeasure";
+
+import Box from "@mui/material/Box";
 import { useEffect, useMemo, useState } from "react";
-import { debounce } from "../callback-utils/debounce";
+import { Document, Page } from "react-pdf";
+import useMeasure from "react-use/lib/useMeasure";
+
+import { debounce } from "../utils/callback-utils/debounce";
+import resume from "./Priya Mukherjee portfolio resume.pdf";
 
 export function ResumePage() {
   const [ref, { width: measuredWidth }] = useMeasure();

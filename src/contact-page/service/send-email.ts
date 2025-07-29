@@ -1,9 +1,9 @@
 import { send } from "@emailjs/browser";
-import { EmailTemplateParams } from "./email-template-params";
-import { SERVICE_ID } from "./service-id";
-import { TEMPLATE_ID } from "./template-id";
-import { USER_NAME } from "./user-name";
-import { DOMAIN } from "./domain";
+import { EmailTemplateParams } from "../types/email-template-params";
+import { SERVICE_ID } from "../constants/service-id";
+import { TEMPLATE_ID } from "../constants/template-id";
+import { USER_NAME } from "../constants/user-name";
+import { DOMAIN } from "../constants/domain";
 
 function sendFallbackEmail({ message, name, phone }: EmailTemplateParams) {
   const mailToLink = encodeURI(

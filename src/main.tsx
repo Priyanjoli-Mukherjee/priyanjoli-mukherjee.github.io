@@ -9,7 +9,7 @@ import { HashRouter } from "react-router-dom";
 import { pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/TextLayer.css";
 import emailjs from "@emailjs/browser";
-import { PUBLIC_KEY } from "./contact-page/public-key.ts";
+import { PUBLIC_KEY } from "./contact-page/constants/public-key.ts";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 

@@ -1,11 +1,5 @@
-import { TextField, TextFieldProps } from "@mui/material";
-import { styled } from "@mui/material/styles";
-
-const Field = styled(TextField)({
-  "& textarea": {
-    resize: "both",
-  },
-});
+import { TextFieldProps } from "@mui/material";
+import { Field } from "./field";
 
 export function TextArea({
   InputLabelProps,

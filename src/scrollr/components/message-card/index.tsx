@@ -1,10 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import { Message } from "../types/message";
-import { useCurrentUser } from "../hooks/use-current-user";
-
-interface Props {
-  message: Message;
-}
+import { useCurrentUser } from "../../hooks/use-current-user";
+import { Props } from "./props";
 
 export function MessageCard({ message }: Props) {
   const currentUser = useCurrentUser();

@@ -1,15 +1,7 @@
 import { ChangeEvent, useMemo, useState } from "react";
-import { Artist } from "../types/artist";
-import { Event } from "../types/event";
 import { Box, Button, Drawer, Typography } from "@mui/material";
-import { NumberField } from "../styles/number-field";
-
-type Props = {
-  artist: Artist;
-  event: Event;
-  onCancel: () => void;
-  onSubmit: () => void;
-};
+import { NumberField } from "../../styles/number-field";
+import { Props } from "./props";
 
 export function CheckoutDrawer({ artist, event, onCancel, onSubmit }: Props) {
   const { title, tickets } = event;

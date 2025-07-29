@@ -1,12 +1,8 @@
 import { Autocomplete, TextField } from "@mui/material";
 import { useMemo } from "react";
-import { getCities } from "../service/get-cities";
+import { getCities } from "../../service/get-cities";
 import keyBy from "lodash/keyBy";
-
-type Props = {
-  cityId: string | null;
-  onChange: (cityId: string) => void;
-};
+import { Props } from "./props";
 
 export function CityAutocomplete({ cityId, onChange }: Props) {
   const cities = useMemo(() => getCities(), []);

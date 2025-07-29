@@ -1,5 +1,4 @@
 import { ChangeEvent, useCallback, useState } from "react";
-import { Event } from "../types/event";
 import {
   Box,
   Button,
@@ -10,12 +9,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-
-type Props = {
-  event: Event;
-  onCancel: () => void;
-  onSubmit: (numTickets: number) => void;
-};
+import { Props } from "./props";
 
 export function EventDialog(props: Props) {
   const [numTickets, setNumTickets] = useState(1);

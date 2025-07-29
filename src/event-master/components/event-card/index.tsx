@@ -1,15 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
-import { Event } from "../types/event";
-import { getDisplayTime } from "../utils/get-display-time";
-import { City } from "../types/city";
-
-type Props = {
-  artistName: string;
-  city: City;
-  event: Event;
-  isLastCard: boolean;
-  onSelectEvent: (evt: Event) => void;
-};
+import { getDisplayTime } from "../../utils/get-display-time";
+import { Props } from "./props";
 
 export function EventCard({
   artistName,

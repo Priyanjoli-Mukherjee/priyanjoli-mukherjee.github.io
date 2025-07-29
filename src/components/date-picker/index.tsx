@@ -1,14 +1,6 @@
-import {
-  DatePickerProps,
-  DatePicker as MUIDatePicker,
-} from "@mui/x-date-pickers/DatePicker";
+import { DatePicker as MUIDatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
-
-interface Props extends Omit<DatePickerProps, "value" | "onChange"> {
-  startOfDay: boolean;
-  timeStamp: number;
-  onChange: (timeStamp: number) => void;
-}
+import { Props } from "./props";
 
 export function DatePicker({
   startOfDay,

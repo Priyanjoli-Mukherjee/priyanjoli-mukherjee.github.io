@@ -1,5 +1,5 @@
 import { User } from "../types/user";
-import { randomInteger } from "./random-integer";
+import { randomInteger } from "../../random-utils/random-integer";
 import Ethel from "../images/ethel.jpeg";
 import Jimbob from "../images/jimbob.jpeg";
 import Gertrude from "../images/gertrude.jpeg";

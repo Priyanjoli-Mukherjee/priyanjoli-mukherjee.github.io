@@ -8,14 +8,14 @@ import {
 } from "@mui/material";
 import { useQueryClient } from "react-query";
 import { useMemo, useState } from "react";
-import { addTweet } from "../service/add-tweet";
-import { TweetCard } from "./tweet-card";
-import { useTweets } from "../hooks/use-tweets";
-import { MessagesButton } from "./messages-button";
+import { addTweet } from "./service/add-tweet";
+import { TweetCard } from "./components/tweet-card";
+import { useTweets } from "./hooks/use-tweets";
+import { MessagesButton } from "./components/messages-button";
 import SearchIcon from "@mui/icons-material/Search";
 import { getTrendDictionary } from "../hashtag-utils/get-trend-dictionary";
-import { Dictionary } from "../types/dictionary";
-import { Tweet } from "../types/tweet";
+import { Dictionary } from "./types/dictionary";
+import { Tweet } from "./types/tweet";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 const SIDEBAR_WIDTH = 500;

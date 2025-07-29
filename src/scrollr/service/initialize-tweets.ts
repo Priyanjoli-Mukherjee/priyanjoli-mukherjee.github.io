@@ -1,8 +1,8 @@
 import uniq from "lodash/uniq";
 import uniqueId from "lodash/uniqueId";
-import { range } from "../array-utils/range";
-import { randomInteger } from "../random-utils/random-integer";
-import { randomText } from "../random-utils/random-text";
+import { range } from "../../array-utils/range";
+import { randomInteger } from "../../random-utils/random-integer";
+import { randomText } from "../../random-utils/random-text";
 import { randomUser } from "../random-utils/random-user";
 import { Tweet } from "../types/tweet";
 import { randomHashtag } from "../random-utils/random-hashtag";

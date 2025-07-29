@@ -1,5 +1,5 @@
 import uniqueId from "lodash/uniqueId";
-import { conversations } from "./conversations";
+import { conversations } from "../service/conversations";
 import { getCurrentUser } from "./get-current-user";
 
 export function addMessage(text: string, twitterHandle: string) {

@@ -1,6 +1,6 @@
 import { Scrollr } from "./scrollr";
 import { Route, Routes } from "react-router-dom";
-import { TweetPage } from "./scrollr/tweet-page";
+import { TweetPage } from "./scrollr/components/tweet-page";
 import { Home } from "./home";
 import { Box } from "@mui/material";
 import { Navbar } from "./navbar";

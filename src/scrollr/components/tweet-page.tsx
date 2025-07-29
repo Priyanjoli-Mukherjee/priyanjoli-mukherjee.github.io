@@ -1,4 +1,6 @@
-import { Box, Button, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import { useParams } from "react-router-dom";
 import { useTweets } from "../hooks/use-tweets";
 import { TweetCard } from "./tweet-card";

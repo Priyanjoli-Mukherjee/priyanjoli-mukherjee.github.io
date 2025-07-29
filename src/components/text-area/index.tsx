@@ -1,4 +1,4 @@
-import { TextFieldProps } from "@mui/material";
+import { TextFieldProps } from "@mui/material/TextField";
 import { Field } from "./field";
 
 export function TextArea({

@@ -1,4 +1,5 @@
-import { Box, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import { useMemo } from "react";
 import { getArtistData } from "./service/get-artist-data";
 import { ArtistCard } from "./components/artist-card";

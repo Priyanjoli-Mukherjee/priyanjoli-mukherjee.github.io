@@ -1,4 +1,6 @@
-import { Box, Paper, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 import { Props } from "./props";
 import { useMemo, useState } from "react";
 import { Task } from "../../types/task";

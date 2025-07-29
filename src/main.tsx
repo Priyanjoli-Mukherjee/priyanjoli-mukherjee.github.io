@@ -3,7 +3,7 @@ import { App } from "./app.tsx";
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Fragment, Suspense } from "react";
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./theme.ts";
 import { HashRouter } from "react-router-dom";
 import { pdfjs } from "react-pdf";

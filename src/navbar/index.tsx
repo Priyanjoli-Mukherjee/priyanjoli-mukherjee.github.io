@@ -1,11 +1,9 @@
 import { useState } from "react";
-import {
-  Accordion,
-  AccordionDetails,
-  Box,
-  Paper,
-  Typography,
-} from "@mui/material";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import MailIcon from "@mui/icons-material/Mail";
 import WorkIcon from "@mui/icons-material/Work";

@@ -1,6 +1,9 @@
 import { useMemo, useRef, useState } from "react";
 import { useConversations } from "../../hooks/use-conversations";
-import { Box, Button, Popover, PopoverProps, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Popover, { PopoverProps } from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
 import { MessageDrawer } from "../message-drawer";
 import { UserSearch } from "../user-search";
 import { addConversation } from "../../service/add-conversation";

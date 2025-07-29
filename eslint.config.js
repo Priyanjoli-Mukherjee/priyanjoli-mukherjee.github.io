@@ -14,6 +14,23 @@ export default [
   {
     rules: {
       "react/react-in-jsx-scope": "off",
+      "no-restricted-imports": [
+        "error",
+        {
+          paths: [
+            {
+              name: "@mui/material",
+              message:
+                "Imports to @mui/material are not allowed. Please import directly from @mui/material/<COMPONENT> instead.",
+            },
+            {
+              name: "@mui/icons-material",
+              message:
+                "Imports to @mui/icons-material are not allowed. Please import directly from @mui/icons-material/<ICON> instead.",
+            },
+          ],
+        },
+      ],
     },
   },
 ];

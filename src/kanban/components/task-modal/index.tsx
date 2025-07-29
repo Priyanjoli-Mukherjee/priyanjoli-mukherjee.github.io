@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  Box,
-  TextField,
-  IconButton,
-  Autocomplete,
-  Typography,
-} from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import IconButton from "@mui/material/IconButton";
+import Autocomplete from "@mui/material/Autocomplete";
+import Typography from "@mui/material/Typography";
 import { Props } from "./props";
 import { Status } from "../../types/status";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
-import { DatePicker, pickersSectionListClasses } from "@mui/x-date-pickers";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { pickersSectionListClasses } from "@mui/x-date-pickers/PickersSectionList";
 import dayjs from "dayjs";
 import { useKanbanUsers } from "../../hooks/use-kanban-users";
 import { Task } from "../../types/task";

@@ -1,3 +1,3 @@
-import { PopoverProps } from "@mui/material";
+import { PopoverProps } from "@mui/material/Popover";
 
 export type Props = Pick<PopoverProps, "anchorEl" | "onClose" | "open">;

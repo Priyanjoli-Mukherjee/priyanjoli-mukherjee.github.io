@@ -1,4 +1,4 @@
-import { DatePickerProps } from "@mui/x-date-pickers";
+import { DatePickerProps } from "@mui/x-date-pickers/DatePicker";
 
 export interface Props extends Omit<DatePickerProps, "value" | "onChange"> {
   startOfDay: boolean;

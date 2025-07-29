@@ -1,5 +1,8 @@
 import { ChangeEvent, useMemo, useState } from "react";
-import { Box, Button, Drawer, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Drawer from "@mui/material/Drawer";
+import Typography from "@mui/material/Typography";
 import { NumberField } from "../../styles/number-field";
 import { Props } from "./props";
 

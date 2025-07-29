@@ -1,4 +1,5 @@
-import { Box, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import PersonOffIcon from "@mui/icons-material/PersonOff";
 import { getBadgeStyle } from "./get-badge-style";
 import { getInitials } from "./get-initials";

@@ -2,7 +2,7 @@ import { Scrollr } from "./scrollr";
 import { Route, Routes } from "react-router-dom";
 import { TweetPage } from "./scrollr/components/tweet-page";
 import { Home } from "./home";
-import { Box } from "@mui/material";
+import Box from "@mui/material/Box";
 import { Navbar } from "./navbar";
 import { ResumePage } from "./resume-page";
 import { ContactPage } from "./contact-page";

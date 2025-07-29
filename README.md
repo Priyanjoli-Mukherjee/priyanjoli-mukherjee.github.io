@@ -30,3 +30,14 @@ You can mix and match the seats to your heart's content.
 
 Note: since this is a *mock* of a website, clicking "Purchase" won't trigger an actual credit card page -- I wanted to avoid
 asking for any personal information!
+
+## Kanban
+
+Kanban is a prototype of an agile sprint planning tool. You can use it to create work items, assign them to colleagues,
+track their progress, and organize their priority. Click on a work item to edit it, and use the drag-n-drop
+feature to re-prioritize the ticket or track its progress. Use the quick filters at the top to filter work items
+by assignee, selecting one or more assignees to filter by as many as you like.
+
+# Backend
+
+The backend for this project is located at https://github.com/Priyanjoli-Mukherjee/portfolio-backend. It is hosted on Heroku and is powered by Spring Boot Java coupled with PostgreSQL.

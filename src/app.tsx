@@ -1,6 +1,8 @@
 import Box from "@mui/material/Box";
+import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
+import { LoadingPage } from "./components/loading-page";
 import { ContactPage } from "./contact-page";
 import { EventMaster } from "./event-master";
 import { EventPage } from "./event-master/components/event-page";
@@ -20,17 +22,19 @@ export function App() {
         position="relative"
         sx={{ overflowX: "hidden", overflowY: "auto" }}
       >
-        <Routes>
-          <Route path="/scrollr" Component={Scrollr} />
-          <Route path="/scrollr/:search" Component={Scrollr} />
-          <Route path="/scrollr/tweet/:tweetId" Component={TweetPage} />
-          <Route path="/resume" Component={ResumePage} />
-          <Route path="/contact" Component={ContactPage} />
-          <Route path="/event-master" Component={EventMaster} />
-          <Route path="/event-master/search" Component={EventPage} />
-          <Route path="/kanban" Component={Kanban} />
-          <Route path="/" index Component={Home} />
-        </Routes>
+        <Suspense fallback={<LoadingPage />}>
+          <Routes>
+            <Route path="/scrollr" Component={Scrollr} />
+            <Route path="/scrollr/:search" Component={Scrollr} />
+            <Route path="/scrollr/tweet/:tweetId" Component={TweetPage} />
+            <Route path="/resume" Component={ResumePage} />
+            <Route path="/contact" Component={ContactPage} />
+            <Route path="/event-master" Component={EventMaster} />
+            <Route path="/event-master/search" Component={EventPage} />
+            <Route path="/kanban" Component={Kanban} />
+            <Route path="/" index Component={Home} />
+          </Routes>
+        </Suspense>
       </Box>
       <Navbar />
     </Box>

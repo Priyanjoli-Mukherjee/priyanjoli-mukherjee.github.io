@@ -1,5 +1,4 @@
-import { useMemo, useState } from "react";
-import { getEventData } from "../service/get-event-data";
+import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -9,18 +8,20 @@ import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
-import { EventCard } from "./event-card";
-import { Link, useSearchParams } from "react-router-dom";
-import { Event } from "../types/event";
-import { CheckoutDrawer } from "./checkout-drawer";
 import keyBy from "lodash/keyBy";
+import { useMemo, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+
+import DJ from "../images/DJ.jpg";
 import { getArtistData } from "../service/get-artist-data";
-import { SearchBanner } from "./search-banner";
+import { getCities } from "../service/get-cities";
+import { getEventData } from "../service/get-event-data";
 import { Artist } from "../types/artist";
 import { City } from "../types/city";
-import { getCities } from "../service/get-cities";
-import DJ from "../images/DJ.jpg";
+import { Event } from "../types/event";
+import { CheckoutDrawer } from "./checkout-drawer";
+import { EventCard } from "./event-card";
+import { SearchBanner } from "./search-banner";
 
 export function EventPage() {
   const events = useMemo(() => getEventData(), []);

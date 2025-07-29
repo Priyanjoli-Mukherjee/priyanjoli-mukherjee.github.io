@@ -1,20 +1,21 @@
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import { Props } from "./props";
-import { useMemo, useState } from "react";
-import { Task } from "../../types/task";
-import { TaskModal } from "../task-modal";
-import { deleteTask } from "../../service/delete-task";
-import { updateTask } from "../../service/update-task";
-import { DraggableItem } from "./draggable-item";
-import { DroppableArea } from "./droppable-area";
 import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { KanbanUser } from "../../types/kanban-user";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import { useMemo, useState } from "react";
+
 import { useKanbanUsers } from "../../hooks/use-kanban-users";
+import { deleteTask } from "../../service/delete-task";
+import { updateTask } from "../../service/update-task";
+import { KanbanUser } from "../../types/kanban-user";
+import { Task } from "../../types/task";
+import { TaskModal } from "../task-modal";
+import { DraggableItem } from "./draggable-item";
+import { DroppableArea } from "./droppable-area";
+import { Props } from "./props";
 
 export function KanbanLane({
   tasks,

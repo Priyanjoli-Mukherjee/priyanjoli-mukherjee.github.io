@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+
 import { getTweets } from "../service/get-tweets";
 
 export function useTweets() {

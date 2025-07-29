@@ -1,16 +1,16 @@
-import { Artist } from "../types/artist";
+import Fireworks from "../images/artists/4th_of_July.jpg";
 import Adele from "../images/artists/Adele.png";
 import Bhangra from "../images/artists/Bhangra.jpg";
 import ChrisStapleton from "../images/artists/Chris_Stapleton.jpg";
 import Daft_Punk from "../images/artists/Daft_Punk.jpg";
 import EdSheeran from "../images/artists/Ed_Sheeran.jpg";
-import Fireworks from "../images/artists/4th_of_July.jpg";
 import Flamenco from "../images/artists/Flamenco.jpg";
 import MariachiHuenachi from "../images/artists/Mariachi_Huenachi.jpg";
 import Metallica from "../images/artists/Metallica.jpg";
 import Philharmonic from "../images/artists/Philharmonic.jpg";
 import Polynesian from "../images/artists/Polynesian.jpg";
 import TaylorSwift from "../images/artists/Taylor_Swift.jpg";
+import { Artist } from "../types/artist";
 
 const artistData: Artist[] = [
   {

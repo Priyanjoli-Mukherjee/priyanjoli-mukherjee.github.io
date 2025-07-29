@@ -1,13 +1,14 @@
-import { useMemo, useRef, useState } from "react";
-import { useConversations } from "../../hooks/use-conversations";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Popover, { PopoverProps } from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
+import { useMemo, useRef, useState } from "react";
+import { useQueryClient } from "react-query";
+
+import { useConversations } from "../../hooks/use-conversations";
+import { addConversation } from "../../service/add-conversation";
 import { MessageDrawer } from "../message-drawer";
 import { UserSearch } from "../user-search";
-import { addConversation } from "../../service/add-conversation";
-import { useQueryClient } from "react-query";
 
 type Props = Pick<PopoverProps, "anchorEl" | "onClose" | "open">;
 

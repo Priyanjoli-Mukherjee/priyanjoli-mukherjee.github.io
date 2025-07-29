@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+
 import { useCurrentUser } from "../../hooks/use-current-user";
 import { Props } from "./props";
 

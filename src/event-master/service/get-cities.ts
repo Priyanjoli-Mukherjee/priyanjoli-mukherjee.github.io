@@ -1,4 +1,3 @@
-import { City } from "../types/city";
 import Austin from "../images/cities/Austin.jpg";
 import Boston from "../images/cities/Boston.jpg";
 import Charleston from "../images/cities/Charleston.jpg";
@@ -11,6 +10,7 @@ import RedRocks from "../images/cities/Red_Rocks_Amphitheatre.jpg";
 import Saguaro from "../images/cities/Saguaro.jpg";
 import Seattle from "../images/cities/Seattle.jpeg";
 import StatueOfLiberty from "../images/cities/Statue_of_Liberty.jpg";
+import { City } from "../types/city";
 
 const cities: City[] = [
   {

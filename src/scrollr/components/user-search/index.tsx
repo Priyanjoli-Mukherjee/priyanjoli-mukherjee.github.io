@@ -1,8 +1,9 @@
-import { useUsers } from "../../hooks/use-users";
-import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import { User } from "../../types/user";
+import TextField from "@mui/material/TextField";
 import { useMemo } from "react";
+
+import { useUsers } from "../../hooks/use-users";
+import { User } from "../../types/user";
 import { Props } from "./props";
 
 export function UserSearch({ onChange, twitterHandle }: Props) {

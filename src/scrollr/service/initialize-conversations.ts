@@ -1,5 +1,5 @@
-import { USERS } from "../utils/random-utils/random-user";
 import { Conversation } from "../types/conversation";
+import { USERS } from "../utils/random-utils/random-user";
 import { initializeConversation } from "./initialize-conversation";
 
 export function initializeConversations(): Array<Conversation> {

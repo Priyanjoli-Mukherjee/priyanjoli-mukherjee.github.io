@@ -1,7 +1,8 @@
+import MailIcon from "@mui/icons-material/Mail";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import MailIcon from "@mui/icons-material/Mail";
 import { useRef, useState } from "react";
+
 import { ConversationDrawer } from "./conversation-drawer";
 
 export function MessagesButton() {

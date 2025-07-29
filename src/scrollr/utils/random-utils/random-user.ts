@@ -1,8 +1,8 @@
-import { User } from "../../types/user";
 import { randomInteger } from "../../../utils/random-utils/random-integer";
 import Ethel from "../../images/ethel.jpeg";
-import Jimbob from "../../images/jimbob.jpeg";
 import Gertrude from "../../images/gertrude.jpeg";
+import Jimbob from "../../images/jimbob.jpeg";
+import { User } from "../../types/user";
 
 export const USERS: Array<User> = [
   {

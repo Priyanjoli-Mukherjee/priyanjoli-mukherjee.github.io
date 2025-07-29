@@ -1,8 +1,9 @@
-import { useMemo } from "react";
-import { getArtistData } from "../../service/get-artist-data";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import keyBy from "lodash/keyBy";
+import { useMemo } from "react";
+
+import { getArtistData } from "../../service/get-artist-data";
 import { Props } from "./props";
 
 export function ArtistAutocomplete({ artistId, onChange }: Props) {

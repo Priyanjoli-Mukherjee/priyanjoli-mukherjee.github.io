@@ -1,13 +1,14 @@
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { Conversation } from "../types/conversation";
 import { useMemo, useState } from "react";
-import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
-import { addMessage } from "../service/add-message";
 import { useQueryClient } from "react-query";
+
+import { addMessage } from "../service/add-message";
+import { Conversation } from "../types/conversation";
 import { MessageCard } from "./message-card";
 
 export function MessageDrawer({ messages, user }: Conversation) {

@@ -1,11 +1,12 @@
 import uniq from "lodash/uniq";
 import uniqueId from "lodash/uniqueId";
+
 import { range } from "../../utils/array-utils/range";
 import { randomInteger } from "../../utils/random-utils/random-integer";
 import { randomText } from "../../utils/random-utils/random-text";
-import { randomUser } from "../utils/random-utils/random-user";
 import { Tweet } from "../types/tweet";
 import { randomHashtag } from "../utils/random-utils/random-hashtag";
+import { randomUser } from "../utils/random-utils/random-user";
 
 export function initializeTweets(): Array<Tweet> {
   const tweets = range(25)

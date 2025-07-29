@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+
 import { getKanbanUsers } from "../service/get-kanban-users";
 
 export function useKanbanUsers() {

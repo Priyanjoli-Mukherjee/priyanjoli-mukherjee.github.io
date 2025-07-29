@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+
 import { getUsers } from "../service/get-users";
 
 export function useUsers() {

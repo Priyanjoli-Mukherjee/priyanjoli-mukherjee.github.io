@@ -1,10 +1,11 @@
 import uniqueId from "lodash/uniqueId";
+
 import { range } from "../../utils/array-utils/range";
+import { randomInteger } from "../../utils/random-utils/random-integer";
 import { randomText } from "../../utils/random-utils/random-text";
 import { Message } from "../types/message";
 import { User } from "../types/user";
 import { getCurrentUser } from "./get-current-user";
-import { randomInteger } from "../../utils/random-utils/random-integer";
 
 export function randomMessages(
   user1: User,

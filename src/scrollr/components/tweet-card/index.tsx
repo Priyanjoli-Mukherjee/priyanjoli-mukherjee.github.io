@@ -1,20 +1,21 @@
+import CommentIcon from "@mui/icons-material/Comment";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import EditIcon from "@mui/icons-material/Edit";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { formatDate } from "../../../utils/date-utils/format-date";
-import { deleteTweet } from "../../service/delete-tweets";
-import { useQueryClient } from "react-query";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import EditIcon from "@mui/icons-material/Edit";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
-import CommentIcon from "@mui/icons-material/Comment";
 import { useMemo, useState } from "react";
-import { editTweet } from "../../service/edit-tweets";
-import { useCurrentUser } from "../../hooks/use-current-user";
-import { parseHashtags } from "../../utils/hashtag-utils/parse-hashtags";
+import { useQueryClient } from "react-query";
 import { Link } from "react-router-dom";
+
+import { formatDate } from "../../../utils/date-utils/format-date";
+import { useCurrentUser } from "../../hooks/use-current-user";
+import { deleteTweet } from "../../service/delete-tweets";
+import { editTweet } from "../../service/edit-tweets";
 import { tweets } from "../../service/tweets";
+import { parseHashtags } from "../../utils/hashtag-utils/parse-hashtags";
 import { Props } from "./props";
 
 export function TweetCard({ tweet }: Props) {

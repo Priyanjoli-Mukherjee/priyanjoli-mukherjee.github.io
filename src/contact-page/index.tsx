@@ -2,12 +2,13 @@ import Box from "@mui/material/Box";
 import Snackbar from "@mui/material/Snackbar";
 import SnackbarContent from "@mui/material/SnackbarContent";
 import Typography from "@mui/material/Typography";
-import { ContactField } from "./styles/contact-field";
-import { useState } from "react";
-import { SubmitButton } from "./styles/submit-button";
-import { TextArea } from "../components/text-area";
 import { MuiTelInput } from "mui-tel-input";
+import { useState } from "react";
+
+import { TextArea } from "../components/text-area";
 import { sendEmail } from "./service/send-email";
+import { ContactField } from "./styles/contact-field";
+import { SubmitButton } from "./styles/submit-button";
 
 export function ContactPage() {
   const [name, setName] = useState("");

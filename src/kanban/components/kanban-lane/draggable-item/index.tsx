@@ -1,7 +1,8 @@
-import { Props } from "./props";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+
 import { KanbanCard } from "../kanban-card";
+import { Props } from "./props";
 
 export function DraggableItem({ task, user, onSelect, onDelete }: Props) {
   const { active, attributes, listeners, setNodeRef, transform, transition } =

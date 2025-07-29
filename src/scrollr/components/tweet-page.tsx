@@ -1,14 +1,15 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useParams } from "react-router-dom";
-import { useTweets } from "../hooks/use-tweets";
-import { TweetCard } from "./tweet-card";
 import { useState } from "react";
-import { addTweet } from "../service/add-tweet";
 import { useQueryClient } from "react-query";
+import { useParams } from "react-router-dom";
+
+import { useTweets } from "../hooks/use-tweets";
+import { addTweet } from "../service/add-tweet";
 import { BackButton } from "./back-button";
 import { MessagesButton } from "./messages-button";
+import { TweetCard } from "./tweet-card";
 
 export function TweetPage() {
   const { tweetId } = useParams();

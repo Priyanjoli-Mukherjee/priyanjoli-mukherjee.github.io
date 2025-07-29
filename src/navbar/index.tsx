@@ -1,20 +1,21 @@
-import { useState } from "react";
+import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
+import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
+import Home from "@mui/icons-material/Home";
+import MailIcon from "@mui/icons-material/Mail";
+import MenuIcon from "@mui/icons-material/Menu";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import PeopleIcon from "@mui/icons-material/People";
+import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
+import WorkIcon from "@mui/icons-material/Work";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import MailIcon from "@mui/icons-material/Mail";
-import WorkIcon from "@mui/icons-material/Work";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
+
 import { NavAccordionSummary } from "./nav-accordion-summary";
-import Home from "@mui/icons-material/Home";
-import MenuIcon from "@mui/icons-material/Menu";
-import PeopleIcon from "@mui/icons-material/People";
-import MenuOpenIcon from "@mui/icons-material/MenuOpen";
-import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
-import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
 
 export function Navbar() {
   const [isMenuOpen, setMenuOpen] = useState(false);

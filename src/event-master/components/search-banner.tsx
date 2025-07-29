@@ -2,12 +2,13 @@ import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { CityAutocomplete } from "./city-autocomplete";
-import { Link, useSearchParams } from "react-router-dom";
 import { useState } from "react";
-import { ArtistAutocomplete } from "./artist-autocomplete";
+import { Link, useSearchParams } from "react-router-dom";
+
 import { DatePicker } from "../../components/date-picker";
 import Concerto from "../images/Concerto.png";
+import { ArtistAutocomplete } from "./artist-autocomplete";
+import { CityAutocomplete } from "./city-autocomplete";
 
 export function SearchBanner() {
   const [params] = useSearchParams();

@@ -1,6 +1,7 @@
+import uniqueId from "lodash/uniqueId";
+
 import { randomInteger } from "../../utils/random-utils/random-integer";
 import { Ticket } from "../types/ticket";
-import uniqueId from "lodash/uniqueId";
 
 export function generateTickets() {
   const tickets: Ticket[] = [];

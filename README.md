@@ -40,4 +40,4 @@ by assignee, selecting one or more assignees to filter by as many as you like.
 
 # Backend
 
-The backend for this project is located at https://github.com/Priyanjoli-Mukherjee/portfolio-backend. It is hosted on Heroku and is powered by Spring Boot Java coupled with PostgreSQL.
+The backend for this project is located at https://github.com/Priyanjoli-Mukherjee/portfolio-backend-api. It is hosted on Heroku and is powered by Spring Boot Java coupled with PostgreSQL.

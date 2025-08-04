@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
+import { AdminPage } from "./admin-page/admin-page";
 import { LoadingPage } from "./components/loading-page";
 import { ContactPage } from "./contact-page";
 import { EventMaster } from "./event-master";
@@ -24,6 +25,7 @@ export function App() {
       >
         <Suspense fallback={<LoadingPage />}>
           <Routes>
+            <Route path="/admin" Component={AdminPage} />
             <Route path="/scrollr" Component={Scrollr} />
             <Route path="/scrollr/:search" Component={Scrollr} />
             <Route path="/scrollr/tweet/:tweetId" Component={TweetPage} />

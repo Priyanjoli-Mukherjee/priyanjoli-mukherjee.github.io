@@ -7,6 +7,7 @@ import { useQueryClient } from "react-query";
 
 import { useConversations } from "../../hooks/use-conversations";
 import { addConversation } from "../../service/add-conversation";
+import { getCurrentUser } from "../../service/get-current-user";
 import { MessageDrawer } from "../message-drawer";
 import { UserSearch } from "../user-search";
 
@@ -16,7 +17,10 @@ export function ConversationDrawer({ anchorEl, onClose, open }: Props) {
   const queryClient = useQueryClient();
   const conversations = useConversations();
 
-  const [selectedTwitterHandle, setSelectedTwitterHandle] = useState<string>();
+  const currentUser = useMemo(() => getCurrentUser(), []);
+
+  const [selectedConversationId, setSelectedConversationId] =
+    useState<string>();
   const [searchTwitterHandle, setSearchTwitterHandle] = useState<string>();
 
   const anchor = useRef<SVGSVGElement | null>(null);
@@ -24,21 +28,22 @@ export function ConversationDrawer({ anchorEl, onClose, open }: Props) {
   const selectedConvo = useMemo(
     () =>
       conversations.find(
-        (conversation) =>
-          conversation.user.twitterHandle === selectedTwitterHandle,
+        (conversation) => conversation.id === selectedConversationId,
       ),
-    [conversations, selectedTwitterHandle],
+    [conversations, selectedConversationId],
   );
 
   function createNewConversation() {
     if (searchTwitterHandle) {
-      setSelectedTwitterHandle(searchTwitterHandle);
       if (
-        !conversations.find(
-          ({ user }) => user.twitterHandle === searchTwitterHandle,
+        !conversations.find((conversation) =>
+          conversation.users.find(
+            (user) => user.twitterHandle === searchTwitterHandle,
+          ),
         )
       ) {
-        addConversation(searchTwitterHandle);
+        const conversation = addConversation(searchTwitterHandle);
+        setSelectedConversationId(conversation?.id);
         queryClient.invalidateQueries({ queryKey: "conversations" });
       }
       setSearchTwitterHandle(undefined);
@@ -60,7 +65,7 @@ export function ConversationDrawer({ anchorEl, onClose, open }: Props) {
             open
             anchorOrigin={{ vertical: "bottom", horizontal: -4 }}
             transformOrigin={{ vertical: "bottom", horizontal: "right" }}
-            onClose={() => setSelectedTwitterHandle(undefined)}
+            onClose={() => setSelectedConversationId(undefined)}
           >
             <MessageDrawer {...selectedConvo} />
           </Popover>
@@ -90,23 +95,26 @@ export function ConversationDrawer({ anchorEl, onClose, open }: Props) {
           >
             {conversations.map((conversation) => (
               <Box
-                key={conversation.user.twitterHandle}
+                key={conversation.id}
                 sx={{
                   backgroundColor:
-                    conversation.user.twitterHandle ===
-                    selectedConvo?.user.twitterHandle
+                    conversation.id === selectedConvo?.id
                       ? "rgb(179, 224, 255)"
                       : "none",
                   paddingLeft: 2,
                   cursor: "pointer",
                 }}
-                onClick={() =>
-                  setSelectedTwitterHandle(conversation.user.twitterHandle)
-                }
+                onClick={() => setSelectedConversationId(conversation.id)}
               >
                 <Box display="flex" flexDirection="column">
                   <Typography variant="body2">
-                    {conversation.user.name}
+                    {conversation.users
+                      .filter(
+                        (user) =>
+                          user.twitterHandle !== currentUser.twitterHandle,
+                      )
+                      .map(({ name }) => name)
+                      .join(", ")}
                   </Typography>
                 </Box>
               </Box>

@@ -14,7 +14,7 @@ import { MessageCard } from "./message-card";
 export function MessageDrawer({
   id: conversationId,
   messages,
-  user,
+  users,
 }: Conversation) {
   const [directMessage, setDirectMessage] = useState("");
 
@@ -40,7 +40,7 @@ export function MessageDrawer({
         borderBottom="1px solid black"
       >
         <Typography variant="body1" sx={{ fontWeight: 900 }}>
-          {user.name}
+          {users.map(({ name }) => name).join(", ")}
         </Typography>
       </Box>
       <Box

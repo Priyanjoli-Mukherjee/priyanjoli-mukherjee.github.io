@@ -12,7 +12,7 @@ export function addMessage(text: string, conversationId: string) {
       id: uniqueId("message"),
       text,
       twitterHandle: getCurrentUser().twitterHandle,
-      time: Date.now(),
+      timestamp: Date.now(),
     });
   }
 }

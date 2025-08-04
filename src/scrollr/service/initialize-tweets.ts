@@ -14,11 +14,11 @@ export function initializeTweets(): Array<Tweet> {
       (): Tweet => ({
         id: uniqueId("tweet"),
         ...randomUser(),
-        time: randomInteger(Date.now()),
+        timestamp: randomInteger(Date.now()),
         message: `${randomText()} ${uniq(range(randomInteger(5)).map(randomHashtag)).join(" ")}`,
       }),
     )
-    .sort((tweet1, tweet2) => tweet2.time - tweet1.time);
+    .sort((tweet1, tweet2) => tweet2.timestamp - tweet1.timestamp);
   return tweets
     .reverse()
     .map((tweet, index) => ({

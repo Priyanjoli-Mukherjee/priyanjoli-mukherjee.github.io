@@ -13,7 +13,6 @@ import { MessagesButton } from "./components/messages-button";
 import { TweetCard } from "./components/tweet-card";
 import { useTweets } from "./hooks/use-tweets";
 import { addTweet } from "./service/add-tweet";
-import { Dictionary } from "./types/dictionary";
 import { Tweet } from "./types/tweet";
 import { getTrendDictionary } from "./utils/hashtag-utils/get-trend-dictionary";
 
@@ -44,7 +43,7 @@ export function Scrollr() {
     }
   }, [tweets, searchText]);
 
-  const trends: Dictionary<number> = useMemo(
+  const trends: Record<string, number> = useMemo(
     () => getTrendDictionary(tweets),
     [tweets],
   );

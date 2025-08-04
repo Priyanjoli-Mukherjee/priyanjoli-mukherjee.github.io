@@ -11,7 +11,11 @@ import { addMessage } from "../service/add-message";
 import { Conversation } from "../types/conversation";
 import { MessageCard } from "./message-card";
 
-export function MessageDrawer({ messages, user }: Conversation) {
+export function MessageDrawer({
+  id: conversationId,
+  messages,
+  user,
+}: Conversation) {
   const [directMessage, setDirectMessage] = useState("");
 
   const queryClient = useQueryClient();
@@ -66,7 +70,7 @@ export function MessageDrawer({ messages, user }: Conversation) {
           <IconButton
             disabled={!directMessage}
             onClick={() => {
-              addMessage(directMessage, user.twitterHandle);
+              addMessage(directMessage, conversationId);
               queryClient.invalidateQueries({ queryKey: "conversations" });
               setDirectMessage("");
             }}

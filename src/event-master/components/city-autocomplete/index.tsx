@@ -3,11 +3,11 @@ import TextField from "@mui/material/TextField";
 import keyBy from "lodash/keyBy";
 import { useMemo } from "react";
 
-import { getCities } from "../../service/get-cities";
+import { useCities } from "../../hooks/use-cities";
 import { Props } from "./props";
 
 export function CityAutocomplete({ cityId, onChange }: Props) {
-  const cities = useMemo(() => getCities(), []);
+  const cities = useCities();
   const cityById = useMemo(() => keyBy(cities, ({ id }) => id), [cities]);
 
   return (

@@ -1,17 +1,16 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { useMemo } from "react";
 
 import { ArtistCard } from "./components/artist-card";
 import { CityCard } from "./components/city-card";
 import { SearchBanner } from "./components/search-banner";
-import { getArtistData } from "./service/get-artist-data";
-import { getCities } from "./service/get-cities";
+import { useArtists } from "./hooks/use-artists";
+import { useCities } from "./hooks/use-cities";
 import { QuickSearchContainer } from "./styles/quick-search-container";
 
 export function EventMaster() {
-  const artists = useMemo(() => getArtistData(), []);
-  const cities = useMemo(() => getCities(), []);
+  const artists = useArtists();
+  const cities = useCities();
 
   return (
     <Box

@@ -12,10 +12,10 @@ import keyBy from "lodash/keyBy";
 import { useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
+import { useArtists } from "../hooks/use-artists";
+import { useCities } from "../hooks/use-cities";
+import { useEvents } from "../hooks/use-events";
 import DJ from "../images/DJ.jpg";
-import { getArtistData } from "../service/get-artist-data";
-import { getCities } from "../service/get-cities";
-import { getEventData } from "../service/get-event-data";
 import { Artist } from "../types/artist";
 import { City } from "../types/city";
 import { Event } from "../types/event";
@@ -24,7 +24,7 @@ import { EventCard } from "./event-card";
 import { SearchBanner } from "./search-banner";
 
 export function EventPage() {
-  const events = useMemo(() => getEventData(), []);
+  const events = useEvents();
   const [searchParams] = useSearchParams();
   const [selectedEvent, setSelectedEvent] = useState<Event>();
   const [isConfirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
@@ -34,8 +34,8 @@ export function EventPage() {
   const startDate = parseInt(searchParams.get("startDate") ?? "");
   const endDate = parseInt(searchParams.get("endDate") ?? "");
 
-  const artists = useMemo(() => getArtistData(), []);
-  const cities = useMemo(() => getCities(), []);
+  const artists = useArtists();
+  const cities = useCities();
 
   const artistById: Record<string, Artist> = useMemo(
     () => keyBy(artists, ({ id }) => id),

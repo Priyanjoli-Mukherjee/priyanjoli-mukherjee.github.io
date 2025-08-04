@@ -62,10 +62,7 @@ export function ConversationDrawer({ anchorEl, onClose, open }: Props) {
             transformOrigin={{ vertical: "bottom", horizontal: "right" }}
             onClose={() => setSelectedTwitterHandle(undefined)}
           >
-            <MessageDrawer
-              messages={selectedConvo.messages}
-              user={selectedConvo.user}
-            />
+            <MessageDrawer {...selectedConvo} />
           </Popover>
         )}
         <Box

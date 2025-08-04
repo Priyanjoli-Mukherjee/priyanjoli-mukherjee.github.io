@@ -54,11 +54,14 @@ export function EventPage() {
           (event) =>
             (!artistId || event.artistId === artistId) &&
             (!cityId || event.venue.cityId === cityId) &&
-            (isNaN(startDate) || event.venue.timestamp >= startDate) &&
-            (isNaN(endDate) || event.venue.timestamp <= endDate),
+            (isNaN(startDate) ||
+              Date.parse(event.venue.timestamp) >= startDate) &&
+            (isNaN(endDate) || Date.parse(event.venue.timestamp) <= endDate),
         )
         .sort(
-          (event1, event2) => event1.venue.timestamp - event2.venue.timestamp,
+          (event1, event2) =>
+            Date.parse(event1.venue.timestamp) -
+            Date.parse(event2.venue.timestamp),
         ),
     [artistId, cityId, endDate, events, startDate],
   );

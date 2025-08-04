@@ -30,7 +30,12 @@ export function EventCard({
   ];
   const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  const date = new Date(timestamp);
+  const date = new Date(Date.parse(timestamp));
+  console.log({
+    date,
+    parsed: Date.parse(timestamp),
+    timestamp,
+  });
   const month = months[date.getMonth()];
   const day = date.getDate();
   const weekday = weekdays[date.getDay()];

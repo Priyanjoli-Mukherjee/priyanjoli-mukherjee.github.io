@@ -1,9 +1,8 @@
-import { Dictionary } from "../../types/dictionary";
 import { Tweet } from "../../types/tweet";
 import { getHashtags } from "./get-hashtags";
 
 export function getTrendDictionary(tweets: Array<Tweet>) {
-  const trends: Dictionary<number> = {};
+  const trends: Record<string, number> = {};
   for (let i = 0; i < tweets.length; i++) {
     const hashtags = getHashtags(tweets[i].message);
     for (let j = 0; j < hashtags.length; j++) {

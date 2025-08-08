@@ -12,7 +12,7 @@ export function AdminPage() {
   const [password, setPassword] = useState("");
 
   return (
-    <Box>
+    <Box display="flex">
       <TextField
         value={password}
         onChange={(evt) => setPassword(evt.target.value)}
@@ -31,6 +31,20 @@ export function AdminPage() {
       >
         Generate Concerto
         {isLoading && <CircularProgress />}
+      </Button>
+      <Button
+        disabled={isLoading}
+        onClick={async () => {
+          setLoading(true);
+          await axios.post(`${BASE_URL}/scrollr-data`, password, {
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          });
+          setLoading(false);
+        }}
+      >
+        Generate Scrollr
       </Button>
     </Box>
   );

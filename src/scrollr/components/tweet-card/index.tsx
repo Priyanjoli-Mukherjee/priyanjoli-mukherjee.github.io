@@ -19,7 +19,8 @@ import { parseHashtags } from "../../utils/hashtag-utils/parse-hashtags";
 import { Props } from "./props";
 
 export function TweetCard({ tweet }: Props) {
-  const { id, message, time, name, twitterHandle, image, replyingTo } = tweet;
+  const { id, message, timestamp, name, twitterHandle, image, replyingTo } =
+    tweet;
 
   const replyingToTwitterHnadle = tweets.find(
     (tweet) => tweet.id === replyingTo,
@@ -88,7 +89,7 @@ export function TweetCard({ tweet }: Props) {
             </Box>
           </Link>
           <Box color="black" paddingLeft={2}>
-            <Typography variant="body1">{formatDate(time)}</Typography>
+            <Typography variant="body1">{formatDate(timestamp)}</Typography>
           </Box>
           <Box
             display="flex"

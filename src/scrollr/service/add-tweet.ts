@@ -7,7 +7,7 @@ export function addTweet(message: string, replyingTo?: string) {
   const user = getCurrentUser();
   tweets.splice(0, 0, {
     id: uniqueId("tweet"),
-    time: Date.now(),
+    timestamp: Date.now(),
     message,
     replyingTo,
     ...user,

@@ -11,7 +11,11 @@ import { addMessage } from "../service/add-message";
 import { Conversation } from "../types/conversation";
 import { MessageCard } from "./message-card";
 
-export function MessageDrawer({ messages, user }: Conversation) {
+export function MessageDrawer({
+  id: conversationId,
+  messages,
+  users,
+}: Conversation) {
   const [directMessage, setDirectMessage] = useState("");
 
   const queryClient = useQueryClient();
@@ -36,7 +40,7 @@ export function MessageDrawer({ messages, user }: Conversation) {
         borderBottom="1px solid black"
       >
         <Typography variant="body1" sx={{ fontWeight: 900 }}>
-          {user.name}
+          {users.map(({ name }) => name).join(", ")}
         </Typography>
       </Box>
       <Box
@@ -66,7 +70,7 @@ export function MessageDrawer({ messages, user }: Conversation) {
           <IconButton
             disabled={!directMessage}
             onClick={() => {
-              addMessage(directMessage, user.twitterHandle);
+              addMessage(directMessage, conversationId);
               queryClient.invalidateQueries({ queryKey: "conversations" });
               setDirectMessage("");
             }}

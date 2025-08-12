@@ -6,8 +6,9 @@ import { useMemo, useRef, useState } from "react";
 import { useQueryClient } from "react-query";
 
 import { useConversations } from "../../hooks/use-conversations";
-import { addConversation } from "../../service/add-conversation";
-import { getCurrentUser } from "../../service/get-current-user";
+import { useCurrentUser } from "../../hooks/use-current-user";
+import { useUsers } from "../../hooks/use-users";
+import { createConversation } from "../../service/create-conversation";
 import { MessageDrawer } from "../message-drawer";
 import { UserSearch } from "../user-search";
 
@@ -17,7 +18,8 @@ export function ConversationDrawer({ anchorEl, onClose, open }: Props) {
   const queryClient = useQueryClient();
   const conversations = useConversations();
 
-  const currentUser = useMemo(() => getCurrentUser(), []);
+  const currentUser = useCurrentUser();
+  const users = useUsers();
 
   const [selectedConversationId, setSelectedConversationId] =
     useState<string>();
@@ -33,7 +35,7 @@ export function ConversationDrawer({ anchorEl, onClose, open }: Props) {
     [conversations, selectedConversationId],
   );
 
-  function createNewConversation() {
+  async function createNewConversation() {
     if (searchTwitterHandle) {
       if (
         !conversations.find((conversation) =>
@@ -42,9 +44,14 @@ export function ConversationDrawer({ anchorEl, onClose, open }: Props) {
           ),
         )
       ) {
-        const conversation = addConversation(searchTwitterHandle);
-        setSelectedConversationId(conversation?.id);
-        queryClient.invalidateQueries({ queryKey: "conversations" });
+        const user = users.find(
+          ({ twitterHandle }) => twitterHandle === searchTwitterHandle,
+        );
+        if (user) {
+          const conversation = await createConversation([user, currentUser]);
+          setSelectedConversationId(conversation?.id);
+          queryClient.invalidateQueries({ queryKey: "conversations" });
+        }
       }
       setSearchTwitterHandle(undefined);
     }

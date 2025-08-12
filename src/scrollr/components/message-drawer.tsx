@@ -7,7 +7,8 @@ import Typography from "@mui/material/Typography";
 import { useMemo, useState } from "react";
 import { useQueryClient } from "react-query";
 
-import { addMessage } from "../service/add-message";
+import { useCurrentUser } from "../hooks/use-current-user";
+import { createMessage } from "../service/create-message";
 import { Conversation } from "../types/conversation";
 import { MessageCard } from "./message-card";
 
@@ -19,6 +20,8 @@ export function MessageDrawer({
   const [directMessage, setDirectMessage] = useState("");
 
   const queryClient = useQueryClient();
+
+  const currentUser = useCurrentUser();
 
   const reversed = useMemo(() => messages.reverse(), [messages]);
 
@@ -69,8 +72,8 @@ export function MessageDrawer({
         >
           <IconButton
             disabled={!directMessage}
-            onClick={() => {
-              addMessage(directMessage, conversationId);
+            onClick={async () => {
+              await createMessage(directMessage, conversationId, currentUser);
               queryClient.invalidateQueries({ queryKey: "conversations" });
               setDirectMessage("");
             }}

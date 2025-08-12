@@ -1,7 +1,9 @@
-import cloneDeep from "lodash/cloneDeep";
+import axios from "axios";
 
-import { tweets } from "./tweets";
+import { BASE_URL } from "../../service/base-url";
+import { Tweet } from "../types/tweet";
 
-export function getTweets() {
-  return cloneDeep(tweets);
+export async function getTweets(): Promise<Tweet[]> {
+  const { data } = await axios.get(`${BASE_URL}/tweets`);
+  return data;
 }

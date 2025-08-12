@@ -4,5 +4,5 @@ export interface Tweet extends User {
   id: string;
   message: string;
   replyingTo?: string | null;
-  timestamp: number;
+  timestamp: string;
 }

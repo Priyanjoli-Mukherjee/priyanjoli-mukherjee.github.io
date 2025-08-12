@@ -1,6 +1,9 @@
-import Priya from "../images/priya.jpeg";
+import axios from "axios";
+
+import { BASE_URL } from "../../service/base-url";
 import { User } from "../types/user";
 
-export function getCurrentUser(): User {
-  return { name: "Priya", twitterHandle: "@Priya", image: Priya };
+export async function getCurrentUser(): Promise<User> {
+  const { data } = await axios.get(`${BASE_URL}/current-user`);
+  return data;
 }

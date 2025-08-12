@@ -11,8 +11,9 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { MessagesButton } from "./components/messages-button";
 import { TweetCard } from "./components/tweet-card";
+import { useCurrentUser } from "./hooks/use-current-user";
 import { useTweets } from "./hooks/use-tweets";
-import { addTweet } from "./service/add-tweet";
+import { createTweet } from "./service/create-tweet";
 import { Tweet } from "./types/tweet";
 import { getTrendDictionary } from "./utils/hashtag-utils/get-trend-dictionary";
 
@@ -24,6 +25,8 @@ export function Scrollr() {
   const navigate = useNavigate();
 
   const tweets = useTweets();
+
+  const currentUser = useCurrentUser();
 
   const [tweetMessage, setTweetMessage] = useState("");
 
@@ -219,8 +222,8 @@ export function Scrollr() {
                 variant="contained"
                 disabled={!tweetMessage}
                 sx={{ height: 35, borderRadius: 4, marginBottom: 0.5 }}
-                onClick={() => {
-                  addTweet(tweetMessage);
+                onClick={async () => {
+                  await createTweet(tweetMessage, currentUser);
                   queryClient.invalidateQueries({ queryKey: "tweets" });
                   setTweetMessage("");
                 }}
@@ -233,7 +236,7 @@ export function Scrollr() {
           </Box>
           <Box overflow="scroll">
             {filteredTweets?.map((tweet: Tweet) => (
-              <TweetCard key={tweet.id} tweet={tweet} />
+              <TweetCard key={tweet.id} tweet={tweet} tweets={tweets} />
             ))}
           </Box>
         </Box>

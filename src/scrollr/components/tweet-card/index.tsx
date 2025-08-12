@@ -12,8 +12,8 @@ import { Link } from "react-router-dom";
 
 import { formatDate } from "../../../utils/date-utils/format-date";
 import { useCurrentUser } from "../../hooks/use-current-user";
-import { deleteTweet } from "../../service/delete-tweets";
-import { editTweet } from "../../service/edit-tweets";
+import { deleteTweet } from "../../service/delete-tweet";
+import { editTweet } from "../../service/edit-tweet";
 import { tweets } from "../../service/tweets";
 import { parseHashtags } from "../../utils/hashtag-utils/parse-hashtags";
 import { Props } from "./props";

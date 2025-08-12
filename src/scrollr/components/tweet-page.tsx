@@ -5,8 +5,9 @@ import { useState } from "react";
 import { useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 
+import { useCurrentUser } from "../hooks/use-current-user";
 import { useTweets } from "../hooks/use-tweets";
-import { addTweet } from "../service/add-tweet";
+import { createTweet } from "../service/create-tweet";
 import { BackButton } from "./back-button";
 import { MessagesButton } from "./messages-button";
 import { TweetCard } from "./tweet-card";
@@ -15,6 +16,8 @@ export function TweetPage() {
   const { tweetId } = useParams();
   const tweets = useTweets();
   const queryClient = useQueryClient();
+
+  const currentUser = useCurrentUser();
 
   const [replyMessage, setReplyMessage] = useState("");
 
@@ -25,7 +28,7 @@ export function TweetPage() {
     <Box display="flex" justifyContent="center" width="100vw" paddingTop={6.25}>
       <Box display="flex" flexDirection="column" width={649}>
         <Box>
-          <TweetCard tweet={tweet} />
+          <TweetCard tweet={tweet} tweets={tweets} />
         </Box>
         <Box
           display="flex"
@@ -69,7 +72,7 @@ export function TweetPage() {
               disabled={!replyMessage}
               sx={{ height: 35, borderRadius: 4 }}
               onClick={() => {
-                addTweet(replyMessage, tweetId);
+                createTweet(replyMessage, currentUser, tweetId);
                 queryClient.invalidateQueries({ queryKey: "tweets" });
                 setReplyMessage("");
               }}
@@ -81,7 +84,7 @@ export function TweetPage() {
           </Box>
         </Box>
         {tweetReplies.map((tweetReply) => (
-          <TweetCard key={tweetReply.id} tweet={tweetReply} />
+          <TweetCard key={tweetReply.id} tweet={tweetReply} tweets={tweets} />
         ))}
       </Box>
       <BackButton />

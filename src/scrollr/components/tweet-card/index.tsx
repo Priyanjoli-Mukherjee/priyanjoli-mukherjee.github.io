@@ -14,17 +14,17 @@ import { formatDate } from "../../../utils/date-utils/format-date";
 import { useCurrentUser } from "../../hooks/use-current-user";
 import { deleteTweet } from "../../service/delete-tweet";
 import { editTweet } from "../../service/edit-tweet";
-import { tweets } from "../../service/tweets";
 import { parseHashtags } from "../../utils/hashtag-utils/parse-hashtags";
 import { Props } from "./props";
 
-export function TweetCard({ tweet }: Props) {
+export function TweetCard({ tweet, tweets }: Props) {
   const { id, message, timestamp, name, twitterHandle, image, replyingTo } =
     tweet;
 
-  const replyingToTwitterHnadle = tweets.find(
-    (tweet) => tweet.id === replyingTo,
-  )?.twitterHandle;
+  const replyingToTwitterHandle = useMemo(
+    () => tweets.find((tweet) => tweet.id === replyingTo)?.twitterHandle,
+    [replyingTo, tweets],
+  );
 
   const queryClient = useQueryClient();
 
@@ -107,8 +107,8 @@ export function TweetCard({ tweet }: Props) {
                   <Link to="/scrollr">
                     <IconButton
                       color="primary"
-                      onClick={() => {
-                        deleteTweet(id);
+                      onClick={async () => {
+                        await deleteTweet(id);
                         queryClient.invalidateQueries({ queryKey: "tweets" });
                       }}
                     >
@@ -152,7 +152,7 @@ export function TweetCard({ tweet }: Props) {
                     Replying To
                   </span>
                   <span style={{ color: "red", paddingLeft: 5 }}>
-                    {replyingToTwitterHnadle}
+                    {replyingToTwitterHandle}
                   </span>
                 </Typography>
               </Link>
@@ -189,8 +189,11 @@ export function TweetCard({ tweet }: Props) {
                   variant="contained"
                   disabled={!editedMessage}
                   sx={{ height: 30, borderRadius: 4, marginBottom: 0.5 }}
-                  onClick={() => {
-                    editTweet(id, editedMessage);
+                  onClick={async () => {
+                    await editTweet(id, {
+                      ...tweet,
+                      message: editedMessage,
+                    });
                     queryClient.invalidateQueries({ queryKey: "tweets" });
                     setEditButtonClickable(false);
                   }}

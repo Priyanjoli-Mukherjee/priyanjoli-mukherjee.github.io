@@ -1,7 +1,9 @@
-import cloneDeep from "lodash/cloneDeep";
+import axios from "axios";
 
-import { conversations } from "./conversations";
+import { BASE_URL } from "../../service/base-url";
+import { Conversation } from "../types/conversation";
 
-export function getConversations() {
-  return cloneDeep(conversations);
+export async function getConversations(): Promise<Conversation[]> {
+  const { data } = await axios.get(`${BASE_URL}/conversations`);
+  return data;
 }

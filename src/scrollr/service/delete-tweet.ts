@@ -1,8 +1,7 @@
-import { getIdsToDelete } from "./get-ids-to-delete";
-import { tweets } from "./tweets";
+import axios from "axios";
 
-export function deleteTweet(id: string) {
-  const idsToDelete = new Set(getIdsToDelete(id));
-  const newTweets = tweets.filter((tweet) => !idsToDelete.has(tweet.id));
-  tweets.splice(0, tweets.length, ...newTweets);
+import { BASE_URL } from "../../service/base-url";
+
+export function deleteTweet(id: string): Promise<void> {
+  return axios.delete(`${BASE_URL}/tweet/${id}`);
 }

@@ -10,7 +10,7 @@ import { useMemo, useState } from "react";
 import { useQueryClient } from "react-query";
 import { Link } from "react-router-dom";
 
-import { formatDate } from "../../../utils/date-utils/format-date";
+import { formatTimestamp } from "../../../utils/date-utils/format-date-string";
 import { useCurrentUser } from "../../hooks/use-current-user";
 import { deleteTweet } from "../../service/delete-tweet";
 import { editTweet } from "../../service/edit-tweet";
@@ -89,7 +89,9 @@ export function TweetCard({ tweet, tweets }: Props) {
             </Box>
           </Link>
           <Box color="black" paddingLeft={2}>
-            <Typography variant="body1">{formatDate(timestamp)}</Typography>
+            <Typography variant="body1">
+              {formatTimestamp(timestamp)}
+            </Typography>
           </Box>
           <Box
             display="flex"

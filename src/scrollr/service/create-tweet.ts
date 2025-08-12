@@ -10,10 +10,11 @@ export async function createTweet(
   replyingTo?: string,
 ): Promise<Tweet> {
   const tweet = {
-    timestamp: Date.now(),
+    timestamp: new Date(Date.now()).toISOString(),
     message,
     replyingTo,
     ...user,
+    userId: user.id,
   };
 
   const { data } = await axios.post(`${BASE_URL}/tweet`, tweet);

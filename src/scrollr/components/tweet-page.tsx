@@ -71,8 +71,8 @@ export function TweetPage() {
               variant="contained"
               disabled={!replyMessage}
               sx={{ height: 35, borderRadius: 4 }}
-              onClick={() => {
-                createTweet(replyMessage, currentUser, tweetId);
+              onClick={async () => {
+                await createTweet(replyMessage, currentUser, tweetId);
                 queryClient.invalidateQueries({ queryKey: "tweets" });
                 setReplyMessage("");
               }}

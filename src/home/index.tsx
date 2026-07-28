@@ -38,7 +38,7 @@ export function Home() {
             Software Engineer
           </Typography>
           <Typography variant="body2" sx={{ marginLeft: 5 }}>
-            Bellevue, Washington
+            Greater Seattle Area, Washington
           </Typography>
         </Box>
         <img

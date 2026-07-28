@@ -40,4 +40,8 @@ by assignee, selecting one or more assignees to filter by as many as you like.
 
 # Backend
 
-The backend for this project is located at https://github.com/Priyanjoli-Mukherjee/portfolio-backend-api. It is hosted on Heroku and is powered by Spring Boot Java coupled with PostgreSQL.
+The backend for this project is located at [Portfolio Backend API](https://github.com/Priyanjoli-Mukherjee/portfolio-backend-api). It is hosted on Heroku and is powered by Spring Boot Java coupled with PostgreSQL.
+
+# AI Chatbot
+
+In addition to these projects displayed above, I also have an AI chatbot I created over at [Portfolio AI Projects](https://github.com/Priyanjoli-Mukherjee/portfolio-ai-projects). This project was created in Streamlit, Python, LangChain, and OpenAI. It allows a user to upload multiple PDFs and ask an AI to summarize the relevant information instantaneously.
